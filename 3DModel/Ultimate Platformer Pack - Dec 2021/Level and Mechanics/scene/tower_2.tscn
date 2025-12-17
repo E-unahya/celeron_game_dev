@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbqtg4iqgdvm6"]
+
+[ext_resource type="PackedScene" uid="uid://mauwbdpnx2qm" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Tower.gltf" id="1_3e7ev"]
+[ext_resource type="Script" uid="uid://cigarynci2te4" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.gd" id="2_tgv5n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wmdy1"]
+radius = 3.0
+
+[node name="Tower2" instance=ExtResource("1_3e7ev")]
+script = ExtResource("2_tgv5n")
+
+[node name="Tower_Door" parent="." index="1"]
+transform = Transform3D(-0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881907, 1.2481629, 2.8865695, 3.1571736)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
+shape = SubResource("SphereShape3D_wmdy1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjvxr3t2yfoqn"]
+
+[ext_resource type="PackedScene" uid="uid://syjrm50d7d3y" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bomb.gltf" id="1_bmmpa"]
+[ext_resource type="Script" uid="uid://d0aa3ij4lc86p" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bomb_2.gd" id="2_ysdxc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bmmpa"]
+radius = 1.0
+
+[node name="Bomb2" instance=ExtResource("1_bmmpa")]
+script = ExtResource("2_ysdxc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("SphereShape3D_bmmpa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

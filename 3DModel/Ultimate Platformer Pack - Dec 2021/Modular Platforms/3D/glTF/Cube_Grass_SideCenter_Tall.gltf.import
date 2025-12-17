@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Cube_Grass_SideCenter_Tall.gltf-9c8abee3dfe26
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -33,7 +33,7 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path=""
+import_script/path="uid://d2ah026v2yj8"
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""

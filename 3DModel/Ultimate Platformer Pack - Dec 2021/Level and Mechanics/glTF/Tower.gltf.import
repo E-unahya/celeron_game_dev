@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Tower.gltf-aac55c1a4e3f7e310375166eb9ce2613.s
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -33,7 +33,7 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path=""
+import_script/path="uid://byq8bqt2akcie"
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""

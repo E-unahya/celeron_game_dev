@@ -1,9 +1,10 @@
-CharacterBody3D
-Node3D
+CollisionShape3D
 Area3D
+Node3D
+StaticBody3D
+GridMap
+CharacterBody3D
 MeshInstance3D
 DirectionalLight3D
 WorldEnvironment
 Camera3D
-CollisionShape3D
-StaticBody3D

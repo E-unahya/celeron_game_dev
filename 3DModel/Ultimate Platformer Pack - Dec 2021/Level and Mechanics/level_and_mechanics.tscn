@@ -1,0 +1,138 @@
+[gd_scene load_steps=45 format=3 uid="uid://do26oh5khpddl"]
+
+[ext_resource type="PackedScene" uid="uid://dm2vkdm0fdnkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Arrow.gltf" id="1_80bds"]
+[ext_resource type="PackedScene" uid="uid://djurh3ocod5bq" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Arrow_Side.gltf" id="2_ka1qy"]
+[ext_resource type="PackedScene" uid="uid://bhe0mmog07p6w" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Arrow_Up.gltf" id="3_58ida"]
+[ext_resource type="PackedScene" uid="uid://syjrm50d7d3y" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bomb.gltf" id="4_jhvvr"]
+[ext_resource type="PackedScene" uid="uid://ddfmcxscwpv53" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bouncer.gltf" id="5_6oj82"]
+[ext_resource type="PackedScene" uid="uid://b7sbfymlhb0bd" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bridge_Modular.gltf" id="6_6dm5k"]
+[ext_resource type="PackedScene" uid="uid://26nps1jvl3wu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bridge_Modular_Center.gltf" id="7_ooekj"]
+[ext_resource type="PackedScene" uid="uid://b7gs20cqn52pg" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bridge_Small.gltf" id="8_pmgvj"]
+[ext_resource type="PackedScene" uid="uid://c2jr0f4fxny1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Cannon.gltf" id="9_02b5r"]
+[ext_resource type="PackedScene" uid="uid://wth3t78uhmjj" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Cannonball.gltf" id="10_coacx"]
+[ext_resource type="PackedScene" uid="uid://dkt030gig7i8g" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Chest.gltf" id="11_xekde"]
+[ext_resource type="PackedScene" uid="uid://chfljfnmb1q52" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Door.gltf" id="12_qxm57"]
+[ext_resource type="PackedScene" uid="uid://qrnpgtep25cr" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Fence_1.gltf" id="13_ibw2o"]
+[ext_resource type="PackedScene" uid="uid://cow6plujv73wj" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Fence_Corner.gltf" id="14_lf07p"]
+[ext_resource type="PackedScene" uid="uid://txxkvjtyl274" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Fence_Middle.gltf" id="15_ja8ia"]
+[ext_resource type="PackedScene" uid="uid://dqnlpb7qh7e7m" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Goal_Flag.gltf" id="16_xcthk"]
+[ext_resource type="PackedScene" uid="uid://dl7bhvccxw8gb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazard_Cylinder.gltf" id="17_23fph"]
+[ext_resource type="PackedScene" uid="uid://44gyeyswep1m" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazard_Saw.gltf" id="18_tjjm6"]
+[ext_resource type="PackedScene" uid="uid://pcwt6tugei0q" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazard_SpikeTrap.gltf" id="19_xqbv1"]
+[ext_resource type="PackedScene" uid="uid://d3pa8rxo5x075" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Lever.gltf" id="20_77hmv"]
+[ext_resource type="PackedScene" uid="uid://ct3m0gqvcdj5d" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_0.gltf" id="21_kstn2"]
+[ext_resource type="PackedScene" uid="uid://cm1fjp2fsb3c2" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_1.gltf" id="22_xpxev"]
+[ext_resource type="PackedScene" uid="uid://b31uum3i02ry2" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_2.gltf" id="23_omes2"]
+[ext_resource type="PackedScene" uid="uid://becnitp6j4nfb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_3.gltf" id="24_simc7"]
+[ext_resource type="PackedScene" uid="uid://bjoq0h0xwy5jm" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_4.gltf" id="25_l06w6"]
+[ext_resource type="PackedScene" uid="uid://deg32g6juqlbx" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_5.gltf" id="26_auu5b"]
+[ext_resource type="PackedScene" uid="uid://c7p53722ggn3v" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_6.gltf" id="27_wjqjl"]
+[ext_resource type="PackedScene" uid="uid://b4jtcw8net0bb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_7.gltf" id="28_ra4an"]
+[ext_resource type="PackedScene" uid="uid://dwftiunsl3frm" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_8.gltf" id="29_q3h8w"]
+[ext_resource type="PackedScene" uid="uid://ca2mya8gekgra" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Numbers_9.gltf" id="30_w8vwp"]
+[ext_resource type="PackedScene" uid="uid://bd8lhnulnsfy8" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Pipe_90.gltf" id="31_phxdc"]
+[ext_resource type="PackedScene" uid="uid://u2hi6br45c1w" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Pipe_End.gltf" id="32_livrl"]
+[ext_resource type="PackedScene" uid="uid://nxothu2fl5e" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Pipe_Straight.gltf" id="33_m5eb7"]
+[ext_resource type="PackedScene" uid="uid://thhmcft7qr58" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Pipe_T.gltf" id="34_ec5y0"]
+[ext_resource type="PackedScene" uid="uid://bf02mg7qtui03" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Plant_Large.gltf" id="35_buwbs"]
+[ext_resource type="PackedScene" uid="uid://8qosas733h5v" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Plant_Small.gltf" id="36_8lndp"]
+[ext_resource type="PackedScene" uid="uid://w1e2ogb1yic7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Spikes.gltf" id="37_avajy"]
+[ext_resource type="PackedScene" uid="uid://bnyq2hfi24g3i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/SpikyBall.gltf" id="38_vkdm4"]
+[ext_resource type="PackedScene" uid="uid://dffjkjvjafi4x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Stairs.gltf" id="39_0ywkl"]
+[ext_resource type="PackedScene" uid="uid://k4amqbxp6m7u" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Stairs_Modular_End.gltf" id="40_how20"]
+[ext_resource type="PackedScene" uid="uid://bbwj0tlp1v34r" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Stairs_Modular_Middle.gltf" id="41_td4xx"]
+[ext_resource type="PackedScene" uid="uid://ciy3w1sott3mn" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Stairs_Modular_Start.gltf" id="42_nd07i"]
+[ext_resource type="PackedScene" uid="uid://bwijgcif7fjdi" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Stairs_Small.gltf" id="43_whjv1"]
+[ext_resource type="PackedScene" uid="uid://mauwbdpnx2qm" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Tower.gltf" id="44_eq01m"]
+
+[node name="LevelAndMechanics" type="Node3D"]
+
+[node name="Arrow2" parent="." instance=ExtResource("1_80bds")]
+
+[node name="Arrow_Side2" parent="." instance=ExtResource("2_ka1qy")]
+
+[node name="Arrow_Up2" parent="." instance=ExtResource("3_58ida")]
+
+[node name="Bomb2" parent="." instance=ExtResource("4_jhvvr")]
+
+[node name="Bouncer2" parent="." instance=ExtResource("5_6oj82")]
+
+[node name="Bridge_Modular2" parent="." instance=ExtResource("6_6dm5k")]
+
+[node name="Bridge_Modular_Center2" parent="." instance=ExtResource("7_ooekj")]
+
+[node name="Bridge_Small2" parent="." instance=ExtResource("8_pmgvj")]
+
+[node name="Cannon2" parent="." instance=ExtResource("9_02b5r")]
+
+[node name="Cannonball2" parent="." instance=ExtResource("10_coacx")]
+
+[node name="Chest" parent="." instance=ExtResource("11_xekde")]
+
+[node name="Door2" parent="." instance=ExtResource("12_qxm57")]
+
+[node name="Fence_12" parent="." instance=ExtResource("13_ibw2o")]
+
+[node name="Fence_Corner2" parent="." instance=ExtResource("14_lf07p")]
+
+[node name="Fence_Middle2" parent="." instance=ExtResource("15_ja8ia")]
+
+[node name="Goal_Flag2" parent="." instance=ExtResource("16_xcthk")]
+
+[node name="Hazard_Cylinder2" parent="." instance=ExtResource("17_23fph")]
+
+[node name="Hazard_Saw2" parent="." instance=ExtResource("18_tjjm6")]
+
+[node name="Hazard_SpikeTrap2" parent="." instance=ExtResource("19_xqbv1")]
+
+[node name="Lever2" parent="." instance=ExtResource("20_77hmv")]
+
+[node name="Numbers_02" parent="." instance=ExtResource("21_kstn2")]
+
+[node name="Numbers_12" parent="." instance=ExtResource("22_xpxev")]
+
+[node name="Numbers_22" parent="." instance=ExtResource("23_omes2")]
+
+[node name="Numbers_32" parent="." instance=ExtResource("24_simc7")]
+
+[node name="Numbers_42" parent="." instance=ExtResource("25_l06w6")]
+
+[node name="Numbers_52" parent="." instance=ExtResource("26_auu5b")]
+
+[node name="Numbers_62" parent="." instance=ExtResource("27_wjqjl")]
+
+[node name="Numbers_72" parent="." instance=ExtResource("28_ra4an")]
+
+[node name="Numbers_82" parent="." instance=ExtResource("29_q3h8w")]
+
+[node name="Numbers_92" parent="." instance=ExtResource("30_w8vwp")]
+
+[node name="Pipe_902" parent="." instance=ExtResource("31_phxdc")]
+
+[node name="Pipe_End2" parent="." instance=ExtResource("32_livrl")]
+
+[node name="Pipe_Straight2" parent="." instance=ExtResource("33_m5eb7")]
+
+[node name="Pipe_T2" parent="." instance=ExtResource("34_ec5y0")]
+
+[node name="Plant_Large2" parent="." instance=ExtResource("35_buwbs")]
+
+[node name="Plant_Small2" parent="." instance=ExtResource("36_8lndp")]
+
+[node name="Spikes2" parent="." instance=ExtResource("37_avajy")]
+
+[node name="SpikyBall2" parent="." instance=ExtResource("38_vkdm4")]
+
+[node name="Stairs2" parent="." instance=ExtResource("39_0ywkl")]
+
+[node name="Stairs_Modular_End2" parent="." instance=ExtResource("40_how20")]
+
+[node name="Stairs_Modular_Middle2" parent="." instance=ExtResource("41_td4xx")]
+
+[node name="Stairs_Modular_Start2" parent="." instance=ExtResource("42_nd07i")]
+
+[node name="Stairs_Small2" parent="." instance=ExtResource("43_whjv1")]
+
+[node name="Tower2" parent="." instance=ExtResource("44_eq01m")]
+
+[editable path="Arrow2"]

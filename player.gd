@@ -29,10 +29,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	# カメラを回す処理
+	"""
+		# カメラを回す処理　デバッグ用に？
 	if Input.is_action_pressed("rotate_y_left"):
-		kaiten_you.rotate_y(camera_speed)
+		# kaiten_you.rotate_y(camera_speed)
+		rotate_y(camera_speed)
 	if Input.is_action_pressed("rotate_y_right"):
-		kaiten_you.rotate_y(-camera_speed)
-
+		# kaiten_you.rotate_y(-camera_speed)
+		rotate_y(-camera_speed)
+	"""
 	move_and_slide()

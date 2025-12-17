@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Fruit.gltf-1da93bbc5608e5c77a2d94575613ea5e.s
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

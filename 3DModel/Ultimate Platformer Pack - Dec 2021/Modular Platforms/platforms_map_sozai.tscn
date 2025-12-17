@@ -1,0 +1,100 @@
+[gd_scene load_steps=25 format=3 uid="uid://b3al5ktii2lvh"]
+
+[ext_resource type="Script" uid="uid://dkl658j7qv7yn" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/platforms_map_sozai.gd" id="1_a3vtk"]
+[ext_resource type="PackedScene" uid="uid://qrvojaogts2q" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/2D/glTF/Cube_Dirt_1x1Center.gltf" id="1_fy5ph"]
+[ext_resource type="PackedScene" uid="uid://dwv2ttpdy5evq" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/2D/glTF/Cube_Dirt_1x1End.gltf" id="2_v6pdf"]
+[ext_resource type="PackedScene" uid="uid://be4fuadlaquy3" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/2D/glTF/Cube_Grass_1x1Center.gltf" id="3_o23tl"]
+[ext_resource type="PackedScene" uid="uid://c1y33bmxc8f6d" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/2D/glTF/Cube_Grass_1x1End.gltf" id="4_exsbm"]
+[ext_resource type="PackedScene" uid="uid://x8huqc401fwo" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Dirt_Center_Tall.gltf" id="5_xrth7"]
+[ext_resource type="PackedScene" uid="uid://xsyfsqjdbsiv" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Dirt_Corner_Tall.gltf" id="6_n4lhj"]
+[ext_resource type="PackedScene" uid="uid://cmles7bkgis67" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Dirt_Side_Tall.gltf" id="7_j8j1x"]
+[ext_resource type="PackedScene" uid="uid://bais113fscxcy" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_Bottom_Tall.gltf" id="8_mc21r"]
+[ext_resource type="PackedScene" uid="uid://d3gcfs0rho3v2" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_Center_Tall.gltf" id="9_rxdr7"]
+[ext_resource type="PackedScene" uid="uid://cx3kxkt6pjlcl" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_CornerBottom_Tall.gltf" id="10_aewkk"]
+[ext_resource type="PackedScene" uid="uid://b7xqmadcleym1" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_CornerCenter_Tall.gltf" id="11_psdb6"]
+[ext_resource type="PackedScene" uid="uid://cg37doelrfffb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_Corner_Tall.gltf" id="12_7s7dn"]
+[ext_resource type="PackedScene" uid="uid://cdrceymbxyhpv" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_SideBottom_Tall.gltf" id="13_5u1m5"]
+[ext_resource type="PackedScene" uid="uid://c4ia3wmsc14wk" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_SideCenter_Tall.gltf" id="14_wu7nn"]
+[ext_resource type="PackedScene" uid="uid://bqnxlns38035r" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/3D/glTF/Cube_Grass_Side_Tall.gltf" id="15_anu7k"]
+[ext_resource type="PackedScene" uid="uid://c85s7xbqh4jkn" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Cube/glTF/Cube_Dirt_Single.gltf" id="16_pcmwy"]
+[ext_resource type="PackedScene" uid="uid://bfq8vmnbkaasj" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Cube/glTF/Cube_Grass_Single.gltf" id="17_mekj7"]
+[ext_resource type="PackedScene" uid="uid://c2mc33iqiisuq" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Dirt_Center.gltf" id="18_dhkri"]
+[ext_resource type="PackedScene" uid="uid://b7jmbcabqbfhc" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Dirt_Corner.gltf" id="19_5coq3"]
+[ext_resource type="PackedScene" uid="uid://dneykilrpekmu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Dirt_Side.gltf" id="20_kj71d"]
+[ext_resource type="PackedScene" uid="uid://drnscefhrfdm1" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Grass_Center.gltf" id="21_4tr7s"]
+[ext_resource type="PackedScene" uid="uid://cjy8ksftniff7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Grass_Corner.gltf" id="22_fngfw"]
+[ext_resource type="PackedScene" uid="uid://eb6x3rfkk2wg" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Grass_Side.gltf" id="23_bc5cp"]
+
+[node name="PlatformsMapSozai" type="Node3D"]
+script = ExtResource("1_a3vtk")
+
+[node name="Cube_Dirt_1x1Center2" parent="." instance=ExtResource("1_fy5ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="Cube_Dirt_1x1End2" parent="." instance=ExtResource("2_v6pdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="Cube_Grass_1x1Center2" parent="." instance=ExtResource("3_o23tl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="Cube_Grass_1x1End2" parent="." instance=ExtResource("4_exsbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="Cube_Dirt_Center_Tall2" parent="." instance=ExtResource("5_xrth7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Dirt_Corner_Tall2" parent="." instance=ExtResource("6_n4lhj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Dirt_Side_Tall2" parent="." instance=ExtResource("7_j8j1x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_Bottom_Tall2" parent="." instance=ExtResource("8_mc21r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_Center_Tall2" parent="." instance=ExtResource("9_rxdr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_CornerBottom_Tall2" parent="." instance=ExtResource("10_aewkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_CornerCenter_Tall2" parent="." instance=ExtResource("11_psdb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_Corner_Tall2" parent="." instance=ExtResource("12_7s7dn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_SideBottom_Tall2" parent="." instance=ExtResource("13_5u1m5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_SideCenter_Tall2" parent="." instance=ExtResource("14_wu7nn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Grass_Side_Tall2" parent="." instance=ExtResource("15_anu7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Cube_Dirt_Single2" parent="." instance=ExtResource("16_pcmwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Cube_Grass_Single2" parent="." instance=ExtResource("17_mekj7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Cube_Dirt_Center2" parent="." instance=ExtResource("18_dhkri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Cube_Dirt_Corner2" parent="." instance=ExtResource("19_5coq3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Cube_Dirt_Side2" parent="." instance=ExtResource("20_kj71d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Cube_Grass_Center2" parent="." instance=ExtResource("21_4tr7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Cube_Grass_Corner2" parent="." instance=ExtResource("22_fngfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Cube_Grass_Side2" parent="." instance=ExtResource("23_bc5cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[editable path="Cube_Grass_1x1Center2"]

@@ -1,5 +1,8 @@
 今後のTODO
 Intel(R) Celeron(R) CPU 3865U @ 1.80GHz
+メモリ　4ＧＢ
+
+グラフィック　Device: Intel - Mesa Intel(R) HD Graphics 610 (KBL GT1)
 このスペックで動く３Dアクションゲーム 王道の子供向けにするのか？それとも３Dドットイートゲームなのか　
 
 - できるだけローポリなキャラクターを探す

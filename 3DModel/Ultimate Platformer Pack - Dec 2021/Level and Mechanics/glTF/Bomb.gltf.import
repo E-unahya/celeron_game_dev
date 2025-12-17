@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Bomb.gltf-59c62be57a86de283b9bbcd2c3119a32.sc
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
