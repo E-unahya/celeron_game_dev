@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://chk5a8ropu12n"]
+
+[ext_resource type="PackedScene" uid="uid://dl7bhvccxw8gb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazard_Cylinder.gltf" id="1_vbmm7"]
+[ext_resource type="PackedScene" uid="uid://44gyeyswep1m" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazard_Saw.gltf" id="2_eg1qk"]
+[ext_resource type="PackedScene" uid="uid://pcwt6tugei0q" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazard_SpikeTrap.gltf" id="3_2tyos"]
+
+[node name="TrapMesh" type="Node3D"]
+
+[node name="Hazard_Cylinder2" parent="." instance=ExtResource("1_vbmm7")]
+
+[node name="Hazard_Saw2" parent="." instance=ExtResource("2_eg1qk")]
+
+[node name="Hazard_SpikeTrap2" parent="." instance=ExtResource("3_2tyos")]

@@ -1,17 +1,17 @@
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/platforms_map_sozai.tscn
-res://world.tscn
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/platforms_map_sozai.gd
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.tres
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/glTF/cube_import.gd
-res://player.gd
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/level_and_mechanics.tscn
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/level_and_mechanics_import.gd
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bomb_2.tscn
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bomb_2.gd
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.tscn
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.gd
 res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.tscn
 res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.gd
-res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/player.tscn
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.tscn
+res://todo.txt
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.gd
+res://world.tscn
+res://player.gd
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/dossun.tscn
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/TrapMesh.tscn
+res://world.gd
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Hazzard.gd
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/HazzardImport.gd
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/HazzardArea.gd
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard.tscn
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres
 res://memo.txt
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/player.tscn

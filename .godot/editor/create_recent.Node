@@ -1,10 +1,12 @@
-CollisionShape3D
+GridMap
 Area3D
+CollisionShape3D
+Node
+AnimationPlayer
+MeshInstance3D
 Node3D
 StaticBody3D
-GridMap
 CharacterBody3D
-MeshInstance3D
 DirectionalLight3D
 WorldEnvironment
 Camera3D
