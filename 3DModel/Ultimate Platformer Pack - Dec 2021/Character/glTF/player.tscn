@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://c16u1ytqqmdib"]
+
+[ext_resource type="PackedScene" uid="uid://cqhlsd1jthhsf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/Character.gltf" id="1_77dde"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_77dde"]
+height = 2.5
+
+[node name="Player" instance=ExtResource("1_77dde")]
+
+[node name="CharacterArmature" parent="." index="0"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="CharacterArmature" index="0"]
+bones/1/rotation = Quaternion(7.85402e-06, 0.70295197, 0.7112374, 7.762523e-06)
+bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
+bones/4/rotation = Quaternion(0.16683146, 4.3189974e-07, 1.03120186e-07, 0.9859855)
+bones/5/rotation = Quaternion(-0.013158741, -8.322606e-07, -2.942855e-09, 0.9999134)
+bones/6/rotation = Quaternion(-0.027065465, 6.777682e-07, -1.8720296e-09, 0.99963367)
+bones/7/rotation = Quaternion(-0.08495308, -0.0002744794, 2.3338975e-05, 0.9963849)
+bones/9/rotation = Quaternion(-0.16957995, -0.0034885814, -0.016185759, 0.98537743)
+bones/10/rotation = Quaternion(-0.45413652, -0.09891098, 0.19182597, 0.86439556)
+bones/12/rotation = Quaternion(-0.16957998, 0.0034885579, 0.016185801, 0.98537743)
+bones/13/rotation = Quaternion(-0.45413646, 0.098910905, -0.19182585, 0.8643955)
+bones/14/rotation = Quaternion(-0.035130102, 0.012167383, -0.41025436, 0.91121304)
+bones/15/rotation = Quaternion(0.52678555, 0.50360876, 0.47415757, -0.49401394)
+bones/16/rotation = Quaternion(-0.017246334, 0.25878364, -0.22990243, 0.9380184)
+bones/17/rotation = Quaternion(0.012537885, 0.018195217, -0.006543083, 0.9997345)
+bones/19/rotation = Quaternion(0.5267858, -0.5036087, -0.47415748, -0.4940139)
+bones/20/rotation = Quaternion(-0.017246343, -0.25878373, 0.2299025, 0.9380183)
+bones/21/rotation = Quaternion(0.0125379, -0.01819519, 0.0065430654, 0.9997345)
+bones/22/rotation = Quaternion(0.9101397, 0.013652579, 0.00735962, 0.41401115)
+bones/23/rotation = Quaternion(0.6922099, 0.011379804, 0.015124545, 0.721448)
+bones/24/rotation = Quaternion(0.9101398, -0.0136525985, -0.0073588537, 0.414011)
+bones/25/rotation = Quaternion(0.6922098, -0.01137968, -0.015124411, 0.7214482)
+bones/26/rotation = Quaternion(-3.5526934e-15, 1.1920937e-07, -8.470344e-22, 1)
+bones/27/rotation = Quaternion(-7.85402e-06, 0.70295197, 0.7112374, -7.762523e-06)
+bones/28/rotation = Quaternion(-3.552734e-15, -5.9604645e-07, 3.3881257e-21, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("CapsuleShape3D_77dde")
+
+[node name="KaitenYou" type="Node3D" parent="." index="3"]
+
+[node name="Camera3D" type="Camera3D" parent="KaitenYou" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3.4851174, 4.116065)
+far = 25.0

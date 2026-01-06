@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds8mjvdhtlgkt"]
+
+[ext_resource type="PackedScene" uid="uid://dfcybn6moid8j" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/Crab.gltf" id="1_7bsu7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_60e7b"]
+radius = 0.8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jrn10"]
+height = 0.2
+radius = 1.0
+
+[node name="Crab2" instance=ExtResource("1_7bsu7")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_60e7b")
+
+[node name="WeakArea" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_jrn10")

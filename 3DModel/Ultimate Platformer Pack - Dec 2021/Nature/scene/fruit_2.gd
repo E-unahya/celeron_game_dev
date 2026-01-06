@@ -12,5 +12,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	# どうも普通に隠すくらいが丁度いいらしい
-	if body.name == "Player" and visible:
+	if body is Player and visible:
 		hide()

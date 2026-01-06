@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
+class_name Player
 
 @export var SPEED = 5.0
-@export var JUMP_VELOCITY = 4.5
+@export var JUMP_VELOCITY = 9.0
 
 ## 所持しているフルーツの数、後々、cfgファイルに読み込む
 @export_range(0, 100, 1.0) var fruits_counter : int = 0
@@ -14,6 +15,9 @@ extends CharacterBody3D
 
 @onready var kaiten_you := get_node("KaitenYou")
 
+@onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
+@onready var character_armature : Node3D = get_node_or_null("CharacterArmature")
+
 # ダメージを受けたときの管理、ハザード編
 enum Hazard {
 	NONE = -1,
@@ -22,11 +26,22 @@ enum Hazard {
 	SPIKE_TRAP = 2
 }
 
+func _ready() -> void:
+	if animation_player == null:
+		return
+	animation_player.play("Idle")
+
+func _input(event: InputEvent) -> void:
+	if animation_player == null or character_armature == null:
+		return
+	if event.is_action_pressed("move_up"):
+		animation_player.play("Run")
+	# TODO Character no muki wo migi hidari de kaeru
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -55,18 +70,30 @@ func _physics_process(delta: float) -> void:
 			apply_Hazard(trap_id)
 	move_and_slide()
 
-
 func _on_rakka_area_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
+	if body is Player:
 		# TODO ここで落下音がピューってなってそれが終わったらリロードの処理を行う
 		get_tree().reload_current_scene()
 
 func apply_Hazard(trap_id : int):
 	match trap_id:
 		Hazard.CYLINDER:
+			die()
 			print("シリンダーに打たれた")
 		Hazard.SAW:
+			die()
 			print("丸鋸怖い")
 		Hazard.SPIKE_TRAP:
 			if is_on_floor():
+				die()
 				print("足痛い")
+
+func bounce():
+	velocity.y = JUMP_VELOCITY
+
+
+func die():
+	# 4んだときのアニメーションを再生
+	set_process(false)
+	set_physics_process(false)
+	animation_player.play("Death")

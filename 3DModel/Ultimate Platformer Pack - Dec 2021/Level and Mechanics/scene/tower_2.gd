@@ -8,7 +8,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
+	if body is Player:
 		$AnimationPlayer.play("GOAL")
 		var tween = get_tree().create_tween()
 		tween.tween_property(tower_door, "rotation_degrees", Vector3(0, 105, 0), 1.5)

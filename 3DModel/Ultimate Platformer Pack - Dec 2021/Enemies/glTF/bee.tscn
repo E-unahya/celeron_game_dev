@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6wyjvqg8salf"]
+
+[ext_resource type="PackedScene" uid="uid://b0jo61k547opl" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/Bee.gltf" id="1_w5mge"]
+[ext_resource type="Script" uid="uid://d0wkar12jno2t" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.gd" id="2_60e7b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_60e7b"]
+radius = 0.8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jrn10"]
+height = 0.2
+radius = 1.0
+
+[node name="Bee" instance=ExtResource("1_w5mge")]
+script = ExtResource("2_60e7b")
+enemy_type = 2
+
+[node name="Skeleton3D" parent="MonsterArmature" index="0"]
+bones/2/position = Vector3(0, 0.48319352, 0)
+bones/4/rotation = Quaternion(0, 3.5471498e-10, -0.0026400534, 0.9999966)
+bones/6/rotation = Quaternion(-0.030442096, -0.07569716, -0.37187177, 0.9246917)
+bones/8/rotation = Quaternion(-0.030442093, 0.07569717, 0.3718718, 0.9246917)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_60e7b")
+
+[node name="WeakArea" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_jrn10")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]
