@@ -18,6 +18,8 @@ class_name Player
 @onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
 @onready var character_armature : Node3D = get_node_or_null("CharacterArmature")
 
+var target_rotation : float = 0.0
+
 # ダメージを受けたときの管理、ハザード編
 enum Hazard {
 	NONE = -1,
@@ -50,10 +52,16 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	# 回転の際に反応するためにわざとif文を分ける
+	if direction.length() > 0:
+		target_rotation = atan2(direction.x, direction.z)
+		rotation.y = lerp_angle(rotation.y, target_rotation, 1.0 * delta)
+
 	if direction:
 		velocity.x = direction.x * SPEED
-		# rotateさせるのどうすればいい？
 		velocity.z = direction.z * SPEED
+		# rotateさせるのどうすればいい？
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
