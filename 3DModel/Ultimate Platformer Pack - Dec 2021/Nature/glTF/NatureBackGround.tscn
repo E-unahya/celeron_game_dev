@@ -1,0 +1,61 @@
+[gd_scene load_steps=19 format=3 uid="uid://ckx0hn1ue3o5f"]
+
+[ext_resource type="PackedScene" uid="uid://dywkrhfd5asih" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Bush.gltf" id="1_6hkfy"]
+[ext_resource type="PackedScene" uid="uid://6ixmtqulqvpx" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Bush_Fruit.gltf" id="2_qiw73"]
+[ext_resource type="PackedScene" uid="uid://d374ppeb45ygi" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Cloud_1.gltf" id="3_oo76a"]
+[ext_resource type="PackedScene" uid="uid://dpo5wyb4bdf14" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Cloud_2.gltf" id="4_hra1f"]
+[ext_resource type="PackedScene" uid="uid://iyvaxomm5hjl" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Cloud_3.gltf" id="5_umhsw"]
+[ext_resource type="PackedScene" uid="uid://ceiowfl8bjmcm" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Grass_1.gltf" id="6_rjjll"]
+[ext_resource type="PackedScene" uid="uid://dialt7ijmti07" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Grass_2.gltf" id="7_7lu4q"]
+[ext_resource type="PackedScene" uid="uid://cnvx2n5c37ke7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Grass_3.gltf" id="8_0wvbj"]
+[ext_resource type="PackedScene" uid="uid://btk221qh8xs1i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_1.gltf" id="9_rbffc"]
+[ext_resource type="PackedScene" uid="uid://balw3lc3tcl0o" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_2.gltf" id="10_fgkpn"]
+[ext_resource type="PackedScene" uid="uid://uiorjtb2nc8i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_3.gltf" id="11_hr5f3"]
+[ext_resource type="PackedScene" uid="uid://cjsthagyja1n1" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_Large.gltf" id="12_81ulu"]
+[ext_resource type="PackedScene" uid="uid://bbub8bvbihmcb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_Medium.gltf" id="13_f3r41"]
+[ext_resource type="PackedScene" uid="uid://l27f0x8xy7x0" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatform_Tall.gltf" id="14_7js4u"]
+[ext_resource type="PackedScene" uid="uid://bftac1dpcvw7i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Rock_1.gltf" id="15_liexu"]
+[ext_resource type="PackedScene" uid="uid://dkhhqjp4xbscp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Rock_2.gltf" id="16_uj2sx"]
+[ext_resource type="PackedScene" uid="uid://1jtcdicfjy6s" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Tree.gltf" id="17_4jffi"]
+[ext_resource type="PackedScene" uid="uid://bauhw6npx6as8" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Tree_Fruit.gltf" id="18_nks1c"]
+
+[node name="NatureBackGround" type="Node3D"]
+
+[node name="Bush2" parent="." instance=ExtResource("1_6hkfy")]
+
+[node name="Bush_Fruit2" parent="." instance=ExtResource("2_qiw73")]
+
+[node name="Cloud_12" parent="." instance=ExtResource("3_oo76a")]
+
+[node name="Cloud_22" parent="." instance=ExtResource("4_hra1f")]
+
+[node name="Cloud_32" parent="." instance=ExtResource("5_umhsw")]
+
+[node name="Grass_12" parent="." instance=ExtResource("6_rjjll")]
+
+[node name="Grass_22" parent="." instance=ExtResource("7_7lu4q")]
+
+[node name="Grass_32" parent="." instance=ExtResource("8_0wvbj")]
+
+[node name="RockPlatforms_12" parent="." instance=ExtResource("9_rbffc")]
+
+[node name="RockPlatforms_22" parent="." instance=ExtResource("10_fgkpn")]
+
+[node name="RockPlatforms_32" parent="." instance=ExtResource("11_hr5f3")]
+
+[node name="RockPlatforms_Large2" parent="." instance=ExtResource("12_81ulu")]
+
+[node name="RockPlatforms_Medium2" parent="." instance=ExtResource("13_f3r41")]
+
+[node name="RockPlatform_Tall2" parent="." instance=ExtResource("14_7js4u")]
+
+[node name="Rock_12" parent="." instance=ExtResource("15_liexu")]
+
+[node name="Rock_22" parent="." instance=ExtResource("16_uj2sx")]
+
+[node name="Tree2" parent="." instance=ExtResource("17_4jffi")]
+
+[node name="Tree_Fruit2" parent="." instance=ExtResource("18_nks1c")]
+
+[editable path="Bush2"]
+[editable path="Grass_12"]

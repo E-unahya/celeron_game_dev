@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2ldvpmxfxrty"]
+[gd_scene load_steps=15 format=3 uid="uid://d2ldvpmxfxrty"]
 
 [ext_resource type="Script" uid="uid://pdmrhny8rl5m" path="res://world.gd" id="1_pkg7o"]
 [ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="2_fj7yv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbqtg4iqgdvm6" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.tscn" id="4_aqk2v"]
 [ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="4_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dqhft8i4nm55s" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.tscn" id="5_036b0"]
+[ext_resource type="MeshLibrary" uid="uid://c3avuxfewjumu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/Natures.tres" id="5_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://f6vvw0l6b2u5" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/dossun.tscn" id="7_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://cwxwcm7bawbsk" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="10_ic0uy"]
@@ -52,6 +53,15 @@ data = {
 "cells": PackedInt32Array(0, 65504, 1048578, 65534, 65504, 1048578, 65535, 65501, 1048577)
 }
 
+[node name="BackGroundMap" type="GridMap" parent="."]
+mesh_library = ExtResource("5_k3n1d")
+cell_size = Vector3(2, 4, 2)
+collision_layer = 8
+collision_mask = 8
+data = {
+"cells": PackedInt32Array(3, 65527, 1, 65532, 65526, 1, 65532, 65524, 1, 65532, 65522, 1, 2, 65520, 17, 65533, 65516, 17)
+}
+
 [node name="Bomb2" parent="." instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -7)
 
@@ -89,3 +99,5 @@ script = ExtResource("11_ic0uy")
 follow_target = NodePath("../Player")
 offset = null
 smooth_speed = null
+
+[connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]

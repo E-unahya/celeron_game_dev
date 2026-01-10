@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/Character.gltf-415b37d082c6771c456b36114cfede
 
 nodes/root_type="CharacterBody3D"
 nodes/root_name="Player"
-nodes/root_script=Resource("uid://d3kre5f0j3ee7", "res://player.gd")
+nodes/root_script=Resource("uid://d3kre5f0j3ee7", "res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.gd")
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
