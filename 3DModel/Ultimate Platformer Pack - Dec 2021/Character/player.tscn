@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxuo6ovkeb2qj"]
 
-[ext_resource type="Script" uid="uid://d3kre5f0j3ee7" path="res://player.gd" id="1_74ah2"]
+[ext_resource type="Script" uid="uid://d3kre5f0j3ee7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.gd" id="1_74ah2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlwt5"]
 

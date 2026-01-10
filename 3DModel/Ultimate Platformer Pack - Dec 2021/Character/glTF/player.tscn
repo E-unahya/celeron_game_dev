@@ -39,9 +39,3 @@ bones/28/rotation = Quaternion(-3.552734e-15, -5.9604645e-07, 3.3881257e-21, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CapsuleShape3D_77dde")
-
-[node name="KaitenYou" type="Node3D" parent="." index="3"]
-
-[node name="Camera3D" type="Camera3D" parent="KaitenYou" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3.4851174, 4.116065)
-far = 25.0

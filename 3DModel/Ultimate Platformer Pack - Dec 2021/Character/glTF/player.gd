@@ -13,8 +13,6 @@ class_name Player
 ## トラップのマップ
 @export var trap_map : GridMap
 
-@onready var kaiten_you := get_node("KaitenYou")
-
 @onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
 @onready var character_armature : Node3D = get_node_or_null("CharacterArmature")
 
@@ -54,9 +52,10 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# 回転の際に反応するためにわざとif文を分ける
-	if direction.length() > 0:
+	if direction.length() > 0 and direction.y:
 		target_rotation = atan2(direction.x, direction.z)
-		rotation.y = lerp_angle(rotation.y, target_rotation, 1.0 * delta)
+		character_armature.rotation.y += lerp_angle(rotation.y, target_rotation, 1.0 * delta)
+		print(character_armature.rotation.y)
 
 	if direction:
 		velocity.x = direction.x * SPEED

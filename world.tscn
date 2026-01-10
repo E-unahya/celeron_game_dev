@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2ldvpmxfxrty"]
+[gd_scene load_steps=14 format=3 uid="uid://d2ldvpmxfxrty"]
 
 [ext_resource type="Script" uid="uid://pdmrhny8rl5m" path="res://world.gd" id="1_pkg7o"]
 [ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="2_fj7yv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwxwcm7bawbsk" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="10_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://c6wyjvqg8salf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/bee.tscn" id="10_wse8f"]
+[ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="11_ic0uy"]
 
 [sub_resource type="Environment" id="Environment_tlwt5"]
 background_mode = 1
@@ -28,7 +29,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 environment = SubResource("Environment_tlwt5")
 
 [node name="Player" parent="." node_paths=PackedStringArray("trap_map") instance=ExtResource("10_ic0uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2559166, 0)
 collision_layer = 9
 collision_mask = 9
 platform_floor_layers = 4278190088
@@ -81,3 +82,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 3
 
 [node name="Bee3" parent="." instance=ExtResource("10_wse8f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 4, -19)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 9, 8)
+script = ExtResource("11_ic0uy")
+follow_target = NodePath("../Player")
+offset = null
+smooth_speed = null
