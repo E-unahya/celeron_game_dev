@@ -7,10 +7,8 @@ height = 2.5
 
 [node name="Player" instance=ExtResource("1_77dde")]
 
-[node name="CharacterArmature" parent="." index="0"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
 [node name="Skeleton3D" parent="CharacterArmature" index="0"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 bones/1/rotation = Quaternion(7.85402e-06, 0.70295197, 0.7112374, 7.762523e-06)
 bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
 bones/4/rotation = Quaternion(0.16683146, 4.3189974e-07, 1.03120186e-07, 0.9859855)

@@ -29,7 +29,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 environment = SubResource("Environment_tlwt5")
 
 [node name="Player" parent="." node_paths=PackedStringArray("trap_map") instance=ExtResource("10_ic0uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2559166, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 4.2559166, 0)
 collision_layer = 9
 collision_mask = 9
 platform_floor_layers = 4278190088

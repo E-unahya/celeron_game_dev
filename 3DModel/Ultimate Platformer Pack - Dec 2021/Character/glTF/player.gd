@@ -5,6 +5,9 @@ class_name Player
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 9.0
 
+@export var accel: float = 15.0  # 加速の鋭さ
+@export var friction: float = 10.0 # 摩擦（止まりやすさ）
+
 ## 所持しているフルーツの数、後々、cfgファイルに読み込む
 @export_range(0, 100, 1.0) var fruits_counter : int = 0
 
@@ -15,6 +18,8 @@ class_name Player
 
 @onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
 @onready var character_armature : Node3D = get_node_or_null("CharacterArmature")
+
+var rotation_speed : float = 5.0
 
 var target_rotation : float = 0.0
 
@@ -49,21 +54,22 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
 
 	# 回転の際に反応するためにわざとif文を分ける
-	if direction.length() > 0 and direction.y:
-		target_rotation = atan2(direction.x, direction.z)
-		character_armature.rotation.y += lerp_angle(rotation.y, target_rotation, 1.0 * delta)
-		print(character_armature.rotation.y)
-
+	if direction.length() > 0:
+		# 目標地点 = 自分の現在地 + 進みたい方向
+		var look_target = character_armature.global_position + direction
+		
+		# その方向を向かせる（一瞬で向く）
+		character_armature.look_at(look_target, Vector3.UP)
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = lerp(velocity.x ,direction.x * SPEED, accel * delta)
+		velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
 		# rotateさせるのどうすればいい？
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = lerp(velocity.x, 0.0, friction * delta)
+		velocity.z = lerp(velocity.z, 0.0, friction * delta)
 	# ここからトラップに落ちたらの処理
 	var cell_pos = trap_map.local_to_map(global_position)
 # 罠用GridMapからその場所のタイルIDを取得
