@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b3al5ktii2lvh"]
+[gd_scene load_steps=32 format=3 uid="uid://b3al5ktii2lvh"]
 
 [ext_resource type="Script" uid="uid://dkl658j7qv7yn" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/platforms_map_sozai.gd" id="1_a3vtk"]
 [ext_resource type="PackedScene" uid="uid://qrvojaogts2q" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/2D/glTF/Cube_Dirt_1x1Center.gltf" id="1_fy5ph"]
@@ -24,6 +24,13 @@
 [ext_resource type="PackedScene" uid="uid://drnscefhrfdm1" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Grass_Center.gltf" id="21_4tr7s"]
 [ext_resource type="PackedScene" uid="uid://cjy8ksftniff7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Grass_Corner.gltf" id="22_fngfw"]
 [ext_resource type="PackedScene" uid="uid://eb6x3rfkk2wg" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Single Height/glTF/Cube_Grass_Side.gltf" id="23_bc5cp"]
+[ext_resource type="PackedScene" uid="uid://bcodmf7m3qa0t" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Dirt_Center_Slope01.glb" id="25_rxdr7"]
+[ext_resource type="PackedScene" uid="uid://cg1lok5n1rbjg" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Dirt_Center_Slope02.glb" id="26_aewkk"]
+[ext_resource type="PackedScene" uid="uid://7n1on40dv3mu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Dirt_Corner_Tall_Slope01.glb" id="27_psdb6"]
+[ext_resource type="PackedScene" uid="uid://bbicqwh24iw8n" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Dirt_Corner_Tall_Slope02.glb" id="28_7s7dn"]
+[ext_resource type="PackedScene" uid="uid://cph548bdcvwia" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Grass_Center_Slope01.glb" id="29_5u1m5"]
+[ext_resource type="PackedScene" uid="uid://dj3xdd1ftud8m" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Grass_Center_Slope02.glb" id="30_wu7nn"]
+[ext_resource type="PackedScene" uid="uid://dqjl18ak8toup" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Grass_Corner_Slope.glb" id="31_anu7k"]
 
 [node name="PlatformsMapSozai" type="Node3D"]
 script = ExtResource("1_a3vtk")
@@ -53,7 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
 [node name="Cube_Grass_Center_Tall2" parent="." instance=ExtResource("9_rxdr7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -4)
 
 [node name="Cube_Grass_CornerBottom_Tall2" parent="." instance=ExtResource("10_aewkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
@@ -97,4 +104,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 [node name="Cube_Grass_Side2" parent="." instance=ExtResource("23_bc5cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
+[node name="Cube_Dirt_Center_Slope01" parent="." instance=ExtResource("25_rxdr7")]
+
+[node name="Cube_Dirt_Center_Slope02" parent="." instance=ExtResource("26_aewkk")]
+
+[node name="Cube_Dirt_Corner_Tall_Slope01" parent="." instance=ExtResource("27_psdb6")]
+
+[node name="Cube_Dirt_Corner_Tall_Slope02" parent="." instance=ExtResource("28_7s7dn")]
+
+[node name="Cube_Grass_Center_Slope01" parent="." instance=ExtResource("29_5u1m5")]
+
+[node name="Cube_Grass_Center_Slope02" parent="." instance=ExtResource("30_wu7nn")]
+
+[node name="Cube_Grass_Corner_Slope" parent="." instance=ExtResource("31_anu7k")]
+
 [editable path="Cube_Grass_1x1Center2"]
+[editable path="Cube_Dirt_Center_Slope01"]
+[editable path="Cube_Dirt_Center_Slope02"]

@@ -26,4 +26,3 @@
 ## GPU
 
 00:02.0 VGA compatible controller: Intel Corporation HD Graphics 610 (rev 02)
-
