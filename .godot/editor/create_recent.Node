@@ -1,3 +1,4 @@
+Node
 GridMap
 Camera3D
 RemoteTransform3D
@@ -6,7 +7,6 @@ CollisionShape3D
 CharacterBody3D
 Node3D
 Area3D
-Node
 AnimationPlayer
 StaticBody3D
 DirectionalLight3D
