@@ -20,7 +20,7 @@ fog_enabled = true
 fog_light_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
-size = Vector3(20, 1, 300)
+size = Vector3(300, 1, 300)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_pkg7o")
@@ -36,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2559166, 0)
 collision_layer = 9
 collision_mask = 9
 platform_floor_layers = 4278190088
+JUMP_VELOCITY = 14.0
 trap_map = NodePath("../TrapMap")
 
 [node name="StageMap" type="GridMap" parent="."]
@@ -66,7 +67,7 @@ data = {
 }
 
 [node name="Bomb2" parent="." instance=ExtResource("3_tlwt5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -22)
 
 [node name="Tower2" parent="." instance=ExtResource("4_aqk2v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 76, 2, -129)
@@ -79,10 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -15)
 [node name="RakkaArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RakkaArea"]
-shape = SubResource("BoxShape3D_036b0")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="RakkaArea"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -130)
 shape = SubResource("BoxShape3D_036b0")
 
 [node name="Dossun" parent="." instance=ExtResource("7_gbfbk")]
@@ -98,18 +95,24 @@ smooth_speed = null
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_ioo17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -7)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("9_ioo17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -10)
 
 [node name="Bee2" parent="Enemies" instance=ExtResource("10_wse8f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 3, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7050972, 7.393449, -59.73719)
 
 [node name="Bee3" parent="Enemies" instance=ExtResource("10_wse8f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 4, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7050972, 8.393449, -61.73719)
 
 [node name="Bee4" parent="Enemies" instance=ExtResource("10_wse8f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 3, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6083088, 9.693449, -63.944023)
 
 [node name="Bee5" parent="Enemies" instance=ExtResource("10_wse8f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 4, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5707753, 11.393449, -66.73719)
 
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]

@@ -7,6 +7,8 @@ class_name Player
 
 @export var accel: float = 15.0  # 加速の鋭さ
 @export var friction: float = 10.0 # 摩擦（止まりやすさ）
+@export var fall_gravity_mult : float = 0.04 # どれくらい早く落ちるのか
+@export var low_jump_mult : float = 0.02 # ジャンプボタンをHanasitaTokiniGensokusuru
 
 ## 所持しているフルーツの数、後々、cfgファイルに読み込む
 @export_range(0, 100, 1.0) var fruits_counter : int = 0
@@ -18,6 +20,11 @@ class_name Player
 
 @onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
 @onready var character_armature : Node3D = get_node_or_null("CharacterArmature")
+
+## The RayCast is Judge shadow position
+@onready var shadow_ray_cast_3d: RayCast3D = $ShadowRayCast3D
+@onready var shadow_mesh: MeshInstance3D = $ShadowMesh
+
 
 var rotation_speed : float = 5.0
 
@@ -44,15 +51,25 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("move_up"):
 		animation_player.play("Run")
-	# TODO Character no muki wo migi hidari de kaeru
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	var current_gravity = get_gravity() * 2.5
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		if velocity.y < 3:
+			# 1. 落下中は重力を強くして「キレ」を出す
+			current_gravity *= fall_gravity_mult
+		elif velocity.y > -3:
+			if not Input.is_action_pressed("jump"):
+				# 2. 上昇中にボタンを離すと、急ブレーキをかけて低ジャンプにする
+				current_gravity.y *= low_jump_mult
+		else:
+			current_gravity = get_gravity() * delta
 		coyote_time_counter -= delta
+		velocity += current_gravity
+		print(current_gravity)
 	else:
 		coyote_time_counter = coyote_time
+
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and ( is_on_floor() or coyote_time_counter > 0.0):
 		velocity.y = JUMP_VELOCITY
@@ -82,6 +99,17 @@ func _physics_process(delta: float) -> void:
 # 罠用GridMapからその場所のタイルIDを取得
 	var trap_id = trap_map.get_cell_item(cell_pos)
 	
+	# Check Shadow Position
+	if shadow_ray_cast_3d.is_colliding():
+		shadow_mesh.show()
+		print(shadow_ray_cast_3d.get_collision_point())
+		var shadow_mesh_position : Vector3
+		if velocity.y < 0:
+			shadow_mesh_position = shadow_ray_cast_3d.get_collision_point() + Vector3(0, 0.3, 0)
+		else:
+			shadow_mesh_position = shadow_ray_cast_3d.get_collision_point() + Vector3(0, 0.05, 0)
+		shadow_mesh.global_position = shadow_mesh_position
+
 	# タイルIDに応じて処理を分岐 (例: ID 0=トゲ, ID 1=炎)
 	match trap_id:
 		Hazard.NONE:

@@ -25,8 +25,9 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _on_weak_area_body_entered(body: Node3D) -> void:
 	# 前提としてプレイヤーしか侵入不可
-	body.bounce()
-	animation_player.play("Death")
+	if not body.is_on_floor():
+		body.bounce()
+		animation_player.play("Death")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
