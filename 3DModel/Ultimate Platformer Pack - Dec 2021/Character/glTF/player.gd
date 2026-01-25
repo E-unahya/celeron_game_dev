@@ -18,13 +18,16 @@ class_name Player
 ## トラップのマップ
 @export var trap_map : GridMap
 
+## プレイヤーのアニメーションツリー
 @onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
+@onready var animation_tree = get_node("AnimationTree")
+var state_machine : AnimationNodeStateMachinePlayback
+
 @onready var character_armature : Node3D = get_node_or_null("CharacterArmature")
 
 ## The RayCast is Judge shadow position
 @onready var shadow_ray_cast_3d: RayCast3D = $ShadowRayCast3D
 @onready var shadow_mesh: MeshInstance3D = $ShadowMesh
-
 
 var rotation_speed : float = 5.0
 
@@ -42,15 +45,10 @@ enum Hazard {
 }
 
 func _ready() -> void:
-	if animation_player == null:
-		return
-	animation_player.play("Idle")
+	animation_tree.active = true
+	state_machine = animation_tree.get("parameters/playback")
+	state_machine.travel("IdleAndRun")
 
-func _input(event: InputEvent) -> void:
-	if animation_player == null or character_armature == null:
-		return
-	if event.is_action_pressed("move_up"):
-		animation_player.play("Run")
 
 func _physics_process(delta: float) -> void:
 	var current_gravity = get_gravity() * 2.5
@@ -66,7 +64,6 @@ func _physics_process(delta: float) -> void:
 			current_gravity = get_gravity() * delta
 		coyote_time_counter -= delta
 		velocity += current_gravity
-		print(current_gravity)
 	else:
 		coyote_time_counter = coyote_time
 
@@ -102,13 +99,15 @@ func _physics_process(delta: float) -> void:
 	# Check Shadow Position
 	if shadow_ray_cast_3d.is_colliding():
 		shadow_mesh.show()
-		print(shadow_ray_cast_3d.get_collision_point())
 		var shadow_mesh_position : Vector3
 		if velocity.y < 0:
 			shadow_mesh_position = shadow_ray_cast_3d.get_collision_point() + Vector3(0, 0.3, 0)
 		else:
 			shadow_mesh_position = shadow_ray_cast_3d.get_collision_point() + Vector3(0, 0.05, 0)
 		shadow_mesh.global_position = shadow_mesh_position
+
+	if velocity.length() > 0.1:
+		animation_tree.set("parameters/IdleAndRun/IdleAndRun/blend_amount", direction.length())
 
 	# タイルIDに応じて処理を分岐 (例: ID 0=トゲ, ID 1=炎)
 	match trap_id:

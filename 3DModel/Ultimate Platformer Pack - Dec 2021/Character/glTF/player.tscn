@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c16u1ytqqmdib"]
+[gd_scene load_steps=43 format=3 uid="uid://c16u1ytqqmdib"]
 
 [ext_resource type="PackedScene" uid="uid://cqhlsd1jthhsf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/Character.gltf" id="1_77dde"]
 
@@ -4843,38 +4843,78 @@ material = SubResource("StandardMaterial3D_77dde")
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_77dde"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_77dde"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_77dde"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ity3g"]
-animation = &"Run"
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ity3g"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pkfoi"]
-animation = &"AttackAction/SpinAttack"
+animation = &"Run"
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ity3g"]
-graph_offset = Vector2(-54.415283, 35.223648)
-nodes/output/position = Vector2(1080, 140)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rarv1"]
+graph_offset = Vector2(-245.76006, 103.67992)
+nodes/output/position = Vector2(330, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_77dde")
-nodes/Idle/position = Vector2(380, -20)
-nodes/Run/node = SubResource("AnimationNodeAnimation_ity3g")
-nodes/Run/position = Vector2(380, 160)
-nodes/IdleAndRun/node = SubResource("AnimationNodeBlend2_77dde")
-nodes/IdleAndRun/position = Vector2(620, 0)
-nodes/SpinAttack/node = SubResource("AnimationNodeAnimation_pkfoi")
-nodes/SpinAttack/position = Vector2(420, 440)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_77dde")
-nodes/OneShot/position = Vector2(740, 360)
-node_connections = [&"output", 0, &"IdleAndRun", &"IdleAndRun", 0, &"Idle", &"IdleAndRun", 1, &"Run", &"OneShot", 1, &"SpinAttack"]
+nodes/Idle/position = Vector2(-130, 130)
+nodes/Run/node = SubResource("AnimationNodeAnimation_pkfoi")
+nodes/Run/position = Vector2(-130, 310)
+nodes/IdleAndRun/node = SubResource("AnimationNodeBlend2_ity3g")
+nodes/IdleAndRun/position = Vector2(109.983864, 198.42206)
+node_connections = [&"output", 0, &"IdleAndRun", &"IdleAndRun", 0, &"Idle", &"IdleAndRun", 1, &"Run"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ity3g"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rarv1"]
+animation = &"Jump_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hg00c"]
+animation = &"Jump_Land"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dh0gh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kxw07"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0cb2a"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5f8n4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1hp2f"]
+states/End/position = Vector2(878.5, 99.125)
+states/Jump/node = SubResource("AnimationNodeAnimation_ity3g")
+states/Jump/position = Vector2(342.5, 105.75)
+states/Jump_Idle/node = SubResource("AnimationNodeAnimation_rarv1")
+states/Jump_Idle/position = Vector2(523.2697, 99.875)
+states/Jump_Land/node = SubResource("AnimationNodeAnimation_hg00c")
+states/Jump_Land/position = Vector2(711.7697, 99.875)
+states/Start/position = Vector2(194, 107.875)
+transitions = ["Start", "Jump", SubResource("AnimationNodeStateMachineTransition_dh0gh"), "Jump", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_kxw07"), "Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_0cb2a"), "Jump_Land", "End", SubResource("AnimationNodeStateMachineTransition_5f8n4")]
+graph_offset = Vector2(11.139967, -36.04998)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hg00c"]
+advance_mode = 2
+advance_condition = &"normal"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0qykq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77dde"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dh0gh"]
+states/IdleAndRun/node = SubResource("AnimationNodeBlendTree_rarv1")
+states/IdleAndRun/position = Vector2(443.97, 81)
+states/JumpStateMachine/node = SubResource("AnimationNodeStateMachine_1hp2f")
+states/JumpStateMachine/position = Vector2(433.97, 198)
+states/Start/position = Vector2(221.5, 99.125)
+transitions = ["Start", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_hg00c"), "Start", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_0qykq"), "IdleAndRun", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_77dde")]
+graph_offset = Vector2(116.97, 0)
 
 [node name="Player" instance=ExtResource("1_77dde")]
 
 [node name="Skeleton3D" parent="CharacterArmature" index="0"]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
-bones/1/position = Vector3(0.54723537, 0.3639082, -0.27401873)
 bones/1/rotation = Quaternion(7.85402e-06, 0.70295197, 0.7112374, 7.762523e-06)
-bones/2/position = Vector3(0.0021529838, 0.65344864, 0.15676036)
 bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
 bones/4/rotation = Quaternion(0.16683145, 4.3189974e-07, 1.0312019e-07, 0.9859855)
 bones/5/rotation = Quaternion(-0.013158742, -8.3226064e-07, -2.9428553e-09, 0.99991345)
@@ -4885,30 +4925,23 @@ bones/10/rotation = Quaternion(-0.41355312, -0.089906774, 0.19620739, 0.88453)
 bones/11/rotation = Quaternion(0.09481669, 0.049470495, 0.19345447, 0.975263)
 bones/12/rotation = Quaternion(-0.1394561, -0.009856276, 0.01856123, 0.99000525)
 bones/13/rotation = Quaternion(-0.41355312, 0.089906715, -0.19620733, 0.88453)
-bones/14/position = Vector3(0.13902298, 0.14085743, 0.014335845)
 bones/14/rotation = Quaternion(-0.035130102, 0.012167384, -0.4102544, 0.91121304)
 bones/15/rotation = Quaternion(0.52678555, 0.50360876, 0.4741576, -0.4940139)
 bones/15/scale = Vector3(1.0000004, 1.0000002, 1.0000002)
 bones/16/rotation = Quaternion(-0.017246334, 0.25878364, -0.22990243, 0.9380184)
 bones/17/rotation = Quaternion(0.012537885, 0.018195217, -0.006543083, 0.9997345)
-bones/18/position = Vector3(-0.13834882, 0.14081478, 0.014305287)
 bones/19/rotation = Quaternion(0.5267858, -0.5036087, -0.47415745, -0.49401394)
 bones/19/scale = Vector3(1, 0.9999999, 1)
 bones/20/rotation = Quaternion(-0.017246343, -0.25878373, 0.2299025, 0.9380183)
 bones/21/rotation = Quaternion(0.0125379, -0.01819519, 0.0065430654, 0.9997345)
-bones/22/position = Vector3(0.53483963, -0.18147811, -0.19150323)
 bones/22/rotation = Quaternion(0.9101397, 0.013652579, 0.00735962, 0.41401115)
 bones/23/rotation = Quaternion(0.6922099, 0.011379804, 0.015124545, 0.721448)
-bones/24/position = Vector3(-0.5365226, -0.18147813, -0.19150399)
 bones/24/rotation = Quaternion(0.9101398, -0.0136525985, -0.007358854, 0.414011)
 bones/24/scale = Vector3(1, 1.0000012, 1.0000017)
 bones/25/rotation = Quaternion(0.6922098, -0.01137968, -0.015124411, 0.7214482)
 bones/25/scale = Vector3(1, 0.99999833, 0.99999994)
-bones/26/position = Vector3(0.54380476, -0.11136924, 0.85369194)
 bones/26/rotation = Quaternion(-3.5526934e-15, 1.1920937e-07, -8.470344e-22, 1)
-bones/27/position = Vector3(-0.54461235, 0.1226892, 0.14816323)
 bones/27/rotation = Quaternion(-7.85402e-06, 0.70295197, 0.7112374, -7.762523e-06)
-bones/28/position = Vector3(-0.54118264, 0.32203534, 1.0182762)
 bones/28/rotation = Quaternion(-3.552734e-15, -5.9604645e-07, 3.3881257e-21, 1)
 
 [node name="AnimationPlayer" parent="." index="1"]
@@ -4931,9 +4964,7 @@ collide_with_areas = true
 mesh = SubResource("PlaneMesh_ity3g")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="5"]
-tree_root = SubResource("AnimationNodeBlendTree_ity3g")
+tree_root = SubResource("AnimationNodeStateMachine_dh0gh")
 anim_player = NodePath("../AnimationPlayer")
-parameters/IdleAndRun/blend_amount = 0.5
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
+parameters/conditions/normal = false
+parameters/IdleAndRun/IdleAndRun/blend_amount = 0.0

@@ -23,6 +23,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="UnnamedProject"
 
+[editor]
+
+movie_writer/movie_file="/Users/harutaakihisa/developgame/celeron_game_dev/video/result.png"
+
 [filesystem]
 
 import/blender/enabled=false
