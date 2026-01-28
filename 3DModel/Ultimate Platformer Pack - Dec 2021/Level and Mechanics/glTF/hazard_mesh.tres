@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=18 format=4 uid="uid://rgo1nut0r4tw"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://rgo1nut0r4tw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtswf"]
 resource_name = "Black"

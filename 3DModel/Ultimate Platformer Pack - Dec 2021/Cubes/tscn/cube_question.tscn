@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bfr7h0c68bkbe"]
+
+[ext_resource type="PackedScene" uid="uid://bmmcx1y8iyy64" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/glTF/Cube_Question.gltf" id="1_v7tjr"]
+
+[sub_resource type="Animation" id="Animation_w8cic"]
+resource_name = "Boyon"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_Question:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.5, 0.5, 1.5), Vector3(1, 1, 1), Vector3(1.5, 0.5, 1.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8axqc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_Question:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8nt0g"]
+_data = {
+&"Boyon": SubResource("Animation_w8cic"),
+&"RESET": SubResource("Animation_8axqc")
+}
+
+[node name="Cube_Question" unique_id=339458410 instance=ExtResource("1_v7tjr")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1719762241]
+libraries/ = SubResource("AnimationLibrary_8nt0g")

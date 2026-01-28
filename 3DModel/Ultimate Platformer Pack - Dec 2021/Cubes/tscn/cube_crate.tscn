@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://k0ha42o53tst"]
+
+[ext_resource type="PackedScene" uid="uid://d04jjna3guh1b" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/glTF/Cube_Crate.gltf" id="1_m51oh"]
+[ext_resource type="Script" uid="uid://dd8tx0y2hpj16" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.gd" id="2_54ohs"]
+
+[node name="Cube_Crate" unique_id=335966316 instance=ExtResource("1_m51oh")]
+script = ExtResource("2_54ohs")
