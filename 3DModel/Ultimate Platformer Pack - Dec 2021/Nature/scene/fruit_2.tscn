@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqhft8i4nm55s"]
+[gd_scene format=3 uid="uid://dqhft8i4nm55s"]
 
 [ext_resource type="PackedScene" uid="uid://suupqlhlmfqv" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Fruit.gltf" id="1_kvkw1"]
 [ext_resource type="Script" uid="uid://ce7rwqpp48267" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.gd" id="2_tnvhw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tnvhw"]
 
-[node name="Fruit2" instance=ExtResource("1_kvkw1")]
+[node name="Fruit2" unique_id=1933748863 instance=ExtResource("1_kvkw1")]
+collision_mask = 0
 script = ExtResource("2_tnvhw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=235916396]
 shape = SubResource("SphereShape3D_tnvhw")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

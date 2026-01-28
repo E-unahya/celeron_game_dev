@@ -1,5 +1,9 @@
 extends Area3D
+
+class_name Enemy
 @onready var animation_player = $AnimationPlayer
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+
 ## 派生として前に進む
 enum EnemyType {
 	WAIT,
@@ -19,13 +23,16 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	# プレイヤーは4ぬ
-	animation_player.play("Bite_Front")
-	body.die()
+	if body is not Player:
+		return
+	if body.attack_now == false:
+		animation_player.play("Bite_Front")
+		body.die()
 
 
 func _on_weak_area_body_entered(body: Node3D) -> void:
 	# 前提としてプレイヤーしか侵入不可
-	if not body.is_on_floor():
+	if not body.is_on_floor() :
 		body.bounce()
 		animation_player.play("Death")
 
@@ -37,3 +44,17 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			hide()
 			$CollisionShape3D.disabled = true
 			$WeakArea/CollisionShape3D.disabled = true
+
+func _on_area_entered(area: Area3D) -> void:
+	# もしスピンアタックまたはよその敵に当たったら
+	if area.get_collision_layer_value(6) or area.get_collision_layer_value(2):
+		be_blown_away(area)
+
+func be_blown_away(attack_area : Area3D):
+	collision_shape_3d.scale *= 3.0
+	var tondeku = Vector3(global_position - attack_area.global_position).normalized() * 30.0
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "global_position", tondeku + Vector3.UP * 5.0, 0.5)
+	tween.tween_property(self, "rotation", Vector3.UP * 3000, 1.0)
+	tween.tween_callback(animation_player.play.bind("Death"))
