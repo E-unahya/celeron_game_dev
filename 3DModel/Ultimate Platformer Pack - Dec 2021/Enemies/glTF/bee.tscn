@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6wyjvqg8salf"]
+[gd_scene format=3 uid="uid://c6wyjvqg8salf"]
 
 [ext_resource type="PackedScene" uid="uid://b0jo61k547opl" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/Bee.gltf" id="1_w5mge"]
 [ext_resource type="Script" uid="uid://d0wkar12jno2t" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.gd" id="2_60e7b"]
@@ -14,7 +14,7 @@ radius = 1.0
 height = 0.49726564
 radius = 0.7036133
 
-[node name="Bee" instance=ExtResource("1_w5mge")]
+[node name="Bee" unique_id=89749193 instance=ExtResource("1_w5mge")]
 script = ExtResource("2_60e7b")
 enemy_type = 2
 
@@ -24,24 +24,25 @@ bones/4/rotation = Quaternion(0, 3.5471498e-10, -0.0026400534, 0.9999966)
 bones/6/rotation = Quaternion(-0.030442096, -0.07569716, -0.37187177, 0.9246917)
 bones/8/rotation = Quaternion(-0.030442093, 0.07569717, 0.3718718, 0.9246917)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=2024361481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_60e7b")
 
-[node name="WeakArea" type="Area3D" parent="." index="3"]
+[node name="WeakArea" type="Area3D" parent="." index="3" unique_id=876648256]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0" unique_id=1614023938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6704835, 0)
 shape = SubResource("CylinderShape3D_jrn10")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4" unique_id=1562595465]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1965806526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0436584, 0)
 shape = SubResource("CylinderShape3D_60e7b")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]
