@@ -3,6 +3,7 @@ extends Area3D
 class_name Enemy
 @onready var animation_player = $AnimationPlayer
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var weak_area : Area3D = $WeakArea
 
 ## 派生として前に進む
 enum EnemyType {

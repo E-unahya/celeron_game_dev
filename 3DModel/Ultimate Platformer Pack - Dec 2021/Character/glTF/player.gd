@@ -60,7 +60,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var current_gravity = get_gravity() * 2.5
 	if not is_on_floor():
-		state_machine.travel("JumpStateMachine")
 		if velocity.y < 3:
 			# 1. 落下中は重力を強くして「キレ」を出す
 			current_gravity *= fall_gravity_mult
@@ -74,7 +73,6 @@ func _physics_process(delta: float) -> void:
 		velocity += current_gravity
 	else:
 		coyote_time_counter = coyote_time
-		state_machine.travel("IdleAndRun")
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and ( is_on_floor() or coyote_time_counter > 0.0):
@@ -115,18 +113,6 @@ func _physics_process(delta: float) -> void:
 			shadow_mesh_position = shadow_ray_cast_3d.get_collision_point() + Vector3(0, 0.05, 0)
 		shadow_mesh.global_position = shadow_mesh_position
 
-	# あるきのアニメーションを実装するためにこのようにしている
-	if velocity.length() > 0.1:
-		animation_tree.set("parameters/IdleAndRun/IdleAndRun/blend_amount", direction.length())
-	if Input.is_action_just_pressed("spin_attack"):
-		state_machine.travel("SpinAttack")
-	if is_dead:
-		state_machine.travel("Death")
-	if state_machine.get_current_node() == "SpinAttack":
-		attack_now = true
-	else:
-		attack_now = false
-
 	# タイルIDに応じて処理を分岐 (例: ID 0=トゲ, ID 1=炎)
 	match trap_id:
 		Hazard.NONE:
@@ -134,6 +120,29 @@ func _physics_process(delta: float) -> void:
 		_:
 			apply_Hazard(trap_id)
 	move_and_slide()
+
+
+func _process(delta: float) -> void:
+	# あるきのアニメーションを実装するためにこのようにしている
+	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
+	if not is_on_floor():
+		state_machine.travel("JumpStateMachine")
+	else:
+		state_machine.travel("IdleAndRun")
+
+	if velocity.length() > 0.1:
+		animation_tree.set("parameters/IdleAndRun/IdleAndRun/blend_amount", direction.length())
+	if Input.is_action_just_pressed("spin_attack"):
+		state_machine.travel("SpinAttack")
+		print("Spin Attack!")
+
+	if is_dead:
+		state_machine.travel("Death")
+	if state_machine.get_current_node() == "SpinAttack":
+		attack_now = true
+	else:
+		attack_now = false
 
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:

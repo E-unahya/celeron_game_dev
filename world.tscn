@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c6wyjvqg8salf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/bee.tscn" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="11_ic0uy"]
 [ext_resource type="AudioStream" uid="uid://dety1wywmngu6" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="13_2o6r5"]
+[ext_resource type="AudioStream" uid="uid://t1xhrfgl7v8x" path="res://SE/ジャンプで踏んだ時の音.ogg" id="14_70uel"]
 
 [sub_resource type="Environment" id="Environment_tlwt5"]
 background_mode = 1
@@ -230,6 +231,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5707753, 11.393449, -66.737
 [node name="AttackSE" type="AudioStreamPlayer" parent="." unique_id=1723909116]
 stream = ExtResource("13_2o6r5")
 volume_db = -15.0
+max_polyphony = 8
+
+[node name="JumpBounceSE" type="AudioStreamPlayer" parent="." unique_id=79777335]
+stream = ExtResource("14_70uel")
 max_polyphony = 8
 
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
