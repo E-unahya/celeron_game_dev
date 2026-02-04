@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bk66avpw0rwh6"
+uid="uid://cxyvsweqs22x0"
 path="res://.godot/imported/Character_Gun.gltf-ea76e1693ee1fbeed2b456b3e2d8643e.scn"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Character_Gun.gltf-ea76e1693ee1fbeed2b456b3e2
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="CharacterBody3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

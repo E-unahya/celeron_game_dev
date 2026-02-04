@@ -7,8 +7,8 @@
 radius = 0.654098
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_owwlc"]
-height = 0.49726564
-radius = 1.0
+height = 0.56748044
+radius = 1.1201172
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_byvq3"]
 height = 0.49726564
@@ -19,8 +19,11 @@ collision_layer = 2
 collision_mask = 33
 script = ExtResource("2_byvq3")
 
-[node name="Skeleton3D" parent="MonsterArmature" index="0"]
-bones/4/rotation = Quaternion(-4.4455963e-20, 3.5471498e-10, -0.0026400534, 0.9999966)
+[node name="Skeleton3D" parent="MonsterArmature" parent_id_path=PackedInt32Array(657511642) index="0" unique_id=480270001]
+bones/2/position = Vector3(0, 0.47287178, 0)
+bones/4/rotation = Quaternion(0, 0, 0, 1)
+bones/5/position = Vector3(-0.43069768, 0.46932316, 0.50621223)
+bones/6/position = Vector3(0.43069768, 0.46932316, 0.50621223)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=627662144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -29,7 +32,7 @@ shape = SubResource("SphereShape3D_byvq3")
 [node name="WeakArea" type="Area3D" parent="." index="3" unique_id=865283226]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0" unique_id=1905707211]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6486329, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6837403, 0)
 shape = SubResource("CylinderShape3D_owwlc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="4" unique_id=790708897]

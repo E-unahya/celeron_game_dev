@@ -12,8 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="10_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://c6wyjvqg8salf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/bee.tscn" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="11_ic0uy"]
-[ext_resource type="AudioStream" uid="uid://dety1wywmngu6" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="13_2o6r5"]
-[ext_resource type="AudioStream" uid="uid://t1xhrfgl7v8x" path="res://SE/ジャンプで踏んだ時の音.ogg" id="14_70uel"]
+[ext_resource type="AudioStream" uid="uid://drx5iwdbn41mg" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="13_2o6r5"]
+[ext_resource type="AudioStream" uid="uid://vs3cnaujvogi" path="res://SE/ジャンプで踏んだ時の音.ogg" id="14_70uel"]
+[ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="15_hiqwa"]
 
 [sub_resource type="Environment" id="Environment_tlwt5"]
 background_mode = 1
@@ -35,10 +36,8 @@ environment = SubResource("Environment_tlwt5")
 
 [node name="Player" parent="." unique_id=647486868 node_paths=PackedStringArray("trap_map") instance=ExtResource("10_ic0uy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2559166, 0)
-collision_layer = 9
 collision_mask = 9
 platform_floor_layers = 4278190088
-JUMP_VELOCITY = 14.0
 trap_map = NodePath("../TrapMap")
 
 [node name="StageMap" type="GridMap" parent="." unique_id=1477278548]
@@ -69,7 +68,7 @@ data = {
 }
 
 [node name="Bomb2" parent="." unique_id=1049975551 instance=ExtResource("3_tlwt5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -28.87275)
 
 [node name="Tower2" parent="." unique_id=931059977 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 76, 2, -129)
@@ -77,7 +76,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 76, 
 [node name="fruits" type="Node" parent="." unique_id=1946724382]
 
 [node name="Fruit2" parent="fruits" unique_id=1282916789 instance=ExtResource("5_036b0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -32.146748)
 
 [node name="RakkaArea" type="Area3D" parent="." unique_id=2021322112]
 
@@ -96,125 +95,38 @@ smooth_speed = null
 
 [node name="Enemies" type="Node" parent="." unique_id=818959743]
 
+[node name="Crab" parent="Enemies" unique_id=2059311086 instance=ExtResource("15_hiqwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01074791, 2.0093558, -14.390253)
+
 [node name="Enemy" parent="Enemies" unique_id=437815445 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -16.78625)
 collision_mask = 35
 
 [node name="Enemy2" parent="Enemies" unique_id=1326735947 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -19.78625)
 
 [node name="Enemy3" parent="Enemies" unique_id=1685616910 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -22.78625)
 
 [node name="Enemy4" parent="Enemies" unique_id=478654450 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16.78625)
 collision_mask = 35
 
 [node name="Enemy5" parent="Enemies" unique_id=1073043134 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -19.78625)
 
 [node name="Enemy6" parent="Enemies" unique_id=884728226 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -22.78625)
 
 [node name="Enemy7" parent="Enemies" unique_id=1353106971 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -16.78625)
 collision_mask = 35
 
 [node name="Enemy8" parent="Enemies" unique_id=1860737025 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -19.78625)
 
 [node name="Enemy9" parent="Enemies" unique_id=447993460 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -10)
-
-[node name="Enemy19" parent="Enemies" unique_id=1850496221 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -8)
-collision_mask = 35
-
-[node name="Enemy20" parent="Enemies" unique_id=1120834288 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -11)
-
-[node name="Enemy21" parent="Enemies" unique_id=861500043 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -14)
-
-[node name="Enemy22" parent="Enemies" unique_id=591827306 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -8)
-collision_mask = 35
-
-[node name="Enemy23" parent="Enemies" unique_id=883132789 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -11)
-
-[node name="Enemy24" parent="Enemies" unique_id=1868159055 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -14)
-
-[node name="Enemy25" parent="Enemies" unique_id=1835581993 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -8)
-collision_mask = 35
-
-[node name="Enemy26" parent="Enemies" unique_id=1597090232 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -11)
-
-[node name="Enemy27" parent="Enemies" unique_id=1791439398 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -14)
-
-[node name="Enemy28" parent="Enemies" unique_id=831940765 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -8)
-collision_mask = 35
-
-[node name="Enemy29" parent="Enemies" unique_id=2127793049 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -11)
-
-[node name="Enemy30" parent="Enemies" unique_id=1452731987 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, -14)
-
-[node name="Enemy31" parent="Enemies" unique_id=1085782428 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -8)
-collision_mask = 35
-
-[node name="Enemy32" parent="Enemies" unique_id=2111596084 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -11)
-
-[node name="Enemy33" parent="Enemies" unique_id=959619533 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -14)
-
-[node name="Enemy34" parent="Enemies" unique_id=1374812524 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -8)
-collision_mask = 35
-
-[node name="Enemy35" parent="Enemies" unique_id=1983079905 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -11)
-
-[node name="Enemy36" parent="Enemies" unique_id=995827280 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -14)
-
-[node name="Enemy10" parent="Enemies" unique_id=918954517 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -13)
-collision_mask = 35
-
-[node name="Enemy11" parent="Enemies" unique_id=794420524 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -16)
-
-[node name="Enemy12" parent="Enemies" unique_id=783576658 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -19)
-
-[node name="Enemy13" parent="Enemies" unique_id=485827495 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -13)
-collision_mask = 35
-
-[node name="Enemy14" parent="Enemies" unique_id=1156530555 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16)
-
-[node name="Enemy15" parent="Enemies" unique_id=1009361015 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -19)
-
-[node name="Enemy16" parent="Enemies" unique_id=1003200267 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -13)
-collision_mask = 35
-
-[node name="Enemy17" parent="Enemies" unique_id=1366254541 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -16)
-
-[node name="Enemy18" parent="Enemies" unique_id=101587633 instance=ExtResource("9_ioo17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -22.78625)
 
 [node name="Bee2" parent="Enemies" unique_id=875786771 instance=ExtResource("10_wse8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7050972, 7.393449, -59.73719)

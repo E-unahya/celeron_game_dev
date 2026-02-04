@@ -3,7 +3,7 @@ extends CharacterBody3D
 class_name Player
 
 @export var SPEED = 5.0
-@export var JUMP_VELOCITY = 9.0
+@export var JUMP_VELOCITY = 12.0
 
 @export var accel: float = 15.0  # 加速の鋭さ
 @export var friction: float = 10.0 # 摩擦（止まりやすさ）
@@ -54,7 +54,6 @@ enum Hazard {
 func _ready() -> void:
 	animation_tree.active = true
 	state_machine = animation_tree.get("parameters/playback")
-	print(state_machine)
 	state_machine.travel("IdleAndRun")
 
 func _physics_process(delta: float) -> void:
@@ -135,7 +134,6 @@ func _process(delta: float) -> void:
 		animation_tree.set("parameters/IdleAndRun/IdleAndRun/blend_amount", direction.length())
 	if Input.is_action_just_pressed("spin_attack"):
 		state_machine.travel("SpinAttack")
-		print("Spin Attack!")
 
 	if is_dead:
 		state_machine.travel("Death")
@@ -154,14 +152,11 @@ func apply_Hazard(trap_id : int):
 	match trap_id:
 		Hazard.CYLINDER:
 			die()
-			print("シリンダーに打たれた")
 		Hazard.SAW:
 			die()
-			print("丸鋸怖い")
 		Hazard.SPIKE_TRAP:
 			if is_on_floor():
 				die()
-				print("足痛い")
 
 func bounce():
 	velocity.y = JUMP_VELOCITY

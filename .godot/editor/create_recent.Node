@@ -1,14 +1,2 @@
-AudioStreamPlayer
-CollisionShape3D
-Area3D
-AnimationPlayer
-AnimationTree
-StaticBody3D
-MeshInstance3D
 RayCast3D
-Node
-GridMap
-Camera3D
-RemoteTransform3D
 CharacterBody3D
-Node3D

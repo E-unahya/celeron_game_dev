@@ -4,6 +4,8 @@ class_name Enemy
 @onready var animation_player = $AnimationPlayer
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var weak_area : Area3D = $WeakArea
+@onready var static_body_3d: StaticBody3D = $StaticBody3D
+
 
 ## 派生として前に進む
 enum EnemyType {
@@ -20,6 +22,8 @@ func _ready() -> void:
 			animation_player.play("Dance")
 		EnemyType.FLYING:
 			animation_player.play("Flying")
+		EnemyType.WALKING:
+			animation_player.play("Walk")
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -45,6 +49,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			hide()
 			$CollisionShape3D.disabled = true
 			$WeakArea/CollisionShape3D.disabled = true
+			$StaticBody3D/CollisionShape3D.disabled = true
 
 func _on_area_entered(area: Area3D) -> void:
 	# もしスピンアタックまたはよその敵に当たったら
