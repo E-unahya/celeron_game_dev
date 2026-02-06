@@ -1,2 +1,5 @@
+res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.gd
+CollisionShape3D
+Area3D
 RayCast3D
 CharacterBody3D
