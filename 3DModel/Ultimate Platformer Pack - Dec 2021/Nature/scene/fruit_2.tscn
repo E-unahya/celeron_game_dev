@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://ce7rwqpp48267" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.gd" id="2_tnvhw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tnvhw"]
+radius = 0.75
 
-[node name="Fruit2" unique_id=1933748863 instance=ExtResource("1_kvkw1")]
+[node name="Fruit" unique_id=1933748863 instance=ExtResource("1_kvkw1")]
 collision_mask = 0
 script = ExtResource("2_tnvhw")
 

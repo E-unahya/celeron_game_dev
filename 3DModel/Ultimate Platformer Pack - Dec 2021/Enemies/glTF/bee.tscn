@@ -18,7 +18,7 @@ radius = 0.7036133
 script = ExtResource("2_60e7b")
 enemy_type = 2
 
-[node name="Skeleton3D" parent="MonsterArmature" index="0"]
+[node name="Skeleton3D" parent="MonsterArmature" parent_id_path=PackedInt32Array(130235987) index="0" unique_id=477071213]
 bones/2/position = Vector3(0, 0.48319352, 0)
 bones/4/rotation = Quaternion(0, 3.5471498e-10, -0.0026400534, 0.9999966)
 bones/6/rotation = Quaternion(-0.030442096, -0.07569716, -0.37187177, 0.9246917)
@@ -45,4 +45,5 @@ shape = SubResource("CylinderShape3D_60e7b")
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]

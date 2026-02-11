@@ -27,3 +27,8 @@ func _on_enemy_weak_area_entered(body : CharacterBody3D) -> void:
 		if !body.is_on_floor() and se_pitch_limit < 18:
 			jump_bounce_se.pitch_scale += 0.1
 			se_pitch_limit += 1
+
+
+func _on_rakka_area_area_entered(area: Area3D) -> void:
+	if area is Enemy:
+		area.position = area.home_pos

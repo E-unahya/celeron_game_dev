@@ -4624,13 +4624,17 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_77dde"]
 size = Vector3(1, 3, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77dde"]
-transparency = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkfoi"]
+blend_mode = 2
+cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ity3g"]
-material = SubResource("StandardMaterial3D_77dde")
+[sub_resource type="CylinderMesh" id="CylinderMesh_rarv1"]
+material = SubResource("StandardMaterial3D_pkfoi")
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.01
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kxw07"]
 animation = &"Death"
@@ -4713,7 +4717,10 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x7wh2"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ity3g"]
+switch_mode = 2
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pkfoi"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dh0gh"]
 states/Death/node = SubResource("AnimationNodeAnimation_kxw07")
@@ -4726,15 +4733,18 @@ states/JumpStateMachine/position = Vector2(428.97, 197)
 states/SpinAttack/node = SubResource("AnimationNodeAnimation_dh0gh")
 states/SpinAttack/position = Vector2(730.97, 48)
 states/Start/position = Vector2(173.5, 126.125)
-transitions = ["Start", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_hg00c"), "IdleAndRun", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_77dde"), "JumpStateMachine", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_1hp2f"), "IdleAndRun", "SpinAttack", SubResource("AnimationNodeStateMachineTransition_ro60i"), "SpinAttack", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_u72r8"), "SpinAttack", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_f822p"), "JumpStateMachine", "SpinAttack", SubResource("AnimationNodeStateMachineTransition_hsnsp"), "IdleAndRun", "Death", SubResource("AnimationNodeStateMachineTransition_0qykq"), "JumpStateMachine", "Death", SubResource("AnimationNodeStateMachineTransition_x7wh2"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_ity3g")]
-graph_offset = Vector2(116.969925, -11.317509)
+transitions = ["Start", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_hg00c"), "IdleAndRun", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_77dde"), "JumpStateMachine", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_1hp2f"), "IdleAndRun", "SpinAttack", SubResource("AnimationNodeStateMachineTransition_ro60i"), "SpinAttack", "IdleAndRun", SubResource("AnimationNodeStateMachineTransition_u72r8"), "SpinAttack", "JumpStateMachine", SubResource("AnimationNodeStateMachineTransition_f822p"), "JumpStateMachine", "SpinAttack", SubResource("AnimationNodeStateMachineTransition_hsnsp"), "IdleAndRun", "Death", SubResource("AnimationNodeStateMachineTransition_0qykq"), "JumpStateMachine", "Death", SubResource("AnimationNodeStateMachineTransition_x7wh2"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_ity3g"), "SpinAttack", "Death", SubResource("AnimationNodeStateMachineTransition_pkfoi")]
+graph_offset = Vector2(161.96992, -15.317505)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_77dde"]
 height = 3.0
 radius = 2.5
 
+[sub_resource type="LabelSettings" id="LabelSettings_pkfoi"]
+
 [node name="Player" unique_id=331114975 instance=ExtResource("1_77dde")]
 script = ExtResource("2_ity3g")
+JUMP_VELOCITY = 15.0
 
 [node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(472519396) index="0" unique_id=32614812]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
@@ -4781,7 +4791,7 @@ collision_mask = 24
 collide_with_areas = true
 
 [node name="ShadowMesh" type="MeshInstance3D" parent="." index="4" unique_id=494582551]
-mesh = SubResource("PlaneMesh_ity3g")
+mesh = SubResource("CylinderMesh_rarv1")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="5" unique_id=1658676209]
 tree_root = SubResource("AnimationNodeStateMachine_dh0gh")
@@ -4800,3 +4810,29 @@ shape = SubResource("CylinderShape3D_77dde")
 disabled = true
 
 [node name="SpinSE" type="AudioStreamPlayer" parent="." index="7" unique_id=414279363]
+
+[node name="Control" type="Control" parent="." index="8" unique_id=1251253040]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" index="0" unique_id=1461494110]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="BoxCountLabel" type="Label" parent="Control/HBoxContainer" index="0" unique_id=1653110786]
+layout_mode = 2
+text = "壊した箱の数"
+label_settings = SubResource("LabelSettings_pkfoi")
+
+[node name="ScoreLabel" type="Label" parent="Control/HBoxContainer" index="1" unique_id=1133237221]
+layout_mode = 2
+text = "スコア："
+
+[node name="InfoLabel" type="Label" parent="Control/HBoxContainer" index="2" unique_id=2057601867]
+layout_mode = 2
+text = "なにかの情報"

@@ -1,5 +1,7 @@
 extends Area3D
 
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,3 +16,4 @@ func _on_body_entered(body: Node3D) -> void:
 	# どうも普通に隠すくらいが丁度いいらしい
 	if body is Player and visible:
 		hide()
+		collision_shape_3d.disabled = true

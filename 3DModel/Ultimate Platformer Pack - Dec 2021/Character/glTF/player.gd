@@ -135,13 +135,14 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("spin_attack"):
 		state_machine.travel("SpinAttack")
 
-	if is_dead:
-		state_machine.travel("Death")
 	if state_machine.get_current_node() == "SpinAttack":
 		attack_now = true
 	else:
 		attack_now = false
 
+	# 死んだときのプロセス
+	if is_dead:
+		state_machine.travel("Death")
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:
 	if body is Player:
@@ -158,12 +159,11 @@ func apply_Hazard(trap_id : int):
 			if is_on_floor():
 				die()
 
-func bounce():
-	velocity.y = JUMP_VELOCITY
+func bounce(bounce_num : float = 1.0):
+	velocity.y = JUMP_VELOCITY * bounce_num
 
 
 func die():
 	# 4んだときのアニメーションを再生
 	is_dead = true
 	set_physics_process(false)
-	set_process(false)

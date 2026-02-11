@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ds8mjvdhtlgkt"]
 
 [ext_resource type="PackedScene" uid="uid://dfcybn6moid8j" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/Crab.gltf" id="1_7bsu7"]
-[ext_resource type="Script" uid="uid://d34na1qae7ofg" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.gd" id="2_wcg0d"]
+[ext_resource type="Script" uid="uid://cncuks8etbcf2" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.gd" id="2_wcg0d"]
 
 [sub_resource type="Animation" id="Animation_wcg0d"]
 resource_name = "Bite_Front"
@@ -1063,6 +1063,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_60e7b")
 
 [node name="RayCast3D" type="RayCast3D" parent="." index="3" unique_id=1079267321]
+target_position = Vector3(0, -2, 0)
+collision_mask = 8
 
 [node name="WeakArea" type="Area3D" parent="." index="4" unique_id=1423445811]
 
@@ -1081,4 +1083,5 @@ shape = SubResource("CylinderShape3D_wcg0d")
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]
