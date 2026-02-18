@@ -7,8 +7,9 @@
 radius = 0.75
 
 [node name="Fruit" unique_id=1933748863 instance=ExtResource("1_kvkw1")]
-collision_mask = 0
 script = ExtResource("2_tnvhw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=235916396]
 shape = SubResource("SphereShape3D_tnvhw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

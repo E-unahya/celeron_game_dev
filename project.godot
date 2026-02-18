@@ -82,6 +82,7 @@ spin_attack={
 3d_physics/layer_4="Wall Floor"
 3d_physics/layer_5="Shadow"
 3d_physics/layer_6="EnemySpinAttacked"
+3d_physics/layer_7="ItemBox"
 
 [physics]
 

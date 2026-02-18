@@ -4740,13 +4740,15 @@ graph_offset = Vector2(161.96992, -15.317505)
 height = 3.0
 radius = 2.5
 
-[sub_resource type="LabelSettings" id="LabelSettings_pkfoi"]
-
 [node name="Player" unique_id=331114975 instance=ExtResource("1_77dde")]
+collision_layer = 65
+collision_mask = 81
 script = ExtResource("2_ity3g")
-JUMP_VELOCITY = 15.0
 
-[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(472519396) index="0" unique_id=32614812]
+[node name="CharacterArmature" parent="." index="0" unique_id=472519396]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="Skeleton3D" parent="CharacterArmature" index="0" unique_id=32614812]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 bones/1/rotation = Quaternion(7.85402e-06, 0.70295197, 0.7112374, 7.762523e-06)
 bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
@@ -4810,29 +4812,3 @@ shape = SubResource("CylinderShape3D_77dde")
 disabled = true
 
 [node name="SpinSE" type="AudioStreamPlayer" parent="." index="7" unique_id=414279363]
-
-[node name="Control" type="Control" parent="." index="8" unique_id=1251253040]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control" index="0" unique_id=1461494110]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="BoxCountLabel" type="Label" parent="Control/HBoxContainer" index="0" unique_id=1653110786]
-layout_mode = 2
-text = "壊した箱の数"
-label_settings = SubResource("LabelSettings_pkfoi")
-
-[node name="ScoreLabel" type="Label" parent="Control/HBoxContainer" index="1" unique_id=1133237221]
-layout_mode = 2
-text = "スコア："
-
-[node name="InfoLabel" type="Label" parent="Control/HBoxContainer" index="2" unique_id=2057601867]
-layout_mode = 2
-text = "なにかの情報"

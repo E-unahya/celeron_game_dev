@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://u6qywtly2rgb"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ckxv2"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = 8.999977
+radial_velocity_max = 9.999977
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uasmo"]
+resource_name = "Wood"
+cull_mode = 2
+albedo_color = Color(0.6466568, 0.48779935, 0.26875564, 1)
+roughness = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_q65yr"]
+material = SubResource("StandardMaterial3D_uasmo")
+size = Vector2(0.5, 0.5)
+
+[node name="BoxBreakParticle" type="GPUParticles3D" unique_id=731474296]
+emitting = false
+amount = 64
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ckxv2")
+draw_pass_1 = SubResource("QuadMesh_q65yr")

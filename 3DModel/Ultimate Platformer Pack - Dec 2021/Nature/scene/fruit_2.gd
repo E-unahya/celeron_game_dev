@@ -1,7 +1,7 @@
 extends Area3D
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
-
+signal fruit_get
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,3 +17,4 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is Player and visible:
 		hide()
 		collision_shape_3d.disabled = true
+		fruit_get.emit()

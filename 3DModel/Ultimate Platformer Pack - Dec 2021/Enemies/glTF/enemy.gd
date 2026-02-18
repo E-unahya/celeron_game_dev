@@ -48,7 +48,10 @@ func _on_body_entered(body: Node3D) -> void:
 func _on_weak_area_body_entered(body: Node3D) -> void:
 	# 前提としてプレイヤーしか侵入不可
 	if not body.is_on_floor() :
-		body.bounce(bounce_power)
+		if Input.is_action_pressed("ui_accept"):
+			body.bounce(bounce_power)
+		else:
+			body.bounce()
 		animation_player.play("Death")
 
 func _on_area_entered(area: Area3D) -> void:
@@ -58,7 +61,8 @@ func _on_area_entered(area: Area3D) -> void:
 
 func be_blown_away(attack_area : Area3D, object : Node3D = self):
 	# 引数が多いし、このやり方だと重くなるような気がする。
-	collision_shape_3d.scale *= 3.0
+	if object == self:
+		object.collision_shape_3d.scale *= 3.0
 	var tondeku = Vector3(global_position - attack_area.global_position).normalized() * 30.0
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.set_ease(Tween.EASE_IN_OUT)

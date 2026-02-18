@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b1s2ys3udjpdl"]
+
+[ext_resource type="Script" uid="uid://cy5oedwe61u3w" path="res://UI/stage_ui.gd" id="1_3mcbl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkfoi"]
+
+[node name="StageUI" type="Control" unique_id=1948447596]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_3mcbl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1391068434]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="BoxCountLabel" type="Label" parent="HBoxContainer" unique_id=1153303253]
+layout_mode = 2
+text = "壊した箱の数"
+label_settings = SubResource("LabelSettings_pkfoi")
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer" unique_id=1527305352]
+layout_mode = 2
+text = "スコア："
+
+[node name="InfoLabel" type="Label" parent="HBoxContainer" unique_id=217928180]
+layout_mode = 2
+text = "なにかの情報"

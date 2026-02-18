@@ -1,8 +1,10 @@
+GPUParticles3D
+Node
+CollisionShape3D
+Area3D
 Label
 HBoxContainer
 Control
-CollisionShape3D
-Area3D
 MeshInstance3D
 RayCast3D
 CharacterBody3D
