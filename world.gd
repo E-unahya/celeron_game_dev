@@ -3,6 +3,7 @@ extends Node3D
 @onready var enemies : Node = get_node("Enemies")
 @onready var attack_se : AudioStreamPlayer = get_node("AttackSE")
 @onready var jump_bounce_se : AudioStreamPlayer = get_node("JumpBounceSE")
+@onready var box_break_se : AudioStreamPlayer = get_node("BoxBreakSE")
 @onready var player : Player = get_node("Player")
 @onready var boxs: Node = $Boxs
 @onready var box_break_particle: GPUParticles3D = $BoxBreakParticle
@@ -50,10 +51,12 @@ func _on_rakka_area_area_entered(area: Area3D) -> void:
 		area.position = area.home_pos
 
 func _on_box_breaked(box_pos:Vector3) -> void:
+	box_break_se.play()
 	box_break_particle.global_position = box_pos
 	box_break_particle.emitting = true
 	stage_ui.set_box_label()
 
 
 func _on_fruits_get() -> void:
+	$FruitsGetSE.play()
 	print("Fruits get.")

@@ -143,6 +143,8 @@ func _process(delta: float) -> void:
 	# 死んだときのプロセス
 	if is_dead:
 		state_machine.travel("Death")
+		await get_tree().create_timer(1.0).timeout
+		get_tree().reload_current_scene()
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:
 	if body is Player:
