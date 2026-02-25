@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://fp6m1i0t4bm6"]
+
+[ext_resource type="Script" uid="uid://kib1aqpxmpl1" path="res://3DModel/ohiwa.gd" id="1_1mixd"]
+[ext_resource type="Script" uid="uid://dbmnunfxk6tf5" path="res://3DModel/ohiwa_rakka_area.gd" id="1_smmuf"]
+[ext_resource type="PackedScene" uid="uid://bnyq2hfi24g3i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/SpikyBall.gltf" id="3_2mqvd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_26xuy"]
+size = Vector3(30, 30, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vfp3j"]
+radius = 10.0
+
+[node name="OhiwaRakkaArea" type="Area3D" unique_id=580053582]
+collision_layer = 0
+script = ExtResource("1_smmuf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2095375218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+shape = SubResource("BoxShape3D_26xuy")
+
+[node name="Ohiwa" type="CharacterBody3D" parent="." unique_id=1285772754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, -24)
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_1mixd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ohiwa" unique_id=941521665]
+shape = SubResource("SphereShape3D_vfp3j")
+
+[node name="SpikyBall2" parent="Ohiwa" unique_id=1661493539 instance=ExtResource("3_2mqvd")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
