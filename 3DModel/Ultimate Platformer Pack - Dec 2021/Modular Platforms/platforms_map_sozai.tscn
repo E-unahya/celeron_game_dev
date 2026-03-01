@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b3al5ktii2lvh"]
+[gd_scene format=3 uid="uid://b3al5ktii2lvh"]
 
 [ext_resource type="Script" uid="uid://dkl658j7qv7yn" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/platforms_map_sozai.gd" id="1_a3vtk"]
 [ext_resource type="PackedScene" uid="uid://qrvojaogts2q" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/2D/glTF/Cube_Dirt_1x1Center.gltf" id="1_fy5ph"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://cph548bdcvwia" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Grass_Center_Slope01.glb" id="29_5u1m5"]
 [ext_resource type="PackedScene" uid="uid://dj3xdd1ftud8m" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Grass_Center_Slope02.glb" id="30_wu7nn"]
 [ext_resource type="PackedScene" uid="uid://dqjl18ak8toup" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/Slopes/Cube_Grass_Corner_Slope.glb" id="31_anu7k"]
+[ext_resource type="PackedScene" uid="uid://ctm0o5loi6y2b" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/glTF/Cube_Default.gltf" id="32_aewkk"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rxdr7"]
 points = PackedVector3Array(-1.0000002, 1.5, -1.0000001, -1.0000002, 1, 0.9999999, 1.0000002, 1.5, -1.0000001, 1.0000002, 1, 0.9999999)
@@ -53,126 +54,129 @@ points = PackedVector3Array(-1.0000002, 2, -1.0000001, -1.0000002, 0.9959563, 0.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_anu7k"]
 points = PackedVector3Array(0.9997922, 1.467119, 1.1167189, 0.9999994, 1.7880614, 0.35568607, 0.9997922, 1.7153144, 1.0997287, -0.3677044, 1.715029, 1.0997287, -0.380965, 1.4656925, 1.1165117, -0.8883891, 1.4405878, 1.1165117, 0.9997922, -0.99999994, 0.99986005, 0.9997922, 0.9958332, -1.0000008, -0.84840024, 0.9958332, -1.0000008, -0.35071433, 1.787776, 0.35568607, 0.9997922, 1.9144413, 0.8481922, 0.9997922, 1.8693666, 1.0201653, -0.87264216, 1.6944888, 1.0997287, -0.3492639, 1.8690815, 1.0201653, -1.0709292, 1.4768186, 1.0611902, -0.87367815, -0.99999994, 0.99986005, -1.000068, -0.99999994, -1.0000008, -1.0203732, 0.9470499, -1.0000008, -0.8490218, 1.7618153, 0.35589325, -0.34657037, 1.914156, 0.8481922, -0.8577241, 1.844547, 1.0201653, -1.0543535, 1.7113204, 1.0446144, -1.1167196, 1.5236049, 0.8950186, -1.000068, -0.99999994, 0.8734702, -0.96318704, -0.99999994, 0.9627719, -1.1167196, 0.64493626, -1.0000008, -1.1001439, 0.8009855, -1.0000008, -1.0205804, 1.6862156, 0.36231637, -1.0199589, 1.8650875, 0.85606563, -0.8490218, 1.8787811, 0.8481922, -0.9905369, 1.8214393, 0.9839059, -1.1001439, 1.7438426, 0.87947893, -1.1167196, 1.0839853, 0.39463902)
 
-[node name="PlatformsMapSozai" type="Node3D"]
+[node name="PlatformsMapSozai" type="Node3D" unique_id=664657808]
 script = ExtResource("1_a3vtk")
 
-[node name="Cube_Dirt_1x1Center2" parent="." instance=ExtResource("1_fy5ph")]
+[node name="Cube_Dirt_1x1Center2" parent="." unique_id=701524773 instance=ExtResource("1_fy5ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 
-[node name="Cube_Dirt_1x1End2" parent="." instance=ExtResource("2_v6pdf")]
+[node name="Cube_Dirt_1x1End2" parent="." unique_id=1700225624 instance=ExtResource("2_v6pdf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 
-[node name="Cube_Grass_1x1Center2" parent="." instance=ExtResource("3_o23tl")]
+[node name="Cube_Grass_1x1Center2" parent="." unique_id=675194710 instance=ExtResource("3_o23tl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 
-[node name="Cube_Grass_1x1End2" parent="." instance=ExtResource("4_exsbm")]
+[node name="Cube_Grass_1x1End2" parent="." unique_id=1249171360 instance=ExtResource("4_exsbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 
-[node name="Cube_Dirt_Center_Tall2" parent="." instance=ExtResource("5_xrth7")]
+[node name="Cube_Dirt_Center_Tall2" parent="." unique_id=215441433 instance=ExtResource("5_xrth7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Dirt_Corner_Tall2" parent="." instance=ExtResource("6_n4lhj")]
+[node name="Cube_Dirt_Corner_Tall2" parent="." unique_id=967515926 instance=ExtResource("6_n4lhj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Dirt_Side_Tall2" parent="." instance=ExtResource("7_j8j1x")]
+[node name="Cube_Dirt_Side_Tall2" parent="." unique_id=1253589387 instance=ExtResource("7_j8j1x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_Bottom_Tall2" parent="." instance=ExtResource("8_mc21r")]
+[node name="Cube_Grass_Bottom_Tall2" parent="." unique_id=52823106 instance=ExtResource("8_mc21r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_Center_Tall2" parent="." instance=ExtResource("9_rxdr7")]
+[node name="Cube_Grass_Center_Tall2" parent="." unique_id=919760789 instance=ExtResource("9_rxdr7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -4)
 
-[node name="Cube_Grass_CornerBottom_Tall2" parent="." instance=ExtResource("10_aewkk")]
+[node name="Cube_Grass_CornerBottom_Tall2" parent="." unique_id=2061844743 instance=ExtResource("10_aewkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_CornerCenter_Tall2" parent="." instance=ExtResource("11_psdb6")]
+[node name="Cube_Grass_CornerCenter_Tall2" parent="." unique_id=1377462676 instance=ExtResource("11_psdb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_Corner_Tall2" parent="." instance=ExtResource("12_7s7dn")]
+[node name="Cube_Grass_Corner_Tall2" parent="." unique_id=466212492 instance=ExtResource("12_7s7dn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_SideBottom_Tall2" parent="." instance=ExtResource("13_5u1m5")]
+[node name="Cube_Grass_SideBottom_Tall2" parent="." unique_id=2040481426 instance=ExtResource("13_5u1m5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_SideCenter_Tall2" parent="." instance=ExtResource("14_wu7nn")]
+[node name="Cube_Grass_SideCenter_Tall2" parent="." unique_id=1567683425 instance=ExtResource("14_wu7nn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Grass_Side_Tall2" parent="." instance=ExtResource("15_anu7k")]
+[node name="Cube_Grass_Side_Tall2" parent="." unique_id=902284143 instance=ExtResource("15_anu7k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
 
-[node name="Cube_Dirt_Single2" parent="." instance=ExtResource("16_pcmwy")]
+[node name="Cube_Dirt_Single2" parent="." unique_id=1395191651 instance=ExtResource("16_pcmwy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Cube_Grass_Single2" parent="." instance=ExtResource("17_mekj7")]
+[node name="Cube_Grass_Single2" parent="." unique_id=1264189314 instance=ExtResource("17_mekj7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="Cube_Dirt_Center2" parent="." instance=ExtResource("18_dhkri")]
+[node name="Cube_Dirt_Center2" parent="." unique_id=1699099356 instance=ExtResource("18_dhkri")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="Cube_Dirt_Corner2" parent="." instance=ExtResource("19_5coq3")]
+[node name="Cube_Dirt_Corner2" parent="." unique_id=416240114 instance=ExtResource("19_5coq3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="Cube_Dirt_Side2" parent="." instance=ExtResource("20_kj71d")]
+[node name="Cube_Dirt_Side2" parent="." unique_id=823731405 instance=ExtResource("20_kj71d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="Cube_Grass_Center2" parent="." instance=ExtResource("21_4tr7s")]
+[node name="Cube_Grass_Center2" parent="." unique_id=1026595283 instance=ExtResource("21_4tr7s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="Cube_Grass_Corner2" parent="." instance=ExtResource("22_fngfw")]
+[node name="Cube_Grass_Corner2" parent="." unique_id=421659725 instance=ExtResource("22_fngfw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="Cube_Grass_Side2" parent="." instance=ExtResource("23_bc5cp")]
+[node name="Cube_Grass_Side2" parent="." unique_id=1890627886 instance=ExtResource("23_bc5cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
-[node name="Cube_Dirt_Center_Slope01" parent="." instance=ExtResource("25_rxdr7")]
+[node name="Cube_Dirt_Center_Slope01" parent="." unique_id=1478543552 instance=ExtResource("25_rxdr7")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Center_Slope01/Cube_Dirt_Center_Slope01" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Center_Slope01/Cube_Dirt_Center_Slope01" parent_id_path=PackedInt32Array(1478543552, 1938867767) index="0" unique_id=939814871]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Center_Slope01/Cube_Dirt_Center_Slope01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Center_Slope01/Cube_Dirt_Center_Slope01/StaticBody3D" unique_id=1028566991]
 shape = SubResource("ConvexPolygonShape3D_rxdr7")
 
-[node name="Cube_Dirt_Center_Slope02" parent="." instance=ExtResource("26_aewkk")]
+[node name="Cube_Dirt_Center_Slope02" parent="." unique_id=741641379 instance=ExtResource("26_aewkk")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Center_Slope02/Cube_Dirt_Center_Slope02" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Center_Slope02/Cube_Dirt_Center_Slope02" parent_id_path=PackedInt32Array(741641379, 1504582216) index="0" unique_id=47763538]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Center_Slope02/Cube_Dirt_Center_Slope02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Center_Slope02/Cube_Dirt_Center_Slope02/StaticBody3D" unique_id=2138630754]
 shape = SubResource("ConvexPolygonShape3D_aewkk")
 
-[node name="Cube_Dirt_Corner_Tall_Slope01" parent="." instance=ExtResource("27_psdb6")]
+[node name="Cube_Dirt_Corner_Tall_Slope01" parent="." unique_id=172568259 instance=ExtResource("27_psdb6")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Corner_Tall_Slope01/Cube_Dirt_Corner_Slope01" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Corner_Tall_Slope01/Cube_Dirt_Corner_Slope01" parent_id_path=PackedInt32Array(172568259, 1113081300) index="0" unique_id=212101474]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Corner_Tall_Slope01/Cube_Dirt_Corner_Slope01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Corner_Tall_Slope01/Cube_Dirt_Corner_Slope01/StaticBody3D" unique_id=604775255]
 shape = SubResource("ConvexPolygonShape3D_psdb6")
 
-[node name="Cube_Dirt_Corner_Tall_Slope02" parent="." instance=ExtResource("28_7s7dn")]
+[node name="Cube_Dirt_Corner_Tall_Slope02" parent="." unique_id=224642216 instance=ExtResource("28_7s7dn")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Corner_Tall_Slope02/Cube_Dirt_Corner_Slope02" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Dirt_Corner_Tall_Slope02/Cube_Dirt_Corner_Slope02" parent_id_path=PackedInt32Array(224642216, 1773842377) index="0" unique_id=1310612131]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Corner_Tall_Slope02/Cube_Dirt_Corner_Slope02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Dirt_Corner_Tall_Slope02/Cube_Dirt_Corner_Slope02/StaticBody3D" unique_id=1188636689]
 shape = SubResource("ConvexPolygonShape3D_7s7dn")
 
-[node name="Cube_Grass_Center_Slope01" parent="." instance=ExtResource("29_5u1m5")]
+[node name="Cube_Grass_Center_Slope01" parent="." unique_id=921415516 instance=ExtResource("29_5u1m5")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Grass_Center_Slope01/Cube_Grass_Center_Tall_Slope01" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Grass_Center_Slope01/Cube_Grass_Center_Tall_Slope01" parent_id_path=PackedInt32Array(921415516, 1264052563) index="0" unique_id=917379216]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Grass_Center_Slope01/Cube_Grass_Center_Tall_Slope01/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Grass_Center_Slope01/Cube_Grass_Center_Tall_Slope01/StaticBody3D" unique_id=890930094]
 shape = SubResource("ConvexPolygonShape3D_5u1m5")
 
-[node name="Cube_Grass_Center_Slope02" parent="." instance=ExtResource("30_wu7nn")]
+[node name="Cube_Grass_Center_Slope02" parent="." unique_id=360549817 instance=ExtResource("30_wu7nn")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Grass_Center_Slope02/Cube_Grass_Center_Tall_Slope02" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Grass_Center_Slope02/Cube_Grass_Center_Tall_Slope02" parent_id_path=PackedInt32Array(360549817, 471381770) index="0" unique_id=664847688]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Grass_Center_Slope02/Cube_Grass_Center_Tall_Slope02/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Grass_Center_Slope02/Cube_Grass_Center_Tall_Slope02/StaticBody3D" unique_id=332789781]
 shape = SubResource("ConvexPolygonShape3D_wu7nn")
 
-[node name="Cube_Grass_Corner_Slope" parent="." instance=ExtResource("31_anu7k")]
+[node name="Cube_Grass_Corner_Slope" parent="." unique_id=1269108907 instance=ExtResource("31_anu7k")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Grass_Corner_Slope/Cube_Grass_Corner_Tall_Slope" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_Grass_Corner_Slope/Cube_Grass_Corner_Tall_Slope" parent_id_path=PackedInt32Array(1269108907, 215618984) index="0" unique_id=945639004]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Grass_Corner_Slope/Cube_Grass_Corner_Tall_Slope/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_Grass_Corner_Slope/Cube_Grass_Corner_Tall_Slope/StaticBody3D" unique_id=1440168087]
 shape = SubResource("ConvexPolygonShape3D_anu7k")
+
+[node name="Cube_Default2" parent="." unique_id=1151064040 instance=ExtResource("32_aewkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [editable path="Cube_Grass_1x1Center2"]
 [editable path="Cube_Dirt_Center_Slope01"]
@@ -182,3 +186,4 @@ shape = SubResource("ConvexPolygonShape3D_anu7k")
 [editable path="Cube_Grass_Center_Slope01"]
 [editable path="Cube_Grass_Center_Slope02"]
 [editable path="Cube_Grass_Corner_Slope"]
+[editable path="Cube_Default2"]

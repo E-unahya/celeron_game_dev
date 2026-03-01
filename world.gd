@@ -60,3 +60,8 @@ func _on_box_breaked(box_pos:Vector3) -> void:
 func _on_fruits_get() -> void:
 	$FruitsGetSE.play()
 	print("Fruits get.")
+
+func _on_tower_animation_finished(anim_name : String):
+	if anim_name == "GOAL":
+		# プレイしてくれてありがとうのシーンを出す。
+		get_tree().change_scene_to_file("uid://dupjvv3trnpvk")

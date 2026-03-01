@@ -10,7 +10,6 @@ class_name Ohiwa
 
 func _ready() -> void:
 	rakka_flag = false
-	print("Ohiwa is here: ", name)
 
 func _physics_process(delta: float) -> void:
 	if rakka_flag:
@@ -21,4 +20,12 @@ func _physics_process(delta: float) -> void:
 		if is_on_wall():
 			velocity.y = 12.0
 		move_and_slide()
-		# spiky_ball_2.rotate_x(speed * delta)
+		spiky_ball_2.rotate_x(speed * delta)
+		if is_on_ceiling():
+			rakka_flag = false
+
+
+func _on_area_3d_body_entered(body:Node3D) -> void:
+	if body is Player:
+		body.die()
+		rakka_flag = false
