@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://cwxwcm7bawbsk" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="10_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://c6wyjvqg8salf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/bee.tscn" id="10_wse8f"]
-[ext_resource type="AudioStream" uid="uid://ejkut5dd6uvw" path="res://SE/打撃4.mp3" id="11_cbp6q"]
+[ext_resource type="AudioStream" uid="uid://dveb037ucvyq7" path="res://SE/打撃4.mp3" id="11_cbp6q"]
 [ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="11_ic0uy"]
-[ext_resource type="AudioStream" uid="uid://kyvgus6mu8bc" path="res://SE/カーソル移動11.mp3" id="12_26xuy"]
-[ext_resource type="AudioStream" uid="uid://dety1wywmngu6" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="13_2o6r5"]
+[ext_resource type="AudioStream" uid="uid://b50ya36ewe3d" path="res://SE/カーソル移動11.mp3" id="12_26xuy"]
+[ext_resource type="AudioStream" uid="uid://drx5iwdbn41mg" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://dyvlpoa3oytmp" path="res://3DModel/Ultimate Monsters/Big/tscn/alien.tscn" id="14_2u3nc"]
-[ext_resource type="AudioStream" uid="uid://t1xhrfgl7v8x" path="res://SE/ジャンプで踏んだ時の音.ogg" id="14_70uel"]
+[ext_resource type="AudioStream" uid="uid://vs3cnaujvogi" path="res://SE/ジャンプで踏んだ時の音.ogg" id="14_70uel"]
 [ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="15_hiqwa"]
 [ext_resource type="PackedScene" uid="uid://u6qywtly2rgb" path="res://3DModel/Particle/box_break_particle.tscn" id="17_ikiii"]
 [ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="17_udxuc"]
@@ -136,9 +136,10 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="RakkaArea" type="Area3D" parent="." unique_id=2021322112]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RakkaArea" unique_id=1373615503]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 shape = SubResource("BoxShape3D_036b0")
 
 [node name="Dossun" parent="." unique_id=513493974 instance=ExtResource("7_gbfbk")]

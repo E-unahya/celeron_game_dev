@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 """
 
 func start_patrol():
-	if tween:
+	if is_instance_valid(tween) and tween.is_running():
 		return
 	# ループ
 	var target_pos : Vector3 = home_pos + home_pos.direction_to(global_position + transform.basis.z) * 10.0

@@ -5,7 +5,7 @@ class_name Ohiwa
 @export var rakka_flag : bool = false
 @export var forward : Vector3 = Vector3.MODEL_FRONT
 @export var speed : float = 0
-@onready var spiky_ball_2: Node3D = $SpikyBall2
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
 
 func _ready() -> void:
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_wall():
 			velocity.y = 12.0
 		move_and_slide()
-		spiky_ball_2.rotate_x(speed * delta)
+		mesh_instance_3d.rotate_x(speed * delta)
 		if is_on_ceiling():
 			rakka_flag = false
 

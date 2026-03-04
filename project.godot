@@ -15,14 +15,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="クラッシュライクなCeleronゲーム"
+run/main_scene="uid://d2ldvpmxfxrty"
 config/features=PackedStringArray("4.6")
+run/max_fps=60
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=480
 window/handheld/orientation=1
-window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -86,6 +87,7 @@ spin_attack={
 
 [physics]
 
+3d/run_on_separate_thread=true
 3d/physics_engine="Jolt Physics"
 
 [rendering]

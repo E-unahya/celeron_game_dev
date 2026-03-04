@@ -33,6 +33,8 @@ var state_machine : AnimationNodeStateMachinePlayback
 @onready var shadow_mesh: MeshInstance3D = $ShadowMesh
 
 @onready var spin_area: Area3D = $SpinArea
+@onready var debug_label: Label = $DebugLabel
+
 
 var rotation_speed : float = 5.0
 
@@ -63,13 +65,14 @@ func _physics_process(delta: float) -> void:
 			# 1. 落下中は重力を強くして「キレ」を出す
 			current_gravity *= fall_gravity_mult
 		elif velocity.y > -3:
-			if not Input.is_action_pressed("jump"):
-				# 2. 上昇中にボタンを離すと、急ブレーキをかけて低ジャンプにする
+			# なんでか知らないけどこれで動きが安定するっぽい、まじ意味不明
+			if not Input.is_action_just_pressed("ui_accept"):
 				current_gravity.y *= low_jump_mult
 		else:
-			current_gravity = get_gravity() * delta
+			current_gravity = get_gravity()
 		coyote_time_counter -= delta
 		velocity += current_gravity
+		debug_label.text = "Current Gravity is " + str(current_gravity)+"\n velocity is " + str(velocity)
 	else:
 		coyote_time_counter = coyote_time
 
@@ -144,12 +147,13 @@ func _process(delta: float) -> void:
 	if is_dead:
 		state_machine.travel("Death")
 		await get_tree().create_timer(1.0).timeout
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("uid://d2ldvpmxfxrty")
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:
 	if body is Player:
 		# TODO ここで落下音がピューってなってそれが終わったらリロードの処理を行う
-		get_tree().reload_current_scene()
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("uid://d2ldvpmxfxrty")
 
 func apply_Hazard(trap_id : int):
 	match trap_id:
