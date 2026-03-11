@@ -19,6 +19,10 @@ run/main_scene="uid://d2ldvpmxfxrty"
 config/features=PackedStringArray("4.6")
 run/max_fps=60
 
+[autoload]
+
+Global="*uid://du4gppa05fl7r"
+
 [display]
 
 window/size/viewport_width=720
@@ -85,18 +89,35 @@ spin_attack={
 3d_physics/layer_6="EnemySpinAttacked"
 3d_physics/layer_7="ItemBox"
 
+[navigation]
+
+avoidance/thread_model/avoidance_use_multiple_threads=false
+avoidance/thread_model/avoidance_use_high_priority_threads=false
+baking/thread_model/baking_use_multiple_threads=false
+baking/thread_model/baking_use_high_priority_threads=false
+
 [physics]
 
-3d/run_on_separate_thread=true
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/size=1024
+lights_and_shadows/directional_shadow/size.mobile=512
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/directional_shadow/16_bits=false
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/atlas_16_bits=false
 2d/shadow_atlas/size=1024
+shader_compiler/shader_cache/enabled=false
+limits/global_shader_variables/buffer_size=16
 lights_and_shadows/tighter_shadow_caster_culling=false
+lights_and_shadows/positional_shadow/atlas_size=1024
+lights_and_shadows/positional_shadow/atlas_size.mobile=512
+lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=0
+lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=0
+lights_and_shadows/positional_shadow/atlas_quadrant_2_subdiv=0
+lights_and_shadows/positional_shadow/atlas_quadrant_3_subdiv=0

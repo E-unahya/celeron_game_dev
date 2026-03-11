@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ci8x2c0wtfu3m"]
+
+[ext_resource type="Script" uid="uid://vdomjhs68eip" path="res://empty.gd" id="1_coydh"]
+
+[node name="Empty" type="Node2D" unique_id=1794853673]
+process_mode = 3
+script = ExtResource("1_coydh")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=292088585]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 720.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2

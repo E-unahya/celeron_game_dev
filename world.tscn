@@ -327,6 +327,7 @@ mesh = SubResource("QuadMesh_26xuy")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh" unique_id=1063852115]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh/StaticBody3D" unique_id=1698570098]
 shape = SubResource("ConcavePolygonShape3D_26xuy")
@@ -337,6 +338,7 @@ mesh = SubResource("QuadMesh_il2jm")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh2" unique_id=1442640567]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh2/StaticBody3D" unique_id=871142588]
 shape = SubResource("ConcavePolygonShape3D_bc84e")
@@ -347,6 +349,7 @@ mesh = SubResource("QuadMesh_wjb0r")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh6" unique_id=434891565]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh6/StaticBody3D" unique_id=1487257901]
 shape = SubResource("ConcavePolygonShape3D_bc84e")
@@ -357,6 +360,7 @@ mesh = SubResource("QuadMesh_il2jm")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh7" unique_id=1724449168]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh7/StaticBody3D" unique_id=658863289]
 shape = SubResource("ConcavePolygonShape3D_bc84e")
@@ -367,6 +371,7 @@ mesh = SubResource("QuadMesh_ikiii")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh3" unique_id=1804209711]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh3/StaticBody3D" unique_id=899997441]
 shape = SubResource("ConcavePolygonShape3D_wukud")
@@ -377,6 +382,7 @@ mesh = SubResource("QuadMesh_cbp6q")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh4" unique_id=1289644533]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh4/StaticBody3D" unique_id=2125886081]
 shape = SubResource("ConcavePolygonShape3D_il2jm")
@@ -387,6 +393,7 @@ mesh = SubResource("QuadMesh_wukud")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Meshes/ForestMesh5" unique_id=1584300499]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/ForestMesh5/StaticBody3D" unique_id=343131391]
 shape = SubResource("ConcavePolygonShape3D_wjb0r")
@@ -396,12 +403,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
 mesh = SubResource("PlaneMesh_wukud")
 
 [node name="OhiwaRakkaArea" parent="." unique_id=580053582 instance=ExtResource("21_bc84e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 18, -74)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.85808, 17.005001, -96.07698)
 forward = Vector3(0, 0, 5)
 
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="animation_finished" from="Tower2/AnimationPlayer" to="." method="_on_tower_animation_finished"]
 [connection signal="area_entered" from="RakkaArea" to="." method="_on_rakka_area_area_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
-[connection signal="body_entered" from="OhiwaRakkaArea" to="Camera3D" method="_on_ohiwa_rakka_area_body_entered"]
+[connection signal="body_entered" from="RakkaArea" to="Camera3D" method="_on_rakka_area_body_entered"]
 
 [editable path="Tower2"]

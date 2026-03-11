@@ -6,8 +6,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_26xuy"]
 size = Vector3(30, 30, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_2mqvd"]
-radius = 12.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4txb"]
+blend_mode = 2
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_smmuf"]
+material = SubResource("StandardMaterial3D_f4txb")
+top_radius = 10.0
+bottom_radius = 10.0
+height = 0.01
 
 [node name="OhiwaRakkaArea" type="Area3D" unique_id=580053582]
 collision_layer = 0
@@ -18,14 +27,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 shape = SubResource("BoxShape3D_26xuy")
 
 [node name="Ohiwa" parent="." unique_id=1695230059 instance=ExtResource("2_smmuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, -24)
-collision_layer = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -24)
+collision_layer = 2
 collision_mask = 9
 
-[node name="Area3D" type="Area3D" parent="Ohiwa" unique_id=1328386457]
-collision_layer = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ohiwa/Area3D" unique_id=1615196207]
-shape = SubResource("SphereShape3D_2mqvd")
+[node name="ShadowMesh" type="MeshInstance3D" parent="." unique_id=162797928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+mesh = SubResource("CylinderMesh_smmuf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

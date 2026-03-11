@@ -13,6 +13,7 @@ extends Node3D
 var se_pitch_limit : int = 0
 
 func _ready():
+	PhysicsServer3D.set_active(true)
 	var box_counter :int = 0
 	# 敵がArea3Dになってること前提
 	for e : Enemy in enemies.get_children():
@@ -67,3 +68,20 @@ func _on_tower_animation_finished(anim_name : String):
 		set_physics_process(false)
 		player.set_physics_process(false)
 		get_tree().call_deferred("change_scene_to_file", "uid://dupjvv3trnpvk")
+
+
+func _on_player_dead() -> void:
+	set_physics_process(false)
+	set_process(false)
+	# 敵が投げる球等はTweenなのでそれをkillする
+	PhysicsServer3D.set_active(false)
+	get_tree().create_tween().kill()
+	for i in get_children():
+		i.queue_free()
+	await get_tree().process_frame
+	var global = get_node("/root/Global")
+	if global:
+		global.next_scene = self.scene_file_path
+	else:
+		push_error("Global_not_found.")
+	get_tree().call_deferred("change_scene_to_file", "res://Empty.tscn")

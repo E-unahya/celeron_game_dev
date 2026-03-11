@@ -1,31 +1,24 @@
-extends CharacterBody3D
+extends RigidBody3D
 
 class_name Ohiwa
-
-@export var rakka_flag : bool = false
 @export var forward : Vector3 = Vector3.MODEL_FRONT
 @export var speed : float = 0
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 
 func _ready() -> void:
-	rakka_flag = false
+	ray_cast_3d.target_position = forward.normalized() * 10 + Vector3(0, -10.0, 0)
+	freeze = true
 
-func _physics_process(delta: float) -> void:
-	if rakka_flag:
-		if !is_on_floor():
-			velocity += get_gravity() * delta
-		velocity.z = forward.z
-		velocity.x = velocity.x
-		if is_on_wall():
-			velocity.y = 12.0
-		move_and_slide()
-		mesh_instance_3d.rotate_x(speed * delta)
-		if is_on_ceiling():
-			rakka_flag = false
 
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if not freeze:
+		add_constant_central_force(forward)
+		if ray_cast_3d.is_colliding():
+			apply_impulse(Vector3.UP * 10)
 
 func _on_area_3d_body_entered(body:Node3D) -> void:
 	if body is Player:
 		body.die()
-		rakka_flag = false
+		freeze = true

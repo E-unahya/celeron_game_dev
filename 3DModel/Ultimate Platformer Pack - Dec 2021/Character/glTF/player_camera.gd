@@ -19,3 +19,8 @@ func _on_ohiwa_rakka_area_body_entered(body: Node3D) -> void:
 	if body is Player:
 		offset = Vector3(0, 3, 12)
 		rotation = Vector3(0, 0, 0)
+
+
+func _on_rakka_area_body_entered(body: Node3D) -> void:
+	if body is Player:
+		follow_target = null
