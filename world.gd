@@ -67,19 +67,33 @@ func _on_tower_animation_finished(anim_name : String):
 		# プレイしてくれてありがとうのシーンを出す。
 		set_physics_process(false)
 		player.set_physics_process(false)
+		for t in get_tree().get_processed_tweens():
+		# とりあえずTweenが働いているところを全てkill
+			t.kill()
 		get_tree().call_deferred("change_scene_to_file", "uid://dupjvv3trnpvk")
 
 
 func _on_player_dead() -> void:
-	set_physics_process(false)
-	set_process(false)
+	for t in get_tree().get_processed_tweens():
+		# とりあえずTweenが働いているところを全てkill
+		t.kill()
 	# 敵が投げる球等はTweenなのでそれをkillする
 	PhysicsServer3D.set_active(false)
-	get_tree().create_tween().kill()
+	"""
+	for e in enemies.get_children():
+		if is_instance_valid(e):
+			e.set_process(false)
+			e.set_physics_process(false)
+			e.set_script(null)
+			await get_tree().process_frame
+	set_physics_process(false)
+	set_process(false)
+	await get_tree().process_frame
 	for i in get_children():
 		i.queue_free()
-	await get_tree().process_frame
+	"""
 	var global = get_node("/root/Global")
+
 	if global:
 		global.next_scene = self.scene_file_path
 	else:

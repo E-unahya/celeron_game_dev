@@ -85,3 +85,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		"Death":
 			await get_tree().create_timer(0.5).timeout
 			hide()
+
+
+func all_free() -> void:
+	set_process(false)
+	set_physics_process(false)
+	set_script(null)
