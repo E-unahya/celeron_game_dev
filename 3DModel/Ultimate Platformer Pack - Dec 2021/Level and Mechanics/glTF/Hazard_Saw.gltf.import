@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Hazard_Saw.gltf-a2a9d62d782b1cf3f6fbf21cda768
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

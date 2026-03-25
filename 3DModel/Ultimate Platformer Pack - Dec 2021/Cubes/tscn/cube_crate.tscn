@@ -9,9 +9,8 @@ size = Vector3(1.7, 2, 1.7)
 [node name="Cube_Crate" unique_id=335966316 instance=ExtResource("1_m51oh")]
 script = ExtResource("2_54ohs")
 
-[node name="@StaticBody3D@25239" parent="Cube_Crate" parent_id_path=PackedInt32Array(367926208) index="0" unique_id=506412407]
-collision_layer = 17
-collision_mask = 48
+[node name="@StaticBody3D@19730" parent="Cube_Crate" parent_id_path=PackedInt32Array(1970903959) index="0" unique_id=2077696097]
+collision_layer = 0
 
 [node name="Area3D" type="Area3D" parent="." index="1" unique_id=1770497451]
 collision_layer = 0

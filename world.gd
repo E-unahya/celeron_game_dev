@@ -9,6 +9,7 @@ extends Node3D
 @onready var box_break_particle: GPUParticles3D = $BoxBreakParticle
 @onready var fruits: Node = $fruits
 @onready var stage_ui: StageUI = $StageUI
+@onready var gimmick: Node = $Gimmick
 
 var se_pitch_limit : int = 0
 
@@ -25,6 +26,9 @@ func _ready():
 		box_counter += 1
 	for f in fruits.get_children():
 		f.fruit_get.connect(_on_fruits_get)
+	for g in gimmick.get_children():
+		if g is Bouncer:
+			g.body_entered.connect(_on_bouncer_body_entered)
 	stage_ui.set_score(0)
 	stage_ui.set_box_label(box_counter)
 
@@ -46,6 +50,10 @@ func _on_enemy_weak_area_entered(body : CharacterBody3D) -> void:
 			se_pitch_limit += 1
 			stage_ui.set_score(score)
 			score += score
+
+func _on_bouncer_body_entered(body:Node3D):
+	jump_bounce_se.play()
+
 
 func _on_rakka_area_area_entered(area: Area3D) -> void:
 	if area is Enemy:
@@ -79,19 +87,7 @@ func _on_player_dead() -> void:
 		t.kill()
 	# 敵が投げる球等はTweenなのでそれをkillする
 	PhysicsServer3D.set_active(false)
-	"""
-	for e in enemies.get_children():
-		if is_instance_valid(e):
-			e.set_process(false)
-			e.set_physics_process(false)
-			e.set_script(null)
-			await get_tree().process_frame
-	set_physics_process(false)
-	set_process(false)
-	await get_tree().process_frame
-	for i in get_children():
-		i.queue_free()
-	"""
+
 	var global = get_node("/root/Global")
 
 	if global:

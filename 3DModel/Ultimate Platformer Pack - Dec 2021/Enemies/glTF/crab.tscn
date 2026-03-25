@@ -1055,7 +1055,7 @@ collision_mask = 33
 script = ExtResource("2_wcg0d")
 enemy_type = 1
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1259972555]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1641206941]
 libraries/ = SubResource("AnimationLibrary_wcg0d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1116942474]

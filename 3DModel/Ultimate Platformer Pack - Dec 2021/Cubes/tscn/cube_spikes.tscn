@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bms5wbbiaueaq"]
+
+[ext_resource type="PackedScene" uid="uid://lsi4f1gfqvre" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/glTF/Cube_Spikes.gltf" id="1_hufmv"]
+[ext_resource type="Script" uid="uid://b8ylk314srlgw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_spikes.gd" id="2_yskgb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yskgb"]
+size = Vector3(2.5, 2.5, 2.5)
+
+[node name="Cube_Spikes" unique_id=1364073330 instance=ExtResource("1_hufmv")]
+collision_layer = 0
+script = ExtResource("2_yskgb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=461698794]
+shape = SubResource("BoxShape3D_yskgb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
