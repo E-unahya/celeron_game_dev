@@ -6,26 +6,18 @@ var tween : Tween
 ## 下に落ちるように
 
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
+@export var distance : float = 10.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
 
-"""
-func _process(delta: float) -> void:
-	if ray_cast_3d.is_colliding():
-		self.position = ray_cast_3d.get_collision_point()
-		print(ray_cast_3d.get_collision_point())
-	else:
-		self.position.y -= 0.98 * delta
-"""
-
 func start_patrol():
 	if is_instance_valid(tween) and tween.is_running():
 		return
 	# ループ
-	var target_pos : Vector3 = home_pos + home_pos.direction_to(global_position + transform.basis.z) * 10.0
+	var target_pos : Vector3 = home_pos + home_pos.direction_to(global_position + transform.basis.z) * distance
 	var armature : Node3D = self.get_child(0)
 	tween = get_tree().create_tween()
 	tween.set_loops()

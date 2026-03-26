@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Hazard_Cylinder.gltf-ca84da2d47e14708bce8a18e
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

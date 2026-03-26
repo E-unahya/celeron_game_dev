@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c5fuw0207fkmx"]
+
+[ext_resource type="PackedScene" uid="uid://lth7xxgirjb1" path="res://3DModel/Ultimate Monsters/Blob/glTF/Alien.gltf" id="1_v3snj"]
+[ext_resource type="Script" uid="uid://cr8d3mai0jgsd" path="res://3DModel/Ultimate Monsters/Blob/scene/alien.gd" id="2_scxye"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_scxye"]
+radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u81b5"]
+height = 0.5116211
+radius = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1h520"]
+height = 0.49726564
+radius = 0.7036133
+
+[node name="Alien" unique_id=414715315 instance=ExtResource("1_v3snj")]
+script = ExtResource("2_scxye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=451898235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("SphereShape3D_scxye")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="3" unique_id=1580747922]
+target_position = Vector3(0, -2, 0)
+collision_mask = 8
+
+[node name="WeakArea" type="Area3D" parent="." index="4" unique_id=1193968983]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0" unique_id=891825877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9558105, 0)
+shape = SubResource("CylinderShape3D_u81b5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="5" unique_id=458914930]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=465330261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0436584, 0)
+shape = SubResource("CylinderShape3D_1h520")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bjtl1wcipjawp"]
+
+[ext_resource type="PackedScene" uid="uid://ddfmcxscwpv53" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Bouncer.gltf" id="1_422jn"]
+[ext_resource type="Script" uid="uid://b7ltqy246s1jg" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.gd" id="2_0ettv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ettv"]
+size = Vector3(2.5, 2.5, 2.5)
+
+[node name="Bouncer" unique_id=961653228 instance=ExtResource("1_422jn")]
+collision_layer = 0
+script = ExtResource("2_0ettv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=717404015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02822876, 0.7938843, 0)
+shape = SubResource("BoxShape3D_0ettv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

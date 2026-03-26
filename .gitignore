@@ -1,4 +1,5 @@
-.godot/*
+.godot/
 build/
 *.import
 *.uid
+*.zip
