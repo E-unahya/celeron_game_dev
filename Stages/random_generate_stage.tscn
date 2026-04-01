@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dnkal2hf52h6"]
+
+[ext_resource type="Script" uid="uid://6bxvdg0iq4j2" path="res://Stages/StageGenerator.gd" id="1_lenxk"]
+[ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="2_y16yb"]
+[ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="3_i4di8"]
+[ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="4_i4di8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4spue"]
+
+[sub_resource type="Sky" id="Sky_bc84e"]
+sky_material = SubResource("ProceduralSkyMaterial_4spue")
+
+[sub_resource type="Environment" id="Environment_3yq50"]
+background_mode = 2
+background_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
+sky = SubResource("Sky_bc84e")
+fog_enabled = true
+fog_light_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
+fog_light_energy = 1.5
+
+[node name="RandomGenerateStage" type="Node3D" unique_id=1968769203]
+script = ExtResource("1_lenxk")
+
+[node name="Player" parent="." unique_id=331114975 instance=ExtResource("2_y16yb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_mask = 9
+platform_floor_layers = 4278190088
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2083926542 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.5, 0, -0.5, 0.8660253, 0, 11, 3)
+far = 50.0
+script = ExtResource("3_i4di8")
+follow_target = NodePath("")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=480700160]
+environment = SubResource("Environment_3yq50")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=64277911]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 34.6932, 0)
+
+[node name="GridMap" type="GridMap" parent="." unique_id=1347282354]
+mesh_library = ExtResource("4_i4di8")

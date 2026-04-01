@@ -1,0 +1,251 @@
+[gd_scene format=3 uid="uid://b08wr2lumkys0"]
+
+[ext_resource type="Script" uid="uid://pdmrhny8rl5m" path="res://world.gd" id="1_276pt"]
+[ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="2_bpoow"]
+[ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="3_1dvhv"]
+[ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="4_0kw74"]
+[ext_resource type="PackedScene" uid="uid://bbqtg4iqgdvm6" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.tscn" id="6_ffxvc"]
+[ext_resource type="PackedScene" uid="uid://f6vvw0l6b2u5" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/dossun.tscn" id="7_daj3w"]
+[ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="8_frcrj"]
+[ext_resource type="AudioStream" uid="uid://drx5iwdbn41mg" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="9_48u7k"]
+[ext_resource type="AudioStream" uid="uid://vs3cnaujvogi" path="res://SE/ジャンプで踏んだ時の音.ogg" id="10_ytv77"]
+[ext_resource type="AudioStream" uid="uid://dveb037ucvyq7" path="res://SE/打撃4.mp3" id="11_y6kmp"]
+[ext_resource type="AudioStream" uid="uid://b50ya36ewe3d" path="res://SE/カーソル移動11.mp3" id="12_jo8tw"]
+[ext_resource type="PackedScene" uid="uid://u6qywtly2rgb" path="res://3DModel/Particle/box_break_particle.tscn" id="13_tfqn2"]
+[ext_resource type="PackedScene" uid="uid://c6wyjvqg8salf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/bee.tscn" id="14_1dvhv"]
+[ext_resource type="PackedScene" uid="uid://dqhft8i4nm55s" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.tscn" id="14_ffxvc"]
+[ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="14_yvev6"]
+[ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="15_0kw74"]
+[ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="15_ba2hk"]
+[ext_resource type="PackedScene" uid="uid://bjtl1wcipjawp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.tscn" id="16_ba2hk"]
+[ext_resource type="PackedScene" uid="uid://dyvlpoa3oytmp" path="res://3DModel/Ultimate Monsters/Big/tscn/alien.tscn" id="17_daj3w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
+
+[sub_resource type="Sky" id="Sky_bc84e"]
+sky_material = SubResource("ProceduralSkyMaterial_bc84e")
+
+[sub_resource type="Environment" id="Environment_tlwt5"]
+background_mode = 2
+background_color = Color(0.3, 0.3, 0.4, 1)
+sky = SubResource("Sky_bc84e")
+ambient_light_source = 1
+ambient_light_energy = 0.8
+fog_enabled = true
+fog_light_color = Color(0.4, 0.4, 0.5, 1)
+fog_light_energy = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
+size = Vector3(200, 1, 400)
+
+[node name="World" type="Node3D" unique_id=706768811]
+script = ExtResource("1_276pt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1167102710]
+transform = Transform3D(0.866019, -0.50001097, 0, 0.4829735, 0.83651006, 0.2588247, -0.12940952, -0.22413729, 0.9659258, -20, 30, 20)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569862025]
+environment = SubResource("Environment_tlwt5")
+
+[node name="Player" parent="." unique_id=647486868 node_paths=PackedStringArray("trap_map") instance=ExtResource("2_bpoow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_mask = 9
+platform_floor_layers = 4278190088
+trap_map = NodePath("../TrapMap")
+
+[node name="CastleStageMap" type="GridMap" parent="." unique_id=1477278548]
+mesh_library = ExtResource("3_1dvhv")
+collision_layer = 8
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(65534, 65535, 17, 65535, 65535, 17, 0, 65535, 17, 1, 65535, 17, 65534, 0, 17, 65535, 0, 17, 0, 0, 17, 1, 0, 17, 131070, 65534, 5, 65537, 65534, 1048581, 131071, 65534, 19, 65536, 65534, 19, 196606, 65533, 5, 196607, 65533, 19, 131072, 65533, 19, 131073, 65533, 1048581, 196606, 65523, 17, 196606, 65524, 17, 196606, 65525, 17, 196606, 65526, 17, 196606, 65527, 17, 196606, 65528, 17, 196606, 65529, 17, 196606, 65530, 17, 196606, 65531, 17, 196606, 65532, 17, 196607, 65523, 17, 196607, 65524, 17, 196607, 65525, 17, 196607, 65526, 17, 196607, 65527, 17, 196607, 65528, 17, 196607, 65529, 17, 196607, 65530, 17, 196607, 65531, 17, 196607, 65532, 17, 131072, 65523, 17, 131072, 65524, 17, 131072, 65525, 17, 131072, 65526, 17, 131072, 65527, 17, 131072, 65528, 17, 131072, 65529, 17, 131072, 65530, 17, 131072, 65531, 17, 131072, 65532, 17, 131073, 65523, 17, 131073, 65524, 17, 131073, 65525, 17, 131073, 65526, 17, 131073, 65527, 17, 131073, 65528, 17, 131073, 65529, 17, 131073, 65530, 17, 131073, 65531, 17, 131073, 65532, 17)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
+
+[node name="TrapMap" type="GridMap" parent="." unique_id=259463488]
+mesh_library = ExtResource("4_0kw74")
+cell_size = Vector3(2, 4, 2)
+collision_layer = 8
+collision_mask = 8
+
+[node name="RotatingTraps" type="Node3D" parent="." unique_id=1850000001]
+
+[node name="RotatingTrap1" type="Node3D" parent="RotatingTraps" unique_id=1850000002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 8, -30)
+
+[node name="RotatingTrap2" type="Node3D" parent="RotatingTraps" unique_id=1850000003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 14, -50)
+
+[node name="CastleTower" parent="." unique_id=931059977 instance=ExtResource("6_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, -60)
+collision_layer = 8
+collision_mask = 3
+
+[node name="BossArea" type="Area3D" parent="." unique_id=2021322112]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BossArea" unique_id=1373615503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -80)
+shape = SubResource("BoxShape3D_036b0")
+
+[node name="DossunBoss" parent="." unique_id=513493974 instance=ExtResource("7_daj3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, -80)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=683169920 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.5, 0, -0.5, 0.8660253, 0, 11, 3)
+far = 100.0
+script = ExtResource("8_frcrj")
+follow_target = NodePath("../Player")
+
+[node name="AttackSE" type="AudioStreamPlayer" parent="." unique_id=1723909116]
+stream = ExtResource("9_48u7k")
+volume_db = -15.0
+max_polyphony = 8
+
+[node name="JumpBounceSE" type="AudioStreamPlayer" parent="." unique_id=79777335]
+stream = ExtResource("10_ytv77")
+max_polyphony = 8
+
+[node name="BoxBreakSE" type="AudioStreamPlayer" parent="." unique_id=1002706078]
+stream = ExtResource("11_y6kmp")
+max_polyphony = 8
+
+[node name="FruitsGetSE" type="AudioStreamPlayer" parent="." unique_id=1105659113]
+stream = ExtResource("12_jo8tw")
+max_polyphony = 8
+
+[node name="BoxBreakParticle" parent="." unique_id=731474296 instance=ExtResource("13_tfqn2")]
+
+[node name="fruits" type="Node" parent="." unique_id=1946724382]
+
+[node name="Fruit1" parent="fruits" unique_id=1933748863 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -10)
+
+[node name="Fruit2" parent="fruits" unique_id=1562480577 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 9, -15)
+
+[node name="Fruit3" parent="fruits" unique_id=1339627931 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, -20)
+
+[node name="Fruit4" parent="fruits" unique_id=2137303702 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 14, -25)
+
+[node name="Fruit5" parent="fruits" unique_id=236326456 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 16, -30)
+
+[node name="Fruit6" parent="fruits" unique_id=461668994 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -35)
+
+[node name="Fruit7" parent="fruits" unique_id=1138455363 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 20, -40)
+
+[node name="Fruit8" parent="fruits" unique_id=1353140644 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, -45)
+
+[node name="Fruit9" parent="fruits" unique_id=1440378605 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 24, -50)
+
+[node name="Fruit10" parent="fruits" unique_id=196981480 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -55)
+
+[node name="Fruit11" parent="fruits" unique_id=861696425 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 28, -60)
+
+[node name="Fruit12" parent="fruits" unique_id=1200920608 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -65)
+
+[node name="Fruit13" parent="fruits" unique_id=915081434 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 32, -70)
+
+[node name="Fruit14" parent="fruits" unique_id=1126180155 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 34, -75)
+
+[node name="Fruit15" parent="fruits" unique_id=1550508757 instance=ExtResource("14_ffxvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 36, -80)
+
+[node name="Enemies" type="Node" parent="." unique_id=818959743]
+
+[node name="Bee1" parent="Enemies" unique_id=89749193 instance=ExtResource("14_1dvhv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 8, -15)
+
+[node name="Bee2" parent="Enemies" unique_id=6515910 instance=ExtResource("14_1dvhv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 12, -20)
+
+[node name="Bee3" parent="Enemies" unique_id=851358578 instance=ExtResource("14_1dvhv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 16, -25)
+
+[node name="Bee4" parent="Enemies" unique_id=1601880193 instance=ExtResource("14_1dvhv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 20, -30)
+
+[node name="Bee5" parent="Enemies" unique_id=942072501 instance=ExtResource("14_1dvhv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 24, -35)
+
+[node name="Crab1" parent="Enemies" unique_id=320351823 instance=ExtResource("15_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 18, -40)
+distance = 4.0
+bounce_power = 2.0
+
+[node name="Crab2" parent="Enemies" unique_id=1993352045 instance=ExtResource("15_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 22, -45)
+distance = 4.0
+bounce_power = 2.0
+
+[node name="Alien1" parent="Enemies" unique_id=1145104473 instance=ExtResource("17_daj3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -60)
+
+[node name="Boxs" type="Node" parent="." unique_id=1067182013]
+
+[node name="Cube_Crate1" parent="Boxs" unique_id=335966316 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -2, 9, -18)
+
+[node name="Cube_Crate2" parent="Boxs" unique_id=1003086484 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2, 13, -25)
+
+[node name="Cube_Crate3" parent="Boxs" unique_id=1120405077 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -2, 17, -32)
+
+[node name="Cube_Crate4" parent="Boxs" unique_id=166772708 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2, 21, -39)
+
+[node name="Cube_Crate5" parent="Boxs" unique_id=1145181597 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -2, 25, -46)
+
+[node name="Cube_Crate6" parent="Boxs" unique_id=1061052876 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 2, 29, -53)
+
+[node name="Cube_Crate7" parent="Boxs" unique_id=200100201 instance=ExtResource("15_0kw74")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -2, 33, -60)
+
+[node name="StageUI" parent="." unique_id=1948447596 instance=ExtResource("14_yvev6")]
+
+[node name="Gimmick" type="Node" parent="." unique_id=564244054]
+
+[node name="Bouncer1" parent="Gimmick" unique_id=961653228 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -12)
+
+[node name="Bouncer8" parent="Gimmick" unique_id=942513522 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -20)
+
+[node name="Bouncer2" parent="Gimmick" unique_id=1707576446 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -29)
+
+[node name="Bouncer3" parent="Gimmick" unique_id=2081350914 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -32)
+
+[node name="Bouncer4" parent="Gimmick" unique_id=1832554335 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -42)
+
+[node name="Bouncer5" parent="Gimmick" unique_id=494065933 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, -52)
+
+[node name="Bouncer6" parent="Gimmick" unique_id=200100302 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -62)
+
+[node name="Bouncer7" parent="Gimmick" unique_id=200100303 instance=ExtResource("16_ba2hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -72)
+
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="area_entered" from="BossArea" to="." method="_on_boss_area_entered"]
+[connection signal="body_entered" from="BossArea" to="Player" method="_on_boss_area_body_entered"]
+[connection signal="body_entered" from="BossArea" to="Camera3D" method="_on_boss_area_body_entered"]
