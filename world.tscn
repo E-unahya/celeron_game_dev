@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="17_udxuc"]
 [ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="19_cbp6q"]
 [ext_resource type="PackedScene" uid="uid://fp6m1i0t4bm6" path="res://3DModel/ohiwa_rakka_area.tscn" id="21_bc84e"]
-[ext_resource type="PackedScene" uid="uid://bjtl1wcipjawp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.tscn" id="22_wukud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
 
@@ -405,20 +404,15 @@ mesh = SubResource("PlaneMesh_wukud")
 
 [node name="OhiwaRakkaArea" parent="." unique_id=580053582 instance=ExtResource("21_bc84e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.85808, 17.005001, -96.07698)
-forward = Vector3(0, 0, 5)
+forward = Vector3(0, 0, 10)
 
 [node name="Gimmick" type="Node" parent="." unique_id=1366948917]
-
-[node name="Bouncer" parent="Gimmick" unique_id=961653228 instance=ExtResource("22_wukud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -28)
-
-[node name="Bouncer2" parent="Gimmick" unique_id=893017405 instance=ExtResource("22_wukud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -65)
 
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="animation_finished" from="Tower2/AnimationPlayer" to="." method="_on_tower_animation_finished"]
 [connection signal="area_entered" from="RakkaArea" to="." method="_on_rakka_area_area_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Camera3D" method="_on_rakka_area_body_entered"]
+[connection signal="body_entered" from="OhiwaRakkaArea" to="Camera3D" method="_on_ohiwa_rakka_area_body_entered"]
 
 [editable path="Tower2"]

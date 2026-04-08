@@ -86,6 +86,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tower_Door:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.9802322e-08, 0), Vector3(0, 1.8325957, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_wmdy1"]
 length = 0.001
@@ -137,6 +149,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tower_Door:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.9802322e-08, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rhr2y"]
 _data = {
@@ -147,13 +171,13 @@ _data = {
 [node name="Tower" unique_id=90919770 instance=ExtResource("1_3e7ev")]
 script = ExtResource("2_tgv5n")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Tower" index="0" unique_id=448406172]
+[node name="StaticBody3D" type="StaticBody3D" parent="Tower" parent_id_path=PackedInt32Array(448943324) index="0" unique_id=448406172]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tower/StaticBody3D" index="0" unique_id=1164147173]
 shape = SubResource("ConcavePolygonShape3D_tgv5n")
 
-[node name="Tower_Door" parent="." index="1"]
-transform = Transform3D(-0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881907, 1.2481629, 2.8865695, 3.1571736)
+[node name="Tower_Door" parent="." index="1" unique_id=91862862]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.2481629, 2.8865695, 3.1571736)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=609808535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)

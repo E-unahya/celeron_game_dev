@@ -23,4 +23,8 @@ func _on_ohiwa_rakka_area_body_entered(body: Node3D) -> void:
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:
 	if body is Player:
-		follow_target = null
+		pass
+
+
+func _on_player_still_alive(player:Player) -> void:
+	follow_target = player

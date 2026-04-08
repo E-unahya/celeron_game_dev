@@ -35,7 +35,13 @@ var state_machine : AnimationNodeStateMachinePlayback
 @onready var spin_area: Area3D = $SpinArea
 @onready var debug_label: Label = $DebugLabel
 
+@export var check_point : Vector3
+
+# 残りライフポイントを入れるべきか？
+@export var zanki : int = 3
+
 signal dead
+signal still_alive(player:Player)
 
 var rotation_speed : float = 5.0
 
@@ -55,6 +61,7 @@ enum Hazard {
 }
 
 func _ready() -> void:
+	check_point = self.global_position
 	animation_tree.active = true
 	state_machine = animation_tree.get("parameters/playback")
 	state_machine.travel("IdleAndRun")
@@ -103,7 +110,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = lerp(velocity.z, 0.0, friction * delta)
 	# ここからトラップに落ちたらの処理
 	var cell_pos = trap_map.local_to_map(global_position)
-# 罠用GridMapからその場所のタイルIDを取得
+	# 罠用GridMapからその場所のタイルIDを取得
 	var trap_id = trap_map.get_cell_item(cell_pos)
 	
 	# Check Shadow Position
@@ -121,7 +128,7 @@ func _physics_process(delta: float) -> void:
 		Hazard.NONE:
 			pass # 何もない(空)
 		_:
-			apply_Hazard(trap_id)
+			pass
 	move_and_slide()
 
 
@@ -147,30 +154,26 @@ func _process(delta: float) -> void:
 	# 死んだときのプロセス
 	if is_dead:
 		state_machine.travel("Death")
-		await get_tree().create_timer(1.0).timeout
-		dead.emit()
+		die()
+
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:
 	if body is Player:
 		# TODO ここで落下音がピューってなってそれが終わったらリロードの処理を行う
-		await get_tree().create_timer(1.0).timeout
-		dead.emit()
+		die()
 
-func apply_Hazard(trap_id : int):
-	match trap_id:
-		Hazard.CYLINDER:
-			die()
-		Hazard.SAW:
-			die()
-		Hazard.SPIKE_TRAP:
-			if is_on_floor():
-				die()
 
 func bounce(bounce_num : float = 1.0):
 	velocity.y = JUMP_VELOCITY * bounce_num
 
 
-func die():
-	# 4んだときのアニメーションを再生
-	is_dead = true
-	set_physics_process(false)
+func die() -> void:
+	if zanki == 0:
+		await get_tree().create_timer(1.0).timeout
+		dead.emit()
+	else:
+		character_armature.hide()
+		await get_tree().create_timer(3.0).timeout
+		global_position = check_point
+		
+		still_alive.emit(self)

@@ -84,6 +84,7 @@ func _on_tower_animation_finished(anim_name : String):
 func _on_player_dead() -> void:
 	for t in get_tree().get_processed_tweens():
 		# とりあえずTweenが働いているところを全てkill
+		# この処理を入れないとデッドロックで死んでしまう。
 		t.kill()
 	# 敵が投げる球等はTweenなのでそれをkillする
 	PhysicsServer3D.set_active(false)
@@ -94,4 +95,4 @@ func _on_player_dead() -> void:
 		global.next_scene = self.scene_file_path
 	else:
 		push_error("Global_not_found.")
-	get_tree().call_deferred("change_scene_to_file", "res://Empty.tscn")
+	get_tree().call_deferred("change_scene_to_file", self.scene_file_path)

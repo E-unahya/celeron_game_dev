@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pdmrhny8rl5m" path="res://world.gd" id="1_276pt"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="2_bpoow"]
+[ext_resource type="PackedScene" uid="uid://q7hr1ypu0dmv" path="res://3DModel/CheckPoint.tscn" id="2_ytv77"]
 [ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="3_1dvhv"]
 [ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="4_0kw74"]
 [ext_resource type="MeshLibrary" uid="uid://c3avuxfewjumu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/Natures.tres" id="5_ba2hk"]
@@ -21,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bjtl1wcipjawp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.tscn" id="16_ba2hk"]
 [ext_resource type="PackedScene" uid="uid://dyvlpoa3oytmp" path="res://3DModel/Ultimate Monsters/Big/tscn/alien.tscn" id="17_daj3w"]
 [ext_resource type="PackedScene" uid="uid://ifg7atxqe2v5" path="res://3DModel/MoveTo.tscn" id="21_frcrj"]
+[ext_resource type="Script" uid="uid://batnbq3fd3dpj" path="res://Stages/move_floor_animation.gd" id="22_48u7k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
 
@@ -38,7 +40,42 @@ fog_light_energy = 1.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(168, 1, 300)
 
-[sub_resource type="Curve3D" id="Curve3D_frcrj"]
+[sub_resource type="Animation" id="Animation_frcrj"]
+resource_name = "MoveTo"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveTo:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-6, 0, -127), Vector3(4, 6, -134), Vector3(-6, 11, -126), Vector3(-15, 7, -114), Vector3(-6, 7, -109), Vector3(-6, 13, -109)]
+}
+
+[sub_resource type="Animation" id="Animation_48u7k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MoveTo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-6, 0, -127)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytv77"]
+_data = {
+&"MoveTo": SubResource("Animation_frcrj"),
+&"RESET": SubResource("Animation_48u7k")
+}
 
 [node name="World" type="Node3D" unique_id=706768811]
 script = ExtResource("1_276pt")
@@ -50,7 +87,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 environment = SubResource("Environment_tlwt5")
 
 [node name="Player" parent="." unique_id=647486868 node_paths=PackedStringArray("trap_map") instance=ExtResource("2_bpoow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 12, -84)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_mask = 9
 platform_floor_layers = 4278190088
 trap_map = NodePath("../TrapMap")
@@ -240,6 +277,14 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 9, -67)
 
 [node name="Meshes" type="Node" parent="." unique_id=1586686172]
 
+[node name="MoveTo" parent="." unique_id=811058097 instance=ExtResource("21_frcrj")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -6, 0, -127)
+
+[node name="MoveFloorAnimation" type="AnimationPlayer" parent="MoveTo" unique_id=1222052773]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_ytv77")
+script = ExtResource("22_48u7k")
+
 [node name="Gimmick" type="Node" parent="." unique_id=564244054]
 
 [node name="Bouncer" parent="Gimmick" unique_id=961653228 instance=ExtResource("16_ba2hk")]
@@ -257,16 +302,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 10, -65)
 [node name="Bouncer5" parent="Gimmick" unique_id=494065933 instance=ExtResource("16_ba2hk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 12, -74)
 
-[node name="Path3D" type="Path3D" parent="." unique_id=1268654119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.937649, 0.25, -129.71547)
-curve = SubResource("Curve3D_frcrj")
-
-[node name="MoveTo" parent="Path3D" unique_id=811058097 instance=ExtResource("21_frcrj")]
+[node name="CheckPoint" parent="." unique_id=81097620 instance=ExtResource("2_ytv77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3, -24.5)
 
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="still_alive" from="Player" to="Camera3D" method="_on_player_still_alive"]
 [connection signal="animation_finished" from="Tower/AnimationPlayer" to="." method="_on_tower_animation_finished"]
 [connection signal="area_entered" from="RakkaArea" to="." method="_on_rakka_area_area_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Camera3D" method="_on_rakka_area_body_entered"]
+[connection signal="player_entered" from="MoveTo" to="MoveTo/MoveFloorAnimation" method="_on_move_to_player_entered"]
 
 [editable path="Tower"]

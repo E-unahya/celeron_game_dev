@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://q7hr1ypu0dmv"]
+
+[ext_resource type="PackedScene" uid="uid://bnuaeambpxf7v" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/glTF/Gem_Pink.gltf" id="1_ixsoe"]
+[ext_resource type="Script" uid="uid://ctscnwwmwo4h0" path="res://3DModel/check_point.gd" id="1_jvwjo"]
+[ext_resource type="Shader" uid="uid://gpg4yg00n387" path="res://3DModel/CheckPoint.gdshader" id="2_xg0q2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xg0q2"]
+size = Vector3(1.5, 2, 1.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvwjo"]
+render_priority = 0
+shader = ExtResource("2_xg0q2")
+shader_parameter/primary_color = Color(1, 0, 0, 1)
+shader_parameter/secondary_color = Color(0, 0, 0, 1)
+shader_parameter/density = 1.0
+shader_parameter/effect_strength = 2.0
+shader_parameter/wipe_scale = 3.0
+shader_parameter/wipe_speed = 0.5
+shader_parameter/wipe_blend = 0.7
+shader_parameter/signal_scale = 40.0
+shader_parameter/signal_speed = 1.0
+shader_parameter/signal_random_scale = 0.3
+shader_parameter/signal_blend = 1.0
+shader_parameter/noise_distort_amount = 0.1
+shader_parameter/noise_amount = 1.0
+shader_parameter/grain_amount = 0.4
+shader_parameter/displacement_amount = 1.0
+shader_parameter/flicker_amount = 0.3
+shader_parameter/flicker_speed = 10.0
+
+[sub_resource type="TextMesh" id="TextMesh_ixsoe"]
+material = SubResource("ShaderMaterial_jvwjo")
+text = "Check Point"
+font_size = 64
+
+[node name="CheckPoint" type="Area3D" unique_id=81097620]
+collision_layer = 0
+script = ExtResource("1_jvwjo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=622247994]
+shape = SubResource("BoxShape3D_xg0q2")
+
+[node name="Gem_Pink2" parent="." unique_id=675485679 instance=ExtResource("1_ixsoe")]
+
+[node name="CheckPointMesh" type="MeshInstance3D" parent="." unique_id=1753460785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("TextMesh_ixsoe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

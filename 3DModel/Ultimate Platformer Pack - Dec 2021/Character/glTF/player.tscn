@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://u8cg0pj16wrl" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/Character.gltf" id="1_77dde"]
 [ext_resource type="Script" uid="uid://d3kre5f0j3ee7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.gd" id="2_ity3g"]
 [ext_resource type="AnimationLibrary" uid="uid://de1cq3225jm7t" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/Attack.res" id="3_pkfoi"]
+[ext_resource type="Material" uid="uid://ca6sqece0pb6e" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/warp_effectg.material" id="4_rarv1"]
 
 [sub_resource type="Animation" id="Animation_1cey5"]
 resource_name = "Death"
@@ -2898,6 +2899,18 @@ tracks/30/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("CheckPointMesh:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ja3wp"]
 resource_name = "Run"
@@ -4743,15 +4756,20 @@ radius = 2.5
 [sub_resource type="LabelSettings" id="LabelSettings_pkfoi"]
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="TorusMesh" id="TorusMesh_hg00c"]
+material = ExtResource("4_rarv1")
+inner_radius = 1.5
+outer_radius = 2.0
+
 [node name="Player" unique_id=331114975 instance=ExtResource("1_77dde")]
 collision_layer = 65
 collision_mask = 81
 script = ExtResource("2_ity3g")
 
-[node name="CharacterArmature" parent="." index="0" unique_id=472519396]
+[node name="CharacterArmature" parent="." index="0" unique_id=1953208186]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="Skeleton3D" parent="CharacterArmature" index="0" unique_id=32614812]
+[node name="Skeleton3D" parent="CharacterArmature" index="0" unique_id=1744330810]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 bones/1/rotation = Quaternion(7.85402e-06, 0.70295197, 0.7112374, 7.762523e-06)
 bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
@@ -4781,7 +4799,7 @@ bones/26/rotation = Quaternion(-3.5526934e-15, 1.1920937e-07, -8.470344e-22, 1)
 bones/27/rotation = Quaternion(-7.85402e-06, 0.70295197, 0.7112374, -7.762523e-06)
 bones/28/rotation = Quaternion(-3.552734e-15, -5.9604645e-07, 3.3881257e-21, 1)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1518265743]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1630386537]
 libraries/ = SubResource("AnimationLibrary_l0s1q")
 libraries/Attack = ExtResource("3_pkfoi")
 
@@ -4824,3 +4842,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_pkfoi")
+
+[node name="CheckPointMesh" type="MeshInstance3D" parent="." index="9" unique_id=1256084354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
+mesh = SubResource("TorusMesh_hg00c")
