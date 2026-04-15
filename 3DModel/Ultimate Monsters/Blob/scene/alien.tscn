@@ -1,40 +1,48 @@
 [gd_scene format=3 uid="uid://c5fuw0207fkmx"]
 
 [ext_resource type="PackedScene" uid="uid://lth7xxgirjb1" path="res://3DModel/Ultimate Monsters/Blob/glTF/Alien.gltf" id="1_v3snj"]
-[ext_resource type="Script" uid="uid://cr8d3mai0jgsd" path="res://3DModel/Ultimate Monsters/Blob/scene/alien.gd" id="2_scxye"]
+[ext_resource type="Script" uid="uid://cr8d3mai0jgsd" path="res://3DModel/Ultimate Monsters/Blob/scene/blob.gd" id="2_scxye"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_scxye"]
-radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u81b5"]
-height = 0.5116211
-radius = 1.2
+height = 0.7
+radius = 1.3
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1h520"]
-height = 0.49726564
+height = 1.318457
 radius = 0.7036133
 
-[node name="Alien" unique_id=414715315 instance=ExtResource("1_v3snj")]
+[node name="Alien" unique_id=117198944 instance=ExtResource("1_v3snj")]
 script = ExtResource("2_scxye")
+
+[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(752276685) index="0" unique_id=415276991]
+bones/1/position = Vector3(0, 0.54911834, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/3/rotation = Quaternion(4.5238165e-36, 3.5471487e-10, -0.0026400527, 0.9999966)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=451898235]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("SphereShape3D_scxye")
 
-[node name="RayCast3D" type="RayCast3D" parent="." index="3" unique_id=1580747922]
-target_position = Vector3(0, -2, 0)
-collision_mask = 8
-
-[node name="WeakArea" type="Area3D" parent="." index="4" unique_id=1193968983]
+[node name="WeakArea" type="Area3D" parent="." index="3" unique_id=1193968983]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0" unique_id=891825877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9558105, 0)
 shape = SubResource("CylinderShape3D_u81b5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="5" unique_id=458914930]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4" unique_id=458914930]
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=465330261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0436584, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.454254, 0)
 shape = SubResource("CylinderShape3D_1h520")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]

@@ -18,7 +18,7 @@ radius = 0.7036133
 script = ExtResource("2_60e7b")
 enemy_type = 2
 
-[node name="Skeleton3D" parent="MonsterArmature" parent_id_path=PackedInt32Array(130235987) index="0" unique_id=477071213]
+[node name="Skeleton3D" parent="MonsterArmature" parent_id_path=PackedInt32Array(102350954) index="0" unique_id=1979387083]
 bones/2/position = Vector3(0, 0.48319352, 0)
 bones/4/rotation = Quaternion(0, 3.5471498e-10, -0.0026400534, 0.9999966)
 bones/6/rotation = Quaternion(-0.030442096, -0.07569716, -0.37187177, 0.9246917)
@@ -29,6 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_60e7b")
 
 [node name="WeakArea" type="Area3D" parent="." index="3" unique_id=876648256]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0" unique_id=1614023938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6704835, 0)

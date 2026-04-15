@@ -37,6 +37,52 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Main": {
+"use_external/enabled": true,
+"use_external/fallback_path": "",
+"use_external/path": ""
+}
+},
+"meshes": {
+"Character_CUBezierCurve_000": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/arm.res",
+"save_to_file/path": "uid://dp2nbco6oqggm"
+},
+"Character_CUBezierCurve_001": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/ear.res",
+"save_to_file/path": "uid://dsktgixtmsam"
+},
+"Character_CUBezierCurve_002": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/body.res",
+"save_to_file/path": "uid://pdcf3o1yr3yl"
+},
+"Character_CUBezierCurve_003": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 2,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/face.res",
+"save_to_file/path": "uid://byetbwt2d5lpd"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

@@ -10,12 +10,14 @@ extends Node3D
 @onready var fruits: Node = $fruits
 @onready var stage_ui: StageUI = $StageUI
 @onready var gimmick: Node = $Gimmick
+@onready var camera_3d: Camera3D = $Camera3D
 
 var se_pitch_limit : int = 0
 
 func _ready():
 	PhysicsServer3D.set_active(true)
 	var box_counter :int = 0
+	camera_3d.follow_target = player
 	# 敵がArea3Dになってること前提
 	for e : Enemy in enemies.get_children():
 		e.area_entered.connect(_on_enemy_area_entered)
@@ -96,3 +98,9 @@ func _on_player_dead() -> void:
 	else:
 		push_error("Global_not_found.")
 	get_tree().call_deferred("change_scene_to_file", self.scene_file_path)
+
+
+func _on_player_still_alive() -> void:
+	camera_3d.follow_target = player
+	for e : Enemy in enemies.get_children():
+		e.revival()

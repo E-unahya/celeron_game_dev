@@ -7,7 +7,7 @@ class_name Enemy
 @onready var weak_area : Area3D = $WeakArea
 @onready var static_body_3d: StaticBody3D = $StaticBody3D
 
-var home_pos : Vector3
+var home_pos : Vector3 = Vector3.ZERO
 
 ## 派生として前に進む
 enum EnemyType {
@@ -24,7 +24,8 @@ enum EnemyType {
 @export var bounce_power : float = 1.2
 
 func _ready() -> void:
-	home_pos = self.global_position
+	if home_pos == Vector3.ZERO:
+		home_pos = self.global_position
 	match enemy_type:
 		EnemyType.WAIT:
 			animation_player.play("Dance")
@@ -91,3 +92,10 @@ func all_free() -> void:
 	set_process(false)
 	set_physics_process(false)
 	set_script(null)
+
+func revival() -> void:
+	$CollisionShape3D.disabled = false
+	$WeakArea/CollisionShape3D.disabled = false
+	$StaticBody3D/CollisionShape3D.disabled = false
+	show()
+	_ready()

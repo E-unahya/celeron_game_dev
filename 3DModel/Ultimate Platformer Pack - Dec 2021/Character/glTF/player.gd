@@ -41,7 +41,7 @@ var state_machine : AnimationNodeStateMachinePlayback
 @export var zanki : int = 3
 
 signal dead
-signal still_alive(player:Player)
+signal still_alive
 
 var rotation_speed : float = 5.0
 
@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			current_gravity *= fall_gravity_mult
 		elif velocity.y > -3:
 			# なんでか知らないけどこれで動きが安定するっぽい、まじ意味不明
-			if not Input.is_action_just_pressed("ui_accept"):
+			if not Input.is_action_just_released("ui_accept"):
 				current_gravity.y *= low_jump_mult
 		else:
 			current_gravity = get_gravity()
@@ -175,5 +175,6 @@ func die() -> void:
 		character_armature.hide()
 		await get_tree().create_timer(3.0).timeout
 		global_position = check_point
-		
-		still_alive.emit(self)
+		still_alive.emit()
+		# TODO、再生するアニメーションをなんとか導入する。
+		character_armature.show()
