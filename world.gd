@@ -82,7 +82,6 @@ func _on_tower_animation_finished(anim_name : String):
 			t.kill()
 		get_tree().call_deferred("change_scene_to_file", "uid://dupjvv3trnpvk")
 
-
 func _on_player_dead() -> void:
 	for t in get_tree().get_processed_tweens():
 		# とりあえずTweenが働いているところを全てkill
@@ -104,3 +103,14 @@ func _on_player_still_alive() -> void:
 	camera_3d.follow_target = player
 	for e : Enemy in enemies.get_children():
 		e.revival()
+
+
+func transration(tscn_path:String):
+	for t in get_tree().get_processed_tweens():
+		# とりあえずTweenが働いているところを全てkill
+		t.kill()
+	get_tree().call_deferred("change_scene_to_file", tscn_path)
+
+
+func _on_transration_area_body_entered(body: Node3D, stage_path: String) -> void:
+	transration(stage_path)

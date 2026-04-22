@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://dyvlpoa3oytmp"]
+[gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/Alien.gltf" id="1_scene"]
+[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/Bunny.gltf" id="1_scene"]
 
-[node name="Alien" instance=ExtResource("1_scene")]
+[node name="Bunny" instance=ExtResource("1_scene")]
 collision_mask = 33
 enemy_type = 3
 

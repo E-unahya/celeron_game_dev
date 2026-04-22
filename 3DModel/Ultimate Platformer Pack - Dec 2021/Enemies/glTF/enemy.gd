@@ -3,7 +3,7 @@ extends Area3D
 class_name Enemy
 
 @onready var animation_player = $AnimationPlayer
-@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var collision_shape_3d: CollisionShape3D = get_child(2)
 @onready var weak_area : Area3D = $WeakArea
 @onready var static_body_3d: StaticBody3D = $StaticBody3D
 
@@ -76,9 +76,9 @@ func be_blown_away(attack_area : Area3D, object : Node3D = self):
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	match anim_name:
 		"Death":
-			$CollisionShape3D.disabled = true
-			$WeakArea/CollisionShape3D.disabled = true
-			$StaticBody3D/CollisionShape3D.disabled = true
+			collision_shape_3d.disabled = true
+			weak_area.get_child(0).disabled = true
+			static_body_3d.get_child(0).disabled = true
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -94,8 +94,8 @@ func all_free() -> void:
 	set_script(null)
 
 func revival() -> void:
-	$CollisionShape3D.disabled = false
-	$WeakArea/CollisionShape3D.disabled = false
-	$StaticBody3D/CollisionShape3D.disabled = false
+	collision_shape_3d.disabled = false
+	weak_area.get_child(0).disabled = false
+	static_body_3d.get_child(0).disabled = false
 	show()
 	_ready()

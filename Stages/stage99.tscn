@@ -21,9 +21,13 @@
 [ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="15_ba2hk"]
 [ext_resource type="PackedScene" uid="uid://bjtl1wcipjawp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.tscn" id="16_ba2hk"]
 [ext_resource type="PackedScene" uid="uid://dyvlpoa3oytmp" path="res://3DModel/Ultimate Monsters/Big/tscn/alien.tscn" id="17_daj3w"]
+[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/tscn/frog.tscn" id="18_yvev6"]
+[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/tscn/monkroose.tscn" id="20_8kkjs"]
 [ext_resource type="PackedScene" uid="uid://ifg7atxqe2v5" path="res://3DModel/MoveTo.tscn" id="21_frcrj"]
-[ext_resource type="Script" uid="uid://batnbq3fd3dpj" path="res://Stages/move_floor_animation.gd" id="22_48u7k"]
+[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/tscn/mushroomking.tscn" id="21_i3asa"]
+[ext_resource type="Script" uid="uid://ff16i3btnl7x" path="res://Stages/transration_area.gd" id="24_jo8tw"]
 [ext_resource type="PackedScene" uid="uid://c5fuw0207fkmx" path="res://3DModel/Ultimate Monsters/Blob/scene/alien.tscn" id="24_y6kmp"]
+[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Blob/scene/greenspikyblob.tscn" id="28_8kkjs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
 
@@ -78,6 +82,9 @@ _data = {
 &"RESET": SubResource("Animation_48u7k")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytv77"]
+size = Vector3(2, 1, 2)
+
 [node name="World" type="Node3D" unique_id=706768811]
 script = ExtResource("1_276pt")
 
@@ -116,7 +123,8 @@ collision_mask = 8
 metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="Tower" parent="." unique_id=931059977 instance=ExtResource("6_ffxvc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 12, -114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 12, -156)
+visible = false
 collision_layer = 8
 collision_mask = 3
 
@@ -242,17 +250,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9818258, 2.0093558, -28.36
 distance = 3.0
 bounce_power = 1.5
 
-[node name="Alien" parent="Enemies" unique_id=1145104473 instance=ExtResource("17_daj3w")]
+[node name="Alien" parent="Enemies" unique_id=1218814089 instance=ExtResource("17_daj3w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -122)
 
-[node name="Alien2" parent="Enemies" unique_id=569563456 instance=ExtResource("17_daj3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -118)
-
-[node name="Alien3" parent="Enemies" unique_id=1724860588 instance=ExtResource("17_daj3w")]
+[node name="Frog" parent="Enemies" unique_id=526317669 instance=ExtResource("18_yvev6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -112)
-
-[node name="Alien4" parent="Enemies" unique_id=1469034062 instance=ExtResource("17_daj3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -106)
 
 [node name="Alien5" parent="Enemies" unique_id=414715315 instance=ExtResource("24_y6kmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -12)
@@ -260,6 +262,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -12)
 [node name="Alien6" parent="Enemies" unique_id=117198944 instance=ExtResource("24_y6kmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -12)
 delay = true
+
+[node name="Monkroose" parent="Enemies" unique_id=754913524 instance=ExtResource("20_8kkjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -106)
+
+[node name="GreenSpikyBlob" parent="Enemies" unique_id=1447824074 instance=ExtResource("28_8kkjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
+
+[node name="MushroomKing" parent="Enemies" unique_id=1558848427 instance=ExtResource("21_i3asa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -116)
 
 [node name="Boxs" type="Node" parent="." unique_id=1067182013]
 
@@ -291,7 +302,6 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -6, 0, -127
 [node name="MoveFloorAnimation" type="AnimationPlayer" parent="MoveTo" unique_id=1222052773]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_ytv77")
-script = ExtResource("22_48u7k")
 
 [node name="Gimmick" type="Node" parent="." unique_id=564244054]
 
@@ -313,12 +323,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 12, -74)
 [node name="CheckPoint" parent="." unique_id=81097620 instance=ExtResource("2_ytv77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3, -24.5)
 
+[node name="TransrationArea" type="Area3D" parent="." unique_id=1543918038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 13.8, -109)
+collision_layer = 0
+script = ExtResource("24_jo8tw")
+stage_path = "uid://d2ldvpmxfxrty"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TransrationArea" unique_id=842473704]
+shape = SubResource("BoxShape3D_ytv77")
+debug_color = Color(0, 0.17254902, 0.827451, 1)
+
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="still_alive" from="Player" to="." method="_on_player_still_alive"]
 [connection signal="animation_finished" from="Tower/AnimationPlayer" to="." method="_on_tower_animation_finished"]
 [connection signal="area_entered" from="RakkaArea" to="." method="_on_rakka_area_area_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Camera3D" method="_on_rakka_area_body_entered"]
-[connection signal="player_entered" from="MoveTo" to="MoveTo/MoveFloorAnimation" method="_on_move_to_player_entered"]
 
 [editable path="Tower"]

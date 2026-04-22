@@ -4,7 +4,9 @@ var tween : Tween
 
 ## delay 少し待ってからぴょんって飛ぶ
 @export var delay : bool = false
-
+## Tweeのeraseとtransをいじれるようにしたい。
+@export var ease : Tween.EaseType = Tween.EASE_IN_OUT
+@export var transition : Tween.TransitionType = Tween.TRANS_BACK
 
 func _ready() -> void:
 	super._ready()
@@ -16,8 +18,8 @@ func _ready() -> void:
 func tween_generate() -> void:
 	tween = get_tree().create_tween()
 	tween.set_loops()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(ease)
+	tween.set_trans(transition)
 	tween.tween_property(self, "position", home_pos + Vector3.UP * 5, 2.0)
 	tween.tween_property(self, "position", home_pos, 2.0)
 
