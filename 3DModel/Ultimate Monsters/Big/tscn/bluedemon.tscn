@@ -1,10 +1,49 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b1yci5eydsrv2"]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/BlueDemon.gltf" id="1_scene"]
+[ext_resource type="PackedScene" uid="uid://dbl2hw08c33ui" path="res://3DModel/Ultimate Monsters/Big/glTF/BlueDemon.gltf" id="1_scene"]
 
-[node name="BlueDemon" instance=ExtResource("1_scene")]
-collision_mask = 33
-enemy_type = 3
+[sub_resource type="SphereShape3D" id="SphereShape3D_yk1cr"]
+radius = 0.3
+
+[node name="BlueDemon" unique_id=1650471790 instance=ExtResource("1_scene")]
+collision_layer = 2
+ball_arrival = null
+distance = null
+speed = null
+enemy_type = 4
+bounce_power = null
+
+[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(1918791151) index="0" unique_id=1723613752]
+bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
+bones/4/rotation = Quaternion(0.1668315, 4.4658893e-07, -5.7821016e-08, 0.9859854)
+bones/5/rotation = Quaternion(0.00982637, -8.2216974e-07, -1.0250052e-07, 0.9999518)
+bones/6/rotation = Quaternion(0.35192487, 9.694014e-07, 1.5023394e-07, 0.9360283)
+bones/7/rotation = Quaternion(-0.39071867, -0.00028299008, 1.8357789e-05, 0.9205102)
+bones/8/position = Vector3(0.17719385, 0.25401247, -0.022455709)
+bones/8/rotation = Quaternion(-0.13449623, -0.032737732, -0.40912697, 0.9019169)
+bones/9/rotation = Quaternion(0.4946222, 0.5018446, 0.507198, -0.496237)
+bones/10/rotation = Quaternion(0.014786772, 0.26712278, -0.17426829, 0.9476589)
+bones/22/position = Vector3(-0.17591707, 0.2540124, -0.022455484)
+bones/22/rotation = Quaternion(-0.13449597, 0.03273828, 0.4091271, 0.9019169)
+bones/23/rotation = Quaternion(-0.4946223, 0.50184464, 0.50719786, 0.49623698)
+bones/24/rotation = Quaternion(0.014786687, -0.2671227, 0.1742682, 0.9476589)
+bones/26/rotation = Quaternion(-0.35208493, 0.03995182, 0.26151597, 0.89780265)
+bones/27/rotation = Quaternion(-0.6248765, -0.062105566, -0.061027627, 0.7758531)
+bones/29/rotation = Quaternion(-0.5104535, -0.02017862, 0.086119294, 0.855344)
+bones/30/rotation = Quaternion(-0.5270995, -0.03491457, 0.07154877, 0.8460662)
+bones/32/rotation = Quaternion(-0.37396547, -0.014268715, -0.14329855, 0.91619426)
+bones/33/rotation = Quaternion(-0.6364067, -0.02693344, 0.16093616, 0.753897)
+bones/35/rotation = Quaternion(-0.6859432, -0.16903257, -0.27098516, 0.65381724)
+bones/36/rotation = Quaternion(0.9650399, 0.008726846, 0.0021166382, 0.26194906)
+bones/37/rotation = Quaternion(0.5170187, 0.0063198637, 0.008506166, 0.8559086)
+bones/38/rotation = Quaternion(0.96504, -0.008726946, -0.0021157695, 0.26194897)
+bones/39/rotation = Quaternion(0.5170186, -0.0063198856, -0.008506201, 0.8559086)
+bones/40/rotation = Quaternion(-3.5526934e-15, 1.1920937e-07, -8.470344e-22, 1)
+bones/41/rotation = Quaternion(-1.207786e-05, 0.7058064, 0.70840484, -1.1664422e-05)
+bones/42/rotation = Quaternion(-3.552734e-15, -5.9604645e-07, 3.3881257e-21, 1)
+
+[node name="BallCollision" parent="ball/Area3D" parent_id_path=PackedInt32Array(807051014) index="0" unique_id=1885376463]
+shape = SubResource("SphereShape3D_yk1cr")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

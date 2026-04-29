@@ -1,10 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://6mmehj7sucad"]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/Demon.gltf" id="1_scene"]
+[ext_resource type="PackedScene" uid="uid://8kpk1rog81cl" path="res://3DModel/Ultimate Monsters/Big/glTF/Demon.gltf" id="1_scene"]
 
-[node name="Demon" instance=ExtResource("1_scene")]
-collision_mask = 33
-enemy_type = 3
+[node name="Demon" unique_id=1303001547 instance=ExtResource("1_scene")]
+collision_layer = 2
+enemy_type = 4
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

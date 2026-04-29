@@ -1,10 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bgpx6c0x44aji"]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/Tribal.gltf" id="1_scene"]
+[ext_resource type="PackedScene" uid="uid://tfjalpyu06q0" path="res://3DModel/Ultimate Monsters/Big/glTF/Tribal.gltf" id="1_scene"]
 
-[node name="Tribal" instance=ExtResource("1_scene")]
-collision_mask = 33
-enemy_type = 3
+[node name="Tribal" unique_id=1643127696 instance=ExtResource("1_scene")]
+collision_layer = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

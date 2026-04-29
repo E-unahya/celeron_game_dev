@@ -192,7 +192,7 @@ distance = 4.0
 bounce_power = 2.0
 
 [node name="Alien1" parent="Enemies" unique_id=1145104473 instance=ExtResource("17_daj3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -60)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 27, -60)
 
 [node name="Boxs" type="Node" parent="." unique_id=1067182013]
 

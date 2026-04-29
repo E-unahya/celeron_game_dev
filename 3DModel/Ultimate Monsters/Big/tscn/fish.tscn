@@ -1,10 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://crc4w8fd0swyv"]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/Fish.gltf" id="1_scene"]
+[ext_resource type="PackedScene" uid="uid://drtwbp6gl08sv" path="res://3DModel/Ultimate Monsters/Big/glTF/Fish.gltf" id="1_scene"]
 
-[node name="Fish" instance=ExtResource("1_scene")]
-collision_mask = 33
-enemy_type = 3
+[node name="Fish" unique_id=1683981660 instance=ExtResource("1_scene")]
+collision_layer = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

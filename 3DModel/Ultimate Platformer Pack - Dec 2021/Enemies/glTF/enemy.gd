@@ -14,7 +14,8 @@ enum EnemyType {
 	WAIT,
 	WALKING,
 	FLYING,
-	THROWING
+	THROWING,
+	FOLLOWING,
 }
 
 ## 敵キャラによって動きを分ける
@@ -35,6 +36,8 @@ func _ready() -> void:
 			animation_player.play("Walk")
 		EnemyType.THROWING:
 			animation_player.play("Weapon")
+		EnemyType.FOLLOWING:
+			animation_player.play("Idle")
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -43,7 +46,7 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	if body.attack_now == false:
 		animation_player.play("Bite_Front")
-		body.die()
+		body.is_dead = true
 
 
 func _on_weak_area_body_entered(body: Node3D) -> void:
@@ -53,6 +56,8 @@ func _on_weak_area_body_entered(body: Node3D) -> void:
 			body.bounce(bounce_power)
 		else:
 			body.bounce()
+		set_process(false)
+		set_physics_process(false)
 		animation_player.play("Death")
 
 func _on_area_entered(area: Area3D) -> void:
@@ -94,7 +99,9 @@ func all_free() -> void:
 	set_script(null)
 
 func revival() -> void:
+	position = home_pos
 	collision_shape_3d.disabled = false
+	collision_shape_3d.scale = Vector3(1.0, 1.0, 1.0)
 	weak_area.get_child(0).disabled = false
 	static_body_3d.get_child(0).disabled = false
 	show()

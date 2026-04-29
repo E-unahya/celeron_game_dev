@@ -153,7 +153,6 @@ func _process(delta: float) -> void:
 
 	# 死んだときのプロセス
 	if is_dead:
-		state_machine.travel("Death")
 		die()
 
 
@@ -168,13 +167,15 @@ func bounce(bounce_num : float = 1.0):
 
 
 func die() -> void:
+	state_machine.travel("Death")
 	if zanki == 0:
 		await get_tree().create_timer(1.0).timeout
 		dead.emit()
 	else:
-		character_armature.hide()
-		await get_tree().create_timer(3.0).timeout
+		set_physics_process(false)
+		await get_tree().create_timer(1.0).timeout
+		is_dead = false
 		global_position = check_point
 		still_alive.emit()
 		# TODO、再生するアニメーションをなんとか導入する。
-		character_armature.show()
+		set_physics_process(true)

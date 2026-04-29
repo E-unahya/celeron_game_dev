@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bkua3b5byywf5" path="res://3DModel/Ultimate Monsters/Big/glTF/Cactoro.gltf" id="1_scene"]
 
 [node name="Cactoro" unique_id=1896855615 instance=ExtResource("1_scene")]
+collision_layer = 2
 
-[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(123681835) index="0" unique_id=1380914682]
+[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(1823324792) index="0" unique_id=2036974293]
 bones/1/rotation = Quaternion(1.167467e-05, 0.70580643, 0.70840484, 1.2000977e-05)
 bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
 bones/4/rotation = Quaternion(0.16683151, 4.3189968e-07, 1.0312022e-07, 0.9859854)

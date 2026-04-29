@@ -1,4 +1,13 @@
+@tool
+
 extends Node3D
+
+# 複製するたびにいちいち手動で治すのが面倒なので@toolつかう
+@export var reset_stage : bool = false:
+	set(value):
+		if value:
+			execute_reset()
+			reset_stage = false
 
 @onready var enemies : Node = get_node("Enemies")
 @onready var attack_se : AudioStreamPlayer = get_node("AttackSE")
@@ -12,6 +21,7 @@ extends Node3D
 @onready var gimmick: Node = $Gimmick
 @onready var camera_3d: Camera3D = $Camera3D
 
+
 var se_pitch_limit : int = 0
 
 func _ready():
@@ -22,6 +32,8 @@ func _ready():
 	for e : Enemy in enemies.get_children():
 		e.area_entered.connect(_on_enemy_area_entered)
 		e.weak_area.body_entered.connect(_on_enemy_weak_area_entered)
+		if e.enemy_type == e.EnemyType.FOLLOWING:
+			e.target = player
 	# 箱ノード関係で破壊されたときの動作を行う。
 	for b : Box in boxs.get_children():
 		b.breaked.connect(_on_box_breaked)
@@ -114,3 +126,10 @@ func transration(tscn_path:String):
 
 func _on_transration_area_body_entered(body: Node3D, stage_path: String) -> void:
 	transration(stage_path)
+
+func execute_reset():
+	for e in enemies:
+		e.queue_free()
+	$StageMap.clear()
+	$TrapMap.clear()
+	$BackGroundMap.clear()

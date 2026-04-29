@@ -1,10 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bv0pvs43xyay2"]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Big/glTF/Yeti.gltf" id="1_scene"]
+[ext_resource type="PackedScene" uid="uid://dflhfh844ylrd" path="res://3DModel/Ultimate Monsters/Big/glTF/Yeti.gltf" id="1_scene"]
 
-[node name="Yeti" instance=ExtResource("1_scene")]
-collision_mask = 33
-enemy_type = 3
+[node name="Yeti" unique_id=783741501 instance=ExtResource("1_scene")]
+collision_layer = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
