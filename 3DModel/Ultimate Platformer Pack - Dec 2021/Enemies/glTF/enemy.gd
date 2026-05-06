@@ -2,10 +2,10 @@ extends Area3D
 
 class_name Enemy
 
-@onready var animation_player = $AnimationPlayer
-@onready var collision_shape_3d: CollisionShape3D = get_child(2)
-@onready var weak_area : Area3D = $WeakArea
-@onready var static_body_3d: StaticBody3D = $StaticBody3D
+@onready var animation_player: AnimationPlayer = find_child("AnimationPlayer", true, false)
+@onready var collision_shape_3d: CollisionShape3D = get_node_or_null("CollisionShape3D")
+@onready var weak_area : Area3D = get_node_or_null("WeakArea")
+@onready var static_body_3d: StaticBody3D = get_node_or_null("StaticBody3D")
 
 var home_pos : Vector3 = Vector3.ZERO
 

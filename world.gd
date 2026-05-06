@@ -20,6 +20,7 @@ extends Node3D
 @onready var stage_ui: StageUI = $StageUI
 @onready var gimmick: Node = $Gimmick
 @onready var camera_3d: Camera3D = $Camera3D
+@onready var move_to: MoveTo = get_node_or_null("MoveTo")
 
 
 var se_pitch_limit : int = 0
@@ -31,7 +32,8 @@ func _ready():
 	# 敵がArea3Dになってること前提
 	for e : Enemy in enemies.get_children():
 		e.area_entered.connect(_on_enemy_area_entered)
-		e.weak_area.body_entered.connect(_on_enemy_weak_area_entered)
+		if e.weak_area:
+			e.weak_area.body_entered.connect(_on_enemy_weak_area_entered)
 		if e.enemy_type == e.EnemyType.FOLLOWING:
 			e.target = player
 	# 箱ノード関係で破壊されたときの動作を行う。
@@ -115,6 +117,8 @@ func _on_player_still_alive() -> void:
 	camera_3d.follow_target = player
 	for e : Enemy in enemies.get_children():
 		e.revival()
+	if move_to:
+		move_to.reverse()
 
 
 func transration(tscn_path:String):
@@ -128,8 +132,14 @@ func _on_transration_area_body_entered(body: Node3D, stage_path: String) -> void
 	transration(stage_path)
 
 func execute_reset():
-	for e in enemies:
-		e.queue_free()
+	for e : Enemy in enemies.get_children():
+		e.free()
+	for f in fruits.get_children():
+		f.free()
+	for b in boxs.get_children():
+		b.free()
+	for g in gimmick.get_children():
+		g.free()
 	$StageMap.clear()
 	$TrapMap.clear()
 	$BackGroundMap.clear()

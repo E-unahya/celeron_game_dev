@@ -1,7 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://di64wvba5yx7o"]
 
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Blob/glTF/Yeti.gltf" id="1_scene"]
-[ext_resource type="Script" path="res://3DModel/Ultimate Monsters/Blob/scene/blob.gd" id="2_script"]
+[ext_resource type="PackedScene" uid="uid://4mwk5tp37syy" path="res://3DModel/Ultimate Monsters/Blob/glTF/Yeti.gltf" id="1_scene"]
+[ext_resource type="Script" uid="uid://cr8d3mai0jgsd" path="res://3DModel/Ultimate Monsters/Blob/scene/blob.gd" id="2_script"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_scene"]
 
@@ -13,26 +13,28 @@ radius = 1.3
 height = 1.318457
 radius = 0.7036133
 
-[node name="Yeti" instance=ExtResource("1_scene")]
+[node name="Yeti" unique_id=1494052291 instance=ExtResource("1_scene")]
 collision_layer = 2
 script = ExtResource("2_script")
+ease = 0
+transition = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=240430227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("SphereShape3D_scene")
 
-[node name="WeakArea" type="Area3D" parent="." index="3"]
+[node name="WeakArea" type="Area3D" parent="." index="3" unique_id=242548792]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" index="0" unique_id=643650063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9558105, 0)
 shape = SubResource("CylinderShape3D_weak")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4" unique_id=230971843]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=782321498]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.454254, 0)
 shape = SubResource("CylinderShape3D_body")
 

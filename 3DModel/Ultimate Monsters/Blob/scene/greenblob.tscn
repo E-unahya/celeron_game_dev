@@ -17,11 +17,11 @@ radius = 0.7036133
 collision_layer = 2
 script = ExtResource("2_script")
 
-[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(1265049364) index="0" unique_id=2121420962]
-bones/1/position = Vector3(0.011066099, 0.53445673, 8.274482e-09)
-bones/1/rotation = Quaternion(-9.461621e-20, -3.3993274e-08, -0.055605363, 0.9984529)
-bones/2/rotation = Quaternion(-1.4432247e-08, 2.183341e-08, -0.15922506, 0.9872424)
-bones/3/rotation = Quaternion(4.4408926e-16, 4.440893e-16, 9.1835e-41, 1)
+[node name="Skeleton3D" parent="CharacterArmature" parent_id_path=PackedInt32Array(1595513013) index="0" unique_id=1012051188]
+bones/1/position = Vector3(0, 0.48319352, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/3/rotation = Quaternion(4.5239313e-36, 3.5471498e-10, -0.0026400534, 0.9999966)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=724211593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -42,4 +42,8 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.454254, 0)
 shape = SubResource("CylinderShape3D_body")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]

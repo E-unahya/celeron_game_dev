@@ -173,9 +173,11 @@ func die() -> void:
 		dead.emit()
 	else:
 		set_physics_process(false)
+		set_process(false)
 		await get_tree().create_timer(1.0).timeout
 		is_dead = false
 		global_position = check_point
 		still_alive.emit()
 		# TODO、再生するアニメーションをなんとか導入する。
+		set_process(true)
 		set_physics_process(true)

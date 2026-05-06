@@ -7,11 +7,16 @@ var tween : Tween
 ## Tweeのeraseとtransをいじれるようにしたい。
 @export var ease : Tween.EaseType = Tween.EASE_IN_OUT
 @export var transition : Tween.TransitionType = Tween.TRANS_BACK
+@export var beside : bool = false
+
+var direction : Vector3 = Vector3.UP * 5
 
 func _ready() -> void:
 	super._ready()
 	if delay:
 		await get_tree().create_timer(2.0).timeout
+	if beside:
+		direction = Vector3.LEFT * 10
 	tween_generate()
 
 
@@ -20,7 +25,7 @@ func tween_generate() -> void:
 	tween.set_loops()
 	tween.set_ease(ease)
 	tween.set_trans(transition)
-	tween.tween_property(self, "position", home_pos + Vector3.UP * 5, 2.0)
+	tween.tween_property(self, "position", home_pos + direction, 2.0)
 	tween.tween_property(self, "position", home_pos, 2.0)
 
 

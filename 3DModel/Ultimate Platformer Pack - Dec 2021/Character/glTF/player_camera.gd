@@ -2,6 +2,7 @@ extends Camera3D
 
 @export var follow_target : CharacterBody3D
 @export var offset: Vector3 = Vector3(0, 5, 6) # プレイヤーとの距離
+@export var offrotate : Vector3 = Vector3(-30, 0,0)
 @export var smooth_speed: float = 10.0 # 追従の滑らかさ
 
 func _ready() -> void:

@@ -13,22 +13,12 @@
 [ext_resource type="AudioStream" uid="uid://dveb037ucvyq7" path="res://SE/打撃4.mp3" id="11_aa4lf"]
 [ext_resource type="AudioStream" uid="uid://b50ya36ewe3d" path="res://SE/カーソル移動11.mp3" id="12_h4job"]
 [ext_resource type="PackedScene" uid="uid://u6qywtly2rgb" path="res://3DModel/Particle/box_break_particle.tscn" id="13_bwx7m"]
-[ext_resource type="PackedScene" uid="uid://dqhft8i4nm55s" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.tscn" id="14_qdaxh"]
-[ext_resource type="PackedScene" uid="uid://c6wyjvqg8salf" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/bee.tscn" id="15_s46j3"]
-[ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="16_5ahjf"]
-[ext_resource type="PackedScene" uid="uid://dyvlpoa3oytmp" path="res://3DModel/Ultimate Monsters/Big/tscn/alien.tscn" id="17_82lha"]
-[ext_resource type="PackedScene" uid="uid://0mkl32qsb7gf" path="res://3DModel/Ultimate Monsters/Big/tscn/frog.tscn" id="18_0ue36"]
-[ext_resource type="PackedScene" uid="uid://c5fuw0207fkmx" path="res://3DModel/Ultimate Monsters/Blob/scene/alien.tscn" id="19_tt4vk"]
-[ext_resource type="PackedScene" uid="uid://cidggq7tocsmj" path="res://3DModel/Ultimate Monsters/Big/tscn/monkroose.tscn" id="20_6p5t5"]
-[ext_resource type="PackedScene" path="res://3DModel/Ultimate Monsters/Blob/scene/greenspikyblob.tscn" id="21_46dut"]
-[ext_resource type="PackedScene" uid="uid://d1ql3xs8j5283" path="res://3DModel/Ultimate Monsters/Big/tscn/mushroomking.tscn" id="22_yhui8"]
-[ext_resource type="PackedScene" uid="uid://b1yci5eydsrv2" path="res://3DModel/Ultimate Monsters/Big/tscn/bluedemon.tscn" id="23_gx1mo"]
-[ext_resource type="PackedScene" uid="uid://btkn4lva27le8" path="res://3DModel/Ultimate Monsters/Big/tscn/ninja.tscn" id="24_lfew3"]
-[ext_resource type="PackedScene" uid="uid://byoyur67ae7gj" path="res://3DModel/Ultimate Monsters/Big/tscn/orc.tscn" id="25_dttb0"]
-[ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="26_uyd82"]
+[ext_resource type="PackedScene" uid="uid://sbtyw0gqsotg" path="res://3DModel/Ultimate Monsters/Blob/scene/pigeon.tscn" id="14_akqsu"]
+[ext_resource type="PackedScene" uid="uid://di64wvba5yx7o" path="res://3DModel/Ultimate Monsters/Blob/scene/yeti.tscn" id="14_xvhc0"]
+[ext_resource type="PackedScene" uid="uid://c8ny1qfpbf5q2" path="res://3DModel/Ultimate Monsters/Blob/scene/greenblob.tscn" id="16_updp3"]
+[ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="17_1gq5r"]
 [ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="27_7bh2q"]
 [ext_resource type="PackedScene" uid="uid://ifg7atxqe2v5" path="res://3DModel/MoveTo.tscn" id="28_jm6f2"]
-[ext_resource type="PackedScene" uid="uid://bjtl1wcipjawp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.tscn" id="29_5o8uy"]
 [ext_resource type="PackedScene" uid="uid://q7hr1ypu0dmv" path="res://3DModel/CheckPoint.tscn" id="30_e83wf"]
 [ext_resource type="Script" uid="uid://ff16i3btnl7x" path="res://Stages/transration_area.gd" id="31_kq5f4"]
 
@@ -42,11 +32,12 @@ background_mode = 2
 background_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
 sky = SubResource("Sky_bc84e")
 fog_enabled = true
-fog_light_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
+fog_light_color = Color(0.45490196, 0.40784314, 0.6745098, 1)
 fog_light_energy = 1.5
+fog_density = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
-size = Vector3(168, 1, 300)
+size = Vector3(54, 1, 89)
 
 [sub_resource type="Animation" id="Animation_frcrj"]
 resource_name = "MoveTo"
@@ -58,10 +49,10 @@ tracks/0/path = NodePath("MoveTo:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-6, 0, -127), Vector3(4, 6, -134), Vector3(-6, 11, -126), Vector3(-15, 7, -114), Vector3(-6, 7, -109), Vector3(-6, 13, -109)]
+"values": [Vector3(16, 11, 16), Vector3(-16, 5.5, 8), Vector3(0, 4, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_48u7k"]
@@ -76,10 +67,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-6, 0, -127)]
+"values": [Vector3(16, 11, 16)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytv77"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gl2v2"]
 _data = {
 &"MoveTo": SubResource("Animation_frcrj"),
 &"RESET": SubResource("Animation_48u7k")
@@ -98,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 environment = SubResource("Environment_tlwt5")
 
 [node name="Player" parent="." unique_id=298166857 node_paths=PackedStringArray("trap_map") instance=ExtResource("2_tn7ui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 11.3, 16)
 collision_mask = 9
 platform_floor_layers = 4278190088
 trap_map = NodePath("../TrapMap")
@@ -108,9 +99,9 @@ mesh_library = ExtResource("3_f82au")
 collision_layer = 8
 collision_mask = 0
 data = {
-"cells": PackedInt32Array(65534, 65521, 4, 65534, 65522, 4, 65534, 65523, 4, 65534, 65531, 524307, 65534, 65532, 4, 65534, 65533, 4, 65534, 65534, 4, 65534, 65535, 4, 65534, 0, 4, 65534, 1, 4, 65534, 2, 4, 65534, 3, 4, 65535, 65521, 4, 65535, 65522, 4, 65535, 65523, 4, 65535, 65531, 524307, 65535, 65532, 4, 65535, 65533, 4, 65535, 65534, 4, 65535, 65535, 4, 65535, 0, 4, 65535, 1, 4, 65535, 2, 4, 65535, 3, 4, 0, 65521, 4, 0, 65522, 4, 0, 65523, 4, 0, 65531, 524307, 0, 65532, 4, 0, 65533, 4, 0, 65534, 4, 0, 65535, 4, 0, 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 1, 65521, 4, 1, 65522, 4, 1, 65523, 4, 1, 65531, 524307, 1, 65532, 4, 1, 65533, 4, 1, 65534, 4, 1, 65535, 4, 1, 0, 4, 1, 1, 4, 1, 2, 4, 1, 3, 4, 65534, 65524, 131091, 65535, 65524, 131091, 0, 65524, 131091, 1, 65524, 131091, 0, 65520, 131076, 0, 65519, 1, 1, 65519, 1, 2, 65519, 1, 65535, 65520, 131076, 1, 65520, 131076, 2, 65520, 131076, 196606, 65520, 131102, 196607, 65520, 131102, 131072, 65520, 131102, 131073, 65520, 131102, 196607, 65509, 30, 131072, 65509, 30, 131073, 65509, 30, 131074, 65509, 30, 131069, 65507, 30, 131069, 65508, 30, 131069, 65509, 30, 131070, 65508, 30, 131071, 65508, 30, 65536, 65508, 30, 65537, 65508, 30, 65538, 65507, 30, 65538, 65508, 30, 65538, 65509, 30, 196606, 65509, 30, 196605, 65509, 30, 65533, 65503, 30, 65533, 65504, 30, 65533, 65505, 30, 65533, 65506, 30, 65533, 65507, 30, 65534, 65503, 30, 65534, 65504, 30, 65534, 65505, 30, 65534, 65506, 30, 65534, 65507, 30, 65535, 65503, 30, 65535, 65504, 30, 65535, 65505, 30, 65535, 65506, 30, 65535, 65507, 30, 0, 65503, 30, 0, 65504, 30, 0, 65505, 30, 0, 65506, 30, 0, 65507, 30, 1, 65503, 30, 1, 65504, 30, 1, 65505, 30, 1, 65506, 30, 1, 65507, 30, 2, 65503, 30, 2, 65504, 30, 2, 65505, 30, 2, 65506, 30, 2, 65507, 30, 131069, 65502, 30, 131069, 65503, 30, 131069, 65504, 30, 131069, 65505, 30, 131069, 65506, 30, 196605, 65502, 30, 196605, 65503, 30, 196605, 65504, 30, 196605, 65505, 30, 196605, 65506, 30, 196605, 65507, 30, 196605, 65508, 30, 262141, 65504, 30, 262141, 65505, 30, 262141, 65506, 30, 262141, 65507, 30, 262141, 65508, 30, 262141, 65509, 30, 65538, 65502, 30, 65538, 65503, 30, 65538, 65504, 30, 65538, 65505, 30, 65538, 65506, 30, 131074, 65502, 30, 131074, 65503, 30, 131074, 65504, 30, 131074, 65505, 30, 131074, 65506, 30, 131074, 65507, 30, 131074, 65508, 30, 196610, 65504, 30, 196610, 65505, 30, 196610, 65506, 30, 196610, 65507, 30, 196610, 65508, 30, 196610, 65509, 30, 65533, 65511, 1, 65533, 65512, 4, 65533, 65513, 4, 65533, 65514, 4, 65533, 65515, 4, 65533, 65516, 4, 65533, 65517, 4, 65533, 65518, 4, 65533, 65519, 1, 65534, 65511, 1, 65534, 65512, 4, 65534, 65513, 4, 65534, 65514, 4, 65534, 65515, 4, 65534, 65516, 4, 65534, 65517, 4, 65534, 65518, 4, 65534, 65519, 1, 65535, 65511, 1, 65535, 65512, 4, 65535, 65513, 4, 65535, 65514, 4, 65535, 65515, 4, 65535, 65516, 4, 65535, 65517, 4, 65535, 65518, 4, 65535, 65519, 1, 0, 65511, 1, 0, 65512, 4, 0, 65513, 4, 0, 65514, 4, 0, 65515, 4, 0, 65516, 4, 0, 65517, 4, 0, 65518, 4, 1, 65511, 1, 1, 65512, 4, 1, 65513, 4, 1, 65514, 4, 1, 65515, 4, 1, 65516, 4, 1, 65517, 4, 1, 65518, 4, 2, 65511, 1, 2, 65512, 4, 2, 65513, 4, 2, 65514, 4, 2, 65515, 4, 2, 65516, 4, 2, 65517, 4, 2, 65518, 4, 65533, 65502, 30, 65534, 65502, 30, 65535, 65502, 30, 0, 65502, 30, 1, 65502, 30, 2, 65502, 30, 196605, 65501, 1, 196606, 65501, 1, 196607, 65501, 1, 131072, 65501, 1, 131073, 65501, 1, 131074, 65501, 1, 131070, 65501, 1, 131071, 65501, 1, 65536, 65501, 1, 65537, 65501, 1, 65538, 65501, 1, 131069, 65501, 1, 262145, 65503, 1048579, 262145, 65502, 1441795, 327678, 65502, 1441795, 327678, 65503, 1048579, 393207, 65498, 1441811, 393207, 65499, 1441811, 393208, 65498, 4, 393208, 65499, 4, 393209, 65498, 4, 393209, 65499, 4, 393207, 65497, 1441811, 393207, 65493, 1441811, 393207, 65494, 1441811, 393207, 65495, 1441811, 393207, 65496, 1441811, 393210, 65498, 4, 393210, 65499, 4, 393211, 65498, 4, 393211, 65499, 4, 393212, 65498, 4, 393212, 65499, 4, 393208, 65491, 4, 393208, 65492, 4, 393208, 65493, 4, 393208, 65494, 4, 393208, 65495, 4, 393208, 65496, 4, 393208, 65497, 4, 393209, 65491, 4, 393209, 65492, 4, 393209, 65493, 4, 393209, 65494, 4, 393209, 65495, 4, 393209, 65496, 4, 393209, 65497, 4, 393210, 65491, 4, 393210, 65492, 4, 393210, 65493, 4, 393210, 65494, 4, 393210, 65495, 4, 393210, 65496, 4, 393210, 65497, 4, 393211, 65491, 4, 393211, 65492, 4, 393211, 65493, 4, 393211, 65494, 4, 393211, 65495, 4, 393211, 65496, 4, 393211, 65497, 4, 393212, 65491, 4, 393212, 65492, 4, 393212, 65493, 4, 393212, 65494, 4, 393212, 65495, 4, 393212, 65496, 4, 393212, 65497, 4, 393213, 65491, 4, 393213, 65492, 4, 393213, 65493, 4, 393213, 65494, 4, 393213, 65495, 4, 393213, 65496, 4, 393213, 65497, 4, 393209, 65490, 4, 393210, 65490, 4, 393211, 65490, 4, 393212, 65490, 4, 393213, 65490, 4, 393214, 65490, 4, 393214, 65491, 4, 393214, 65492, 4, 393214, 65493, 4, 393214, 65494, 4, 393214, 65495, 4, 393214, 65496, 4, 393210, 65489, 655379, 393211, 65489, 655379, 393212, 65489, 655379, 393213, 65489, 655379, 393214, 65489, 655379, 393215, 65489, 655379, 393215, 65490, 4, 393215, 65491, 4, 393215, 65492, 4, 393215, 65493, 4, 393215, 65494, 4, 393215, 65495, 4, -8, 65484, 4, -8, 65485, 4, -7, 65484, 4, -7, 65485, 4, -6, 65484, 4, -6, 65485, 4, -5, 65484, 4, -5, 65485, 4, -4, 65484, 4, -4, 65485, 4, -3, 65484, 4, -3, 65485, 4, -2, 65484, 4, -2, 65485, 4, -1, 65484, 4, -1, 65485, 4, -65536, 65484, 4, -65536, 65485, 4, -65535, 65484, 4, -65535, 65485, 4, -8, 65486, 4, -8, 65487, 4, -7, 65486, 4, -7, 65487, 4, -6, 65486, 4, -6, 65487, 4, -5, 65486, 4, -5, 65487, 4, -4, 65486, 4, -4, 65487, 4, -3, 65486, 4, -3, 65487, 4, -2, 65486, 4, -2, 65487, 4, -1, 65486, 4, -1, 65487, 4, -65536, 65486, 4, -65536, 65487, 4, -65535, 65486, 4, -65535, 65487, 4, -5, 65473, 4, -5, 65474, 4, -5, 65475, 4, -5, 65476, 4, -5, 65477, 4, -5, 65478, 4, -5, 65479, 4, -5, 65480, 4, -5, 65481, 4, -5, 65482, 4, -5, 65483, 4, -4, 65473, 4, -4, 65474, 4, -4, 65475, 4, -4, 65476, 4, -4, 65477, 4, -4, 65478, 4, -4, 65479, 4, -4, 65480, 4, -4, 65481, 4, -4, 65482, 4, -4, 65483, 4, -3, 65473, 4, -3, 65474, 4, -3, 65475, 4, -3, 65476, 4, -3, 65477, 4, -3, 65478, 4, -3, 65479, 4, -3, 65480, 4, -3, 65481, 4, -3, 65482, 4, -3, 65483, 4, -2, 65473, 4, -2, 65474, 4, -2, 65475, 4, -2, 65476, 4, -2, 65477, 4, -2, 65478, 4, -2, 65479, 4, -2, 65480, 4, -2, 65481, 4, -2, 65482, 4, -2, 65483, 4, -5, 65469, 4, -5, 65470, 4, -5, 65471, 4, -5, 65472, 4, -4, 65469, 4, -4, 65470, 4, -4, 65471, 4, -4, 65472, 4, -3, 65469, 4, -3, 65470, 4, -3, 65471, 4, -3, 65472, 4, -2, 65469, 4, -2, 65470, 4, -2, 65471, 4, -2, 65472, 4, 393207, 65500, 18, 393212, 65500, 19, 393211, 65500, 19, 393208, 65500, 19, 393209, 65500, 19, 393210, 65500, 19, 393213, 65499, 1048595, 393213, 65498, 1048595, 393214, 65497, 1048581, 393213, 65500, 1048581, 393215, 65496, 19, 327680, 65496, 1048581, 327680, 65495, 1048595, 327680, 65494, 1048595, 327680, 65489, 655365, 327680, 65490, 1048595, 327680, 65491, 1048595, 327680, 65492, 1048595, 327680, 65493, 1048595, 393209, 65489, 655379, 393208, 65490, 1441796, 393207, 65491, 1441811, 393207, 65492, 1441811, 393207, 65490, 1441797, 393208, 65489, 1441797)
+"cells": PackedInt32Array(131071, 0, 20, 131071, 1, 20, 65536, 0, 20, 65536, 1, 20, 65537, 65535, 655374, 65537, 2, 14, 131070, 2, 11, 131070, 65535, 1441813, 131071, 2, 14, 65536, 2, 14, 65537, 1, 8, 65537, 0, 8, 65536, 65535, 655374, 131071, 65535, 655374, 131070, 1, 1441814, 131070, 0, 1441814, 131074, 65531, 1048594, 196606, 65531, 18, 196607, 65531, 19, 131072, 65531, 19, 131073, 65531, 19, 131072, 65529, 655375, 131072, 65527, 655375, 131072, 65525, 655375, 131072, 65523, 655375, 131072, 65521, 655375, 131074, 65530, 655378, 196606, 65530, 1441810, 131073, 65530, 655379, 131072, 65530, 655379, 196607, 65530, 655379, 65538, 1, 1048598, 65538, 0, 1048598, 65538, 2, 1048587, 65538, 65535, 655371, 131072, 65519, 15, 262142, 65517, 14, 262143, 65517, 14, 196608, 65517, 14, 196609, 65517, 14, 196610, 65517, 14, 196611, 65517, 1048587, 131075, 65517, 13, 131074, 65517, 13, 131073, 65517, 13, 131072, 65517, 13, 196607, 65517, 13, 196606, 65517, 13, 196605, 65517, 13, 262141, 65517, 11, 262141, 65515, 14, 196611, 65515, 14, 262142, 65515, 14, 262143, 65515, 14, 196608, 65515, 14, 196609, 65515, 14, 196610, 65515, 14, 196612, 65515, 14, 196613, 65515, 14, 196614, 65515, 14, 196615, 65515, 14, 196616, 65515, 14, 196617, 65515, 14, 196618, 65515, 14, 196619, 65515, 14, 196620, 65515, 14, 196621, 65515, 14, 196622, 65515, 14, 131076, 65515, 13, 131077, 65515, 13, 131078, 65515, 13, 131079, 65515, 13, 131080, 65515, 13, 131081, 65515, 13, 131082, 65515, 13, 131083, 65515, 13, 131084, 65515, 13, 131085, 65515, 13, 131086, 65515, 13, 131074, 65515, 13, 131075, 65515, 13, 65538, 65515, 13, 65539, 65515, 13, 65540, 65515, 13, 65541, 65515, 13, 65542, 65515, 13, 65543, 65515, 13, 65544, 65515, 13, 65545, 65515, 13, 65546, 65515, 13, 65547, 65515, 13, 65548, 65515, 13, 65549, 65515, 13, 65550, 65515, 13, 0, 65515, 13, 1, 65515, 13, 2, 65515, 13, 3, 65515, 13, 4, 65515, 13, 5, 65515, 13, 6, 65515, 13, 7, 65515, 13, 8, 65515, 13, 9, 65515, 13, 10, 65515, 13, 11, 65515, 13, 12, 65515, 13, 13, 65515, 13, 14, 65515, 13, 131069, 65517, 13, 131070, 65517, 13, 131071, 65517, 13, 65536, 65517, 13, 65537, 65517, 13, 65538, 65517, 13, 65539, 65517, 13, 3, 65517, 13, 2, 65517, 13, 65533, 65517, 13, 65534, 65517, 13, 65535, 65517, 13, 0, 65517, 13, 1, 65517, 13, 131068, 65515, 13, 131069, 65515, 13, 131070, 65515, 13, 131071, 65515, 13, 65536, 65515, 13, 65537, 65515, 13, 196605, 65516, 655373, 196606, 65516, 655373, 196607, 65516, 655373, 131072, 65516, 655373, 131073, 65516, 655373)
 }
-metadata/_editor_floor_ = Vector3(0, 5, 0)
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="TrapMap" type="GridMap" parent="." unique_id=259463488]
 mesh_library = ExtResource("4_pyj3r")
@@ -135,11 +126,7 @@ collision_mask = 3
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RakkaArea" unique_id=1373615503]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, -4, 0)
-shape = SubResource("BoxShape3D_036b0")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="RakkaArea" unique_id=1707752711]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -55, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -4, -23.5)
 shape = SubResource("BoxShape3D_036b0")
 
 [node name="Dossun" parent="." unique_id=513493974 instance=ExtResource("7_wqwi8")]
@@ -172,177 +159,75 @@ max_polyphony = 8
 
 [node name="fruits" type="Node" parent="." unique_id=1946724382]
 
-[node name="Fruit" parent="fruits" unique_id=1933748863 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -65)
-
-[node name="Fruit2" parent="fruits" unique_id=1562480577 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -65)
-
-[node name="Fruit3" parent="fruits" unique_id=1339627931 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -65)
-
-[node name="Fruit4" parent="fruits" unique_id=2137303702 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 11, -65)
-
-[node name="Fruit5" parent="fruits" unique_id=236326456 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 14, -65)
-
-[node name="Fruit6" parent="fruits" unique_id=461668994 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 16, -66.2)
-
-[node name="Fruit7" parent="fruits" unique_id=1138455363 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3, 18, -67.4)
-
-[node name="Fruit8" parent="fruits" unique_id=1353140644 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 18, -69)
-
-[node name="Fruit9" parent="fruits" unique_id=1440378605 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6, 17, -69.9)
-
-[node name="Fruit10" parent="fruits" unique_id=196981480 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 16, -96)
-
-[node name="Fruit11" parent="fruits" unique_id=861696425 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 15, -97.4)
-
-[node name="Fruit12" parent="fruits" unique_id=1200920608 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 13, -98)
-
-[node name="Fruit13" parent="fruits" unique_id=915081434 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 11, -98)
-
-[node name="Fruit14" parent="fruits" unique_id=1126180155 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 9, -98)
-
-[node name="Fruit15" parent="fruits" unique_id=1550508757 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, -98)
-
-[node name="Fruit16" parent="fruits" unique_id=792353163 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -98)
-
-[node name="Fruit17" parent="fruits" unique_id=1786116394 instance=ExtResource("14_qdaxh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -98)
-
 [node name="Enemies" type="Node" parent="." unique_id=818959743]
 
-[node name="Bee" parent="Enemies" unique_id=89749193 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -15)
+[node name="Pigeon" parent="Enemies" unique_id=70864306 instance=ExtResource("14_akqsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -6.3)
 
-[node name="Bee2" parent="Enemies" unique_id=6515910 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+[node name="Pigeon2" parent="Enemies" unique_id=124042827 instance=ExtResource("14_akqsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -6.3)
+delay = true
+transition = 6
 
-[node name="Bee3" parent="Enemies" unique_id=851358578 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -15)
-
-[node name="Bee4" parent="Enemies" unique_id=1601880193 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -19)
-
-[node name="Bee5" parent="Enemies" unique_id=942072501 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19)
-
-[node name="Bee6" parent="Enemies" unique_id=1168158562 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -19)
-
-[node name="Bee8" parent="Enemies" unique_id=1430004408 instance=ExtResource("15_s46j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -21)
-
-[node name="Bee9" parent="Enemies" unique_id=1028574226 instance=ExtResource("15_s46j3")]
-transform = Transform3D(0.7071067, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.7071067, -7.9, 14, -70.2)
-
-[node name="Crab" parent="Enemies" unique_id=320351823 instance=ExtResource("16_5ahjf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9818258, 2.0093558, -28.36609)
-distance = 3.0
-bounce_power = 1.5
-
-[node name="Alien" parent="Enemies" unique_id=1218814089 instance=ExtResource("17_82lha")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -122)
-
-[node name="Frog" parent="Enemies" unique_id=526317669 instance=ExtResource("18_0ue36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -112)
-
-[node name="Alien5" parent="Enemies" unique_id=414715315 instance=ExtResource("19_tt4vk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -12)
-
-[node name="Alien6" parent="Enemies" unique_id=117198944 instance=ExtResource("19_tt4vk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -12)
+[node name="Yeti" parent="Enemies" unique_id=1494052291 instance=ExtResource("14_xvhc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
 delay = true
 
-[node name="Monkroose" parent="Enemies" unique_id=754913524 instance=ExtResource("20_6p5t5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -106)
+[node name="Yeti2" parent="Enemies" unique_id=532736916 instance=ExtResource("14_xvhc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4)
 
-[node name="GreenSpikyBlob" parent="Enemies" unique_id=1447824074 instance=ExtResource("21_46dut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -3, -13)
+[node name="Yeti3" parent="Enemies" unique_id=405814850 instance=ExtResource("14_xvhc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+delay = true
 
-[node name="MushroomKing" parent="Enemies" unique_id=1558848427 instance=ExtResource("22_yhui8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -116)
+[node name="Yeti4" parent="Enemies" unique_id=340787316 instance=ExtResource("14_xvhc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
 
-[node name="BlueDemon" parent="Enemies" unique_id=1650471790 node_paths=PackedStringArray("target") instance=ExtResource("23_gx1mo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5148506, 12.007405, -88.13619)
-ball_arrival = 3.0
-distance = 100.0
-target = NodePath("../../Player")
-speed = 5.0
-bounce_power = 1.2
+[node name="GreenBlob" parent="Enemies" unique_id=668908698 instance=ExtResource("16_updp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 6, -19)
+delay = true
+ease = 0
+beside = true
 
-[node name="Ninja" parent="Enemies" unique_id=1662297893 instance=ExtResource("24_lfew3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.76278687, 12.014215, -88.12572)
+[node name="GreenBlob2" parent="Enemies" unique_id=30998981 instance=ExtResource("16_updp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 6, -15)
+ease = 0
+beside = true
 
-[node name="Orc" parent="Enemies" unique_id=785729179 instance=ExtResource("25_dttb0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 12, -88)
+[node name="GreenBlob3" parent="Enemies" unique_id=1338912392 instance=ExtResource("16_updp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 6, -23)
+ease = 0
+beside = true
+
+[node name="GreenBlob4" parent="Enemies" unique_id=979917784 instance=ExtResource("16_updp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 6, -27)
+delay = true
+ease = 0
+beside = true
+
+[node name="Crab" parent="Enemies" unique_id=320351823 instance=ExtResource("17_1gq5r")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19, 8, -41)
 
 [node name="Boxs" type="Node" parent="." unique_id=1067182013]
-
-[node name="Cube_Crate" parent="Boxs" unique_id=335966316 instance=ExtResource("26_uyd82")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5, -36)
-
-[node name="Cube_Crate2" parent="Boxs" unique_id=1003086484 instance=ExtResource("26_uyd82")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5, -39)
-
-[node name="Cube_Crate3" parent="Boxs" unique_id=1120405077 instance=ExtResource("26_uyd82")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5, -42)
-
-[node name="Cube_Crate4" parent="Boxs" unique_id=166772708 instance=ExtResource("26_uyd82")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5, -45)
-
-[node name="Cube_Crate5" parent="Boxs" unique_id=1145181597 instance=ExtResource("26_uyd82")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5, -48)
-
-[node name="Cube_Crate7" parent="Boxs" unique_id=1061052876 instance=ExtResource("26_uyd82")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 9, -67)
 
 [node name="StageUI" parent="." unique_id=1948447596 instance=ExtResource("27_7bh2q")]
 
 [node name="Meshes" type="Node" parent="." unique_id=1586686172]
 
 [node name="MoveTo" parent="." unique_id=811058097 instance=ExtResource("28_jm6f2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -127)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 11, 16)
+sync_to_physics = false
 
 [node name="MoveFloorAnimation" type="AnimationPlayer" parent="MoveTo" unique_id=1222052773]
 root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_ytv77")
+libraries/ = SubResource("AnimationLibrary_gl2v2")
 
 [node name="Gimmick" type="Node" parent="." unique_id=564244054]
 
-[node name="Bouncer" parent="Gimmick" unique_id=961653228 instance=ExtResource("29_5o8uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -28)
-
-[node name="Bouncer6" parent="Gimmick" unique_id=2081350914 instance=ExtResource("29_5o8uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -48)
-
-[node name="Bouncer2" parent="Gimmick" unique_id=1707576446 instance=ExtResource("29_5o8uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -65)
-
-[node name="Bouncer3" parent="Gimmick" unique_id=1114812393 instance=ExtResource("29_5o8uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 10, -65)
-
-[node name="Bouncer5" parent="Gimmick" unique_id=494065933 instance=ExtResource("29_5o8uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 12, -74)
-
 [node name="CheckPoint" parent="." unique_id=81097620 instance=ExtResource("30_e83wf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 11, -66)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 8, -33)
 
 [node name="TransrationArea" type="Area3D" parent="." unique_id=1543918038]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 13.8, -109)
 collision_layer = 0
 script = ExtResource("31_kq5f4")
 stage_path = "uid://d2ldvpmxfxrty"
