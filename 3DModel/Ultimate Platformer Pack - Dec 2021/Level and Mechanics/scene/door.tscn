@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bjo0psdtif1q7"]
+
+[ext_resource type="PackedScene" uid="uid://chfljfnmb1q52" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Door.gltf" id="1_fnjqu"]
+
+[node name="Door" unique_id=1755935881 instance=ExtResource("1_fnjqu")]

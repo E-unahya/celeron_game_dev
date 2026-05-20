@@ -9,6 +9,8 @@ extends Node3D
 			execute_reset()
 			reset_stage = false
 
+@export_file("tscn") var goal_stage = "uid://dupjvv3trnpvk"
+
 @onready var enemies : Node = get_node("Enemies")
 @onready var attack_se : AudioStreamPlayer = get_node("AttackSE")
 @onready var jump_bounce_se : AudioStreamPlayer = get_node("JumpBounceSE")
@@ -94,7 +96,7 @@ func _on_tower_animation_finished(anim_name : String):
 		for t in get_tree().get_processed_tweens():
 		# とりあえずTweenが働いているところを全てkill
 			t.kill()
-		get_tree().call_deferred("change_scene_to_file", "uid://dupjvv3trnpvk")
+		get_tree().call_deferred("change_scene_to_file", goal_stage)
 
 func _on_player_dead() -> void:
 	for t in get_tree().get_processed_tweens():

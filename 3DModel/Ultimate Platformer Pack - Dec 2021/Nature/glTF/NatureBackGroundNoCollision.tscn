@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://d12a657wapel0"]
+
+[ext_resource type="PackedScene" uid="uid://6ixmtqulqvpx" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Bush_Fruit.gltf" id="2_x7ini"]
+[ext_resource type="PackedScene" uid="uid://d374ppeb45ygi" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Cloud_1.gltf" id="3_iwjh0"]
+[ext_resource type="PackedScene" uid="uid://dpo5wyb4bdf14" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Cloud_2.gltf" id="4_341d4"]
+[ext_resource type="PackedScene" uid="uid://iyvaxomm5hjl" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Cloud_3.gltf" id="5_7xvjr"]
+[ext_resource type="PackedScene" uid="uid://ceiowfl8bjmcm" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Grass_1.gltf" id="6_0r88c"]
+[ext_resource type="PackedScene" uid="uid://dialt7ijmti07" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Grass_2.gltf" id="7_sisuk"]
+[ext_resource type="PackedScene" uid="uid://cnvx2n5c37ke7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Grass_3.gltf" id="8_aeomr"]
+[ext_resource type="PackedScene" uid="uid://btk221qh8xs1i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_1.gltf" id="9_50m2g"]
+[ext_resource type="PackedScene" uid="uid://balw3lc3tcl0o" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_2.gltf" id="10_smgd6"]
+[ext_resource type="PackedScene" uid="uid://uiorjtb2nc8i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_3.gltf" id="11_mwn3f"]
+[ext_resource type="PackedScene" uid="uid://cjsthagyja1n1" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_Large.gltf" id="12_yotpd"]
+[ext_resource type="PackedScene" uid="uid://bbub8bvbihmcb" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatforms_Medium.gltf" id="13_uoilj"]
+[ext_resource type="PackedScene" uid="uid://l27f0x8xy7x0" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/RockPlatform_Tall.gltf" id="14_idv2m"]
+[ext_resource type="PackedScene" uid="uid://bftac1dpcvw7i" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Rock_1.gltf" id="15_yb46u"]
+[ext_resource type="PackedScene" uid="uid://dkhhqjp4xbscp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Rock_2.gltf" id="16_w64kk"]
+[ext_resource type="PackedScene" uid="uid://1jtcdicfjy6s" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Tree.gltf" id="17_sxe3b"]
+[ext_resource type="PackedScene" uid="uid://bauhw6npx6as8" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Tree_Fruit.gltf" id="18_1kr55"]
+
+[node name="NatureBackGround" type="Node3D" unique_id=1415435442]
+
+[node name="Bush2" parent="." unique_id=1618841142 instance_placeholder="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/glTF/Bush.gltf"]
+
+[node name="Bush_Fruit2" parent="." unique_id=560496217 instance=ExtResource("2_x7ini")]
+
+[node name="Cloud_12" parent="." unique_id=1779858615 instance=ExtResource("3_iwjh0")]
+
+[node name="Cloud_22" parent="." unique_id=1054771926 instance=ExtResource("4_341d4")]
+
+[node name="Cloud_32" parent="." unique_id=2079716762 instance=ExtResource("5_7xvjr")]
+
+[node name="Grass_12" parent="." unique_id=729513534 instance=ExtResource("6_0r88c")]
+
+[node name="Grass_22" parent="." unique_id=401120253 instance=ExtResource("7_sisuk")]
+
+[node name="Grass_32" parent="." unique_id=1883379578 instance=ExtResource("8_aeomr")]
+
+[node name="RockPlatforms_12" parent="." unique_id=356540941 instance=ExtResource("9_50m2g")]
+
+[node name="RockPlatforms_22" parent="." unique_id=1540813577 instance=ExtResource("10_smgd6")]
+
+[node name="RockPlatforms_32" parent="." unique_id=593046599 instance=ExtResource("11_mwn3f")]
+
+[node name="RockPlatforms_Large2" parent="." unique_id=1671254922 instance=ExtResource("12_yotpd")]
+
+[node name="RockPlatforms_Medium2" parent="." unique_id=343105619 instance=ExtResource("13_uoilj")]
+
+[node name="RockPlatform_Tall2" parent="." unique_id=562106507 instance=ExtResource("14_idv2m")]
+
+[node name="Rock_12" parent="." unique_id=2141708634 instance=ExtResource("15_yb46u")]
+
+[node name="Rock_22" parent="." unique_id=1996907148 instance=ExtResource("16_w64kk")]
+
+[node name="Tree2" parent="." unique_id=517724264 instance=ExtResource("17_sxe3b")]
+
+[node name="Tree_Fruit2" parent="." unique_id=1930545618 instance=ExtResource("18_1kr55")]
+
+[editable path="Grass_12"]
