@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Door.gltf-212bcd2238f4b46dd5844ca9120cce7e.sc
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

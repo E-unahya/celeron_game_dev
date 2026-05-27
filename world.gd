@@ -93,10 +93,7 @@ func _on_tower_animation_finished(anim_name : String):
 		# プレイしてくれてありがとうのシーンを出す。
 		set_physics_process(false)
 		player.set_physics_process(false)
-		for t in get_tree().get_processed_tweens():
-		# とりあえずTweenが働いているところを全てkill
-			t.kill()
-		get_tree().call_deferred("change_scene_to_file", goal_stage)
+		Global.go_to_stage(goal_stage)
 
 func _on_player_dead() -> void:
 	for t in get_tree().get_processed_tweens():

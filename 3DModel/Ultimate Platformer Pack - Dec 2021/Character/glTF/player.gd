@@ -40,6 +40,9 @@ var state_machine : AnimationNodeStateMachinePlayback
 # 残りライフポイントを入れるべきか？
 @export var zanki : int = 3
 
+# 特殊なカメラのときはこいつの出番
+@export var special_camera : Camera3D = null
+
 signal dead
 signal still_alive
 
@@ -92,27 +95,45 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
+	var input_direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
+	var move_direction := Vector3.ZERO
 
-	# 回転の際に反応するためにわざとif文を分ける
-	if direction.length() > 0:
-		# 目標地点 = 自分の現在地 + 進みたい方向
-		var look_target = character_armature.global_position + direction
-		
-		# その方向を向かせる（一瞬で向く）
-		character_armature.look_at(look_target, Vector3.UP)
-	if direction:
-		velocity.x = lerp(velocity.x ,direction.x * SPEED, accel * delta)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, accel * delta)
-		# rotateさせるのどうすればいい？
+	if input_direction:
+		if special_camera:
+			var special_camera_basis = special_camera.global_transform.basis
+
+			var forward = special_camera_basis.z
+			forward.y = 0
+			var right = special_camera_basis.x
+			right.y = 0
+			# カメラから見た「前」と「右」に、入力を掛け合わせる
+			move_direction = (forward.normalized() * input_direction.z) + (right.normalized() * input_direction.x)
+			move_direction = move_direction.normalized()
+
+			# 3. 実際にプレイヤーを動かすベクトルに適用
+			velocity.x = move_direction.x * SPEED
+			velocity.z = move_direction.z * SPEED
+		else:
+			move_direction = input_direction
+			velocity.x = lerp(velocity.x ,move_direction.x * SPEED, accel * delta)
+			velocity.z = lerp(velocity.z, move_direction.z * SPEED, accel * delta)
+			# rotateさせるのどうすればいい？
+
+		if move_direction.length() > 0.0:
+			target_rotation = atan2(-move_direction.x, -move_direction.z)
+			character_armature.rotation.y = lerp_angle(
+				character_armature.rotation.y,
+				target_rotation,
+				rotation_speed * delta
+			)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
-		velocity.z = lerp(velocity.z, 0.0, friction * delta)
+		velocity.z = lerp(velocity.z, 0.0, friction * delta)	
 	# ここからトラップに落ちたらの処理
 	var cell_pos = trap_map.local_to_map(global_position)
 	# 罠用GridMapからその場所のタイルIDを取得
 	var trap_id = trap_map.get_cell_item(cell_pos)
-	
+
 	# Check Shadow Position
 	if shadow_ray_cast_3d.is_colliding():
 		shadow_mesh.show()
@@ -129,6 +150,7 @@ func _physics_process(delta: float) -> void:
 			pass # 何もない(空)
 		_:
 			pass
+
 	move_and_slide()
 
 
