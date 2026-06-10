@@ -29,3 +29,7 @@ func set_score(score_num : int=0) -> void:
 	score_label.text = "SCORE:{score_num}".format({"score_num":score})
 	if score > better_score:
 		better_score_entered.emit()
+
+
+func _on_star_got_it() -> void:
+	info_label.text = "STAR GET."

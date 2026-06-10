@@ -24,6 +24,9 @@ extends Node3D
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var move_to: MoveTo = get_node_or_null("MoveTo")
 
+## 箱をすべて破壊したときのご褒美アイテム
+@onready var star: = get_node_or_null("Star")
+
 
 var se_pitch_limit : int = 0
 
@@ -86,7 +89,6 @@ func _on_box_breaked(box_pos:Vector3) -> void:
 
 func _on_fruits_get() -> void:
 	$FruitsGetSE.play()
-	print("Fruits get.")
 
 func _on_tower_animation_finished(anim_name : String):
 	if anim_name == "GOAL":

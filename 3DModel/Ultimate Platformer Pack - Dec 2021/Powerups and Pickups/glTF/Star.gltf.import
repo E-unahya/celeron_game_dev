@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Star.gltf-86e4d75348ec5ac805cb649c545d8eee.sc
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Area3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -37,6 +37,12 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Star": {
+"physics/shape_type": 4
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

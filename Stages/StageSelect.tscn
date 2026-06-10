@@ -25,12 +25,23 @@ environment = SubResource("Environment_fwqck")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 20, 0)
 
 [node name="Door" parent="." unique_id=235684395 instance=ExtResource("3_ss72r")]
-transform = Transform3D(-1.0606601, 0, 1.0606601, 0, 1.5, 0, -1.0606601, 0, -1.0606601, -11.586502, 2, 10.872987)
+transform = Transform3D(-1.0606601, 0, 1.0606601, 0, 1.5, 0, -1.0606601, 0, -1.0606601, -11, 2, 9)
 to_stage = "uid://bd1wyqcgbc0hi"
 
-[node name="Player" parent="." unique_id=1833450170 node_paths=PackedStringArray("trap_map", "special_camera") instance=ExtResource("4_k67v1")]
+[node name="Door2" parent="." unique_id=1369329253 instance=ExtResource("3_ss72r")]
+transform = Transform3D(1.06066, 0, 1.0606602, 0, 1.5, 0, -1.0606602, 0, 1.06066, -11, 2, -9)
+to_stage = "uid://vhob0lfq52gi"
+
+[node name="Door3" parent="." unique_id=140928673 instance=ExtResource("3_ss72r")]
+transform = Transform3D(-0.86036444, 0, -1.228728, 0, 1.5, 0, 1.228728, 0, -0.86036444, 10, 2, 9)
+to_stage = "uid://bd1wyqcgbc0hi"
+
+[node name="Door4" parent="." unique_id=442064339 instance=ExtResource("3_ss72r")]
+transform = Transform3D(0.9641813, 0, -1.1490663, 0, 1.4999999, 0, 1.1490663, 0, 0.9641813, 10, 2, -9)
+to_stage = "uid://bd1wyqcgbc0hi"
+
+[node name="Player" parent="." unique_id=1833450170 node_paths=PackedStringArray("special_camera") instance=ExtResource("4_k67v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 5)
-trap_map = NodePath("../TrapMap")
 special_camera = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=671109733]

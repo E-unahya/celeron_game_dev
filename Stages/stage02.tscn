@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://db11pnlir0dpl"]
+
+[ext_resource type="Script" uid="uid://pdmrhny8rl5m" path="res://world.gd" id="1_b7ohu"]
+[ext_resource type="Environment" uid="uid://bdss148j5s1n4" path="res://3DModel/Sunny.tres" id="2_of2h4"]
+[ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="3_vqaeh"]
+[ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="4_qvcdv"]
+[ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="5_rn31p"]
+[ext_resource type="MeshLibrary" uid="uid://c3avuxfewjumu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/Natures.tres" id="6_yj8vs"]
+[ext_resource type="PackedScene" uid="uid://bbqtg4iqgdvm6" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.tscn" id="7_8k7wl"]
+[ext_resource type="PackedScene" uid="uid://q7hr1ypu0dmv" path="res://3DModel/CheckPoint.tscn" id="8_veql2"]
+[ext_resource type="Script" uid="uid://s5vof8a5lm1x" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player_camera.gd" id="9_1b3dq"]
+[ext_resource type="AudioStream" uid="uid://drx5iwdbn41mg" path="res://SE/オリジナルぶっ飛ばし効果音.ogg" id="10_3ipub"]
+[ext_resource type="AudioStream" uid="uid://vs3cnaujvogi" path="res://SE/ジャンプで踏んだ時の音.ogg" id="11_abpim"]
+[ext_resource type="AudioStream" uid="uid://dveb037ucvyq7" path="res://SE/打撃4.mp3" id="12_3yu38"]
+[ext_resource type="AudioStream" uid="uid://b50ya36ewe3d" path="res://SE/カーソル移動11.mp3" id="13_xglv2"]
+[ext_resource type="PackedScene" uid="uid://u6qywtly2rgb" path="res://3DModel/Particle/box_break_particle.tscn" id="14_iefyr"]
+[ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="20_6uxv7"]
+[ext_resource type="Script" uid="uid://ff16i3btnl7x" path="res://Stages/transration_area.gd" id="21_uqes0"]
+[ext_resource type="PackedScene" uid="uid://dxiwsfmdc2pvt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/tscn/star.tscn" id="22_y7wdx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
+size = Vector3(168, 4, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytv77"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbp6q"]
+albedo_color = Color(0.08655005, 0.16878414, 0.120880716, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nh7po"]
+material = SubResource("StandardMaterial3D_cbp6q")
+size = Vector2(300, 150)
+
+[node name="World" type="Node3D" unique_id=706768811]
+script = ExtResource("1_b7ohu")
+goal_stage = "uid://y5cnw44at7yj"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1167102710]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 34.6932, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569862025]
+environment = ExtResource("2_of2h4")
+
+[node name="Player" parent="." unique_id=298166857 instance=ExtResource("3_vqaeh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_mask = 9
+platform_floor_layers = 4278190088
+
+[node name="StageMap" type="GridMap" parent="." unique_id=1477278548]
+mesh_library = ExtResource("4_qvcdv")
+collision_layer = 8
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(0, 65535, 8, 65535, 65535, 8, 0, 0, 8, 65535, 0, 8)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="TrapMap" type="GridMap" parent="." unique_id=259463488]
+mesh_library = ExtResource("5_rn31p")
+cell_size = Vector3(2, 4, 2)
+collision_layer = 8
+collision_mask = 8
+
+[node name="BackGroundMap" type="GridMap" parent="." unique_id=1885706434]
+mesh_library = ExtResource("6_yj8vs")
+cell_size = Vector3(2, 4, 2)
+collision_layer = 8
+collision_mask = 8
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Tower" parent="." unique_id=931059977 instance=ExtResource("7_8k7wl")]
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 6, 3, -136)
+collision_layer = 8
+collision_mask = 3
+
+[node name="RakkaArea" type="Area3D" parent="." unique_id=2021322112]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RakkaArea" unique_id=1373615503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+shape = SubResource("BoxShape3D_036b0")
+
+[node name="CheckPoint" parent="." unique_id=81097620 instance=ExtResource("8_veql2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, -57)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=683169920 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.5, 0, -0.5, 0.8660253, 0, 11, 3)
+near = 2.0
+far = 50.0
+script = ExtResource("9_1b3dq")
+follow_target = NodePath("../Player")
+
+[node name="AttackSE" type="AudioStreamPlayer" parent="." unique_id=1723909116]
+stream = ExtResource("10_3ipub")
+volume_db = -15.0
+max_polyphony = 8
+
+[node name="JumpBounceSE" type="AudioStreamPlayer" parent="." unique_id=79777335]
+stream = ExtResource("11_abpim")
+max_polyphony = 8
+
+[node name="BoxBreakSE" type="AudioStreamPlayer" parent="." unique_id=1002706078]
+stream = ExtResource("12_3yu38")
+max_polyphony = 8
+
+[node name="FruitsGetSE" type="AudioStreamPlayer" parent="." unique_id=1105659113]
+stream = ExtResource("13_xglv2")
+max_polyphony = 8
+
+[node name="BoxBreakParticle" parent="." unique_id=731474296 instance=ExtResource("14_iefyr")]
+
+[node name="fruits" type="Node" parent="." unique_id=1946724382]
+
+[node name="Enemies" type="Node" parent="." unique_id=818959743]
+
+[node name="Boxs" type="Node" parent="." unique_id=1067182013]
+
+[node name="StageUI" parent="." unique_id=1948447596 instance=ExtResource("20_6uxv7")]
+
+[node name="Meshes" type="Node" parent="." unique_id=1586686172]
+
+[node name="Gimmick" type="Node" parent="." unique_id=564244054]
+
+[node name="TransrationArea" type="Area3D" parent="." unique_id=1543918038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 13.8, -109)
+collision_layer = 0
+script = ExtResource("21_uqes0")
+stage_path = "uid://d2ldvpmxfxrty"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TransrationArea" unique_id=842473704]
+shape = SubResource("BoxShape3D_ytv77")
+debug_color = Color(0, 0.17254902, 0.827451, 1)
+
+[node name="Walls" type="Node" parent="." unique_id=453183075]
+
+[node name="Star" parent="." unique_id=342282025 instance=ExtResource("22_y7wdx")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 4, -140)
+
+[node name="RakkaMesh" type="MeshInstance3D" parent="." unique_id=809718676]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 0, -4, -87)
+mesh = SubResource("QuadMesh_nh7po")
+skeleton = NodePath("../../..")
+
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="still_alive" from="Player" to="." method="_on_player_still_alive"]
+[connection signal="animation_finished" from="Tower/AnimationPlayer" to="." method="_on_tower_animation_finished"]
+[connection signal="area_entered" from="RakkaArea" to="." method="_on_rakka_area_area_entered"]
+[connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
+[connection signal="body_entered" from="RakkaArea" to="Camera3D" method="_on_rakka_area_body_entered"]
+[connection signal="all_box_breaked" from="StageUI" to="Star" method="_on_stage_ui_all_box_breaked"]
+[connection signal="got_it" from="Star" to="StageUI" method="_on_star_got_it"]
+
+[editable path="Tower"]

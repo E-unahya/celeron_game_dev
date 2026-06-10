@@ -18,8 +18,6 @@ class_name Player
 
 ## クラッシュ的にダイヤとかのポジションにするべきか？コインを
 
-## トラップのマップ
-@export var trap_map : GridMap
 
 ## プレイヤーのアニメーションツリー
 @onready var animation_player : AnimationPlayer = get_node_or_null("AnimationPlayer")
@@ -130,9 +128,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, 0.0, friction * delta)
 		velocity.z = lerp(velocity.z, 0.0, friction * delta)	
 	# ここからトラップに落ちたらの処理
-	var cell_pos = trap_map.local_to_map(global_position)
-	# 罠用GridMapからその場所のタイルIDを取得
-	var trap_id = trap_map.get_cell_item(cell_pos)
 
 	# Check Shadow Position
 	if shadow_ray_cast_3d.is_colliding():
@@ -143,13 +138,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			shadow_mesh_position = shadow_ray_cast_3d.get_collision_point() + Vector3(0, 0.05, 0)
 		shadow_mesh.global_position = shadow_mesh_position
-
-	# タイルIDに応じて処理を分岐 (例: ID 0=トゲ, ID 1=炎)
-	match trap_id:
-		Hazard.NONE:
-			pass # 何もない(空)
-		_:
-			pass
 
 	move_and_slide()
 

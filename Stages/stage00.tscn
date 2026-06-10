@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhft8i4nm55s" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/scene/fruit_2.tscn" id="14_7do6c"]
 [ext_resource type="PackedScene" uid="uid://cwxwcm7bawbsk" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/enemy.tscn" id="14_luoiy"]
 [ext_resource type="Shader" uid="uid://bq0qywskdfrwo" path="res://Fonts/fontShader.gdshader" id="20_uhd3y"]
+[ext_resource type="PackedScene" uid="uid://dxiwsfmdc2pvt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/tscn/star.tscn" id="20_xj2ym"]
 [ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="26_kx7or"]
 [ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="27_dvx2w"]
 [ext_resource type="Script" uid="uid://ff16i3btnl7x" path="res://Stages/transration_area.gd" id="31_weudq"]
@@ -120,6 +121,7 @@ depth = 0.5
 
 [node name="World" type="Node3D" unique_id=706768811]
 script = ExtResource("1_0de64")
+goal_stage = "uid://y5cnw44at7yj"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1167102710]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 34.6932, 0)
@@ -127,11 +129,10 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569862025]
 environment = SubResource("Environment_tlwt5")
 
-[node name="Player" parent="." unique_id=298166857 node_paths=PackedStringArray("trap_map") instance=ExtResource("2_pry2t")]
+[node name="Player" parent="." unique_id=298166857 instance=ExtResource("2_pry2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_mask = 9
 platform_floor_layers = 4278190088
-trap_map = NodePath("../TrapMap")
 
 [node name="StageMap" type="GridMap" parent="." unique_id=1477278548]
 mesh_library = ExtResource("3_sr36a")
@@ -583,11 +584,16 @@ mesh = SubResource("TextMesh_xj2ym")
 transform = Transform3D(0.7660444, 0, 0.6427876, 0, 1, 0, -0.6427876, 0, 0.7660444, -7.6, 5, -92.5)
 mesh = SubResource("TextMesh_uhd3y")
 
+[node name="Star" parent="." unique_id=342282025 instance=ExtResource("20_xj2ym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -129)
+
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="still_alive" from="Player" to="." method="_on_player_still_alive"]
 [connection signal="animation_finished" from="Tower/AnimationPlayer" to="." method="_on_tower_animation_finished"]
 [connection signal="area_entered" from="RakkaArea" to="." method="_on_rakka_area_area_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Player" method="_on_rakka_area_body_entered"]
 [connection signal="body_entered" from="RakkaArea" to="Camera3D" method="_on_rakka_area_body_entered"]
+[connection signal="all_box_breaked" from="StageUI" to="Star" method="_on_stage_ui_all_box_breaked"]
+[connection signal="got_it" from="Star" to="StageUI" method="_on_star_got_it"]
 
 [editable path="Tower"]

@@ -1,0 +1,13 @@
+[gd_resource type="Environment" format=3 uid="uid://bdss148j5s1n4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
+
+[sub_resource type="Sky" id="Sky_bc84e"]
+sky_material = SubResource("ProceduralSkyMaterial_bc84e")
+
+[resource]
+background_mode = 2
+background_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
+sky = SubResource("Sky_bc84e")
+fog_enabled = true
+fog_light_color = Color(0.5294118, 0.80784315, 0.92156863, 1)

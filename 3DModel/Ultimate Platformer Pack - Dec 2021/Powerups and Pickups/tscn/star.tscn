@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dxiwsfmdc2pvt"]
+
+[ext_resource type="PackedScene" uid="uid://dfud4f1htmbat" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/glTF/Star.gltf" id="1_3dhqv"]
+[ext_resource type="Script" uid="uid://bka8bkq61c14r" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/tscn/star.gd" id="2_1uijb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_77a5h"]
+
+[node name="Star" unique_id=342282025 instance=ExtResource("1_3dhqv")]
+collision_layer = 0
+script = ExtResource("2_1uijb")
+
+[node name="Star" parent="." index="0" unique_id=481524671]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1392719742]
+shape = SubResource("SphereShape3D_77a5h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
