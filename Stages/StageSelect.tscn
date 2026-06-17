@@ -9,6 +9,9 @@
 [sub_resource type="Environment" id="Environment_fwqck"]
 background_mode = 1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss72r"]
+size = Vector3(30, 1, 1)
+
 [node name="StageSelect" type="Node3D" unique_id=669168678]
 script = ExtResource("1_7lafh")
 
@@ -54,3 +57,22 @@ mesh_library = ExtResource("5_ss72r")
 cell_size = Vector3(2, 4, 2)
 collision_layer = 8
 collision_mask = 8
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2077451356]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=86528146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+shape = SubResource("BoxShape3D_ss72r")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=804088429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+shape = SubResource("BoxShape3D_ss72r")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=418429184]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, 4.371139e-08, 1, -4.371139e-08, 1, -4.371139e-08, -4.3711385e-08, 12, 0, 0)
+shape = SubResource("BoxShape3D_ss72r")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1083509646]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, 4.371139e-08, 1, -4.371139e-08, 1, -4.371139e-08, -4.3711385e-08, -13, 0, 0)
+shape = SubResource("BoxShape3D_ss72r")

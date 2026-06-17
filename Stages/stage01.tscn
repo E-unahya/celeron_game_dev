@@ -38,6 +38,7 @@ size = Vector2(300, 150)
 
 [node name="World" type="Node3D" unique_id=706768811]
 script = ExtResource("1_3hs25")
+stage_name = "ギザギザロードの森の歌"
 goal_stage = "uid://y5cnw44at7yj"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1167102710]

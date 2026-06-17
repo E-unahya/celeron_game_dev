@@ -121,6 +121,7 @@ depth = 0.5
 
 [node name="World" type="Node3D" unique_id=706768811]
 script = ExtResource("1_0de64")
+stage_name = "始まりの道、"
 goal_stage = "uid://y5cnw44at7yj"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1167102710]

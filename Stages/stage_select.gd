@@ -1,10 +1,12 @@
 extends Node3D
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var player: Player = $Player
+@onready var doors = [$Door, $Door2, $Door3, $Door4]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_update_camera_rotation()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

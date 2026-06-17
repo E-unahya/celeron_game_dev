@@ -9,6 +9,8 @@ extends Node3D
 			execute_reset()
 			reset_stage = false
 
+@export var stage_name : String = "Stage Name"
+
 @export_file("tscn") var goal_stage = "uid://dupjvv3trnpvk"
 
 @onready var enemies : Node = get_node("Enemies")
