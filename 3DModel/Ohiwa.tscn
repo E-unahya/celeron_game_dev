@@ -6,8 +6,8 @@
 radius = 10.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2k8vb"]
-metallic = 1.0
-roughness = 0.5
+albedo_color = Color(0.13333334, 0.1882353, 0.22352941, 1)
+roughness = 0.3
 
 [sub_resource type="SphereMesh" id="SphereMesh_alivf"]
 material = SubResource("StandardMaterial3D_2k8vb")
@@ -17,10 +17,24 @@ height = 20.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_f4txb"]
 radius = 12.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4txb"]
+blend_mode = 2
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f4txb"]
+material = SubResource("StandardMaterial3D_f4txb")
+top_radius = 10.0
+bottom_radius = 10.0
+height = 0.01
+
 [node name="Ohiwa" type="RigidBody3D" unique_id=247701017]
 collision_layer = 0
 collision_mask = 8
 mass = 500.0
+sleeping = true
+freeze = true
 linear_damp = 5.0
 script = ExtResource("1_f4txb")
 
@@ -39,5 +53,9 @@ shape = SubResource("SphereShape3D_f4txb")
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=464544324]
 target_position = Vector3(0, -10, 10)
 collision_mask = 8
+
+[node name="ShadowMesh" type="MeshInstance3D" parent="." unique_id=1873367236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+mesh = SubResource("CylinderMesh_f4txb")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
