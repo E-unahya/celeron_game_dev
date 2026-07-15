@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://u6qywtly2rgb" path="res://3DModel/Particle/box_break_particle.tscn" id="17_ikiii"]
 [ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="17_udxuc"]
 [ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="19_cbp6q"]
-[ext_resource type="PackedScene" uid="uid://fp6m1i0t4bm6" path="res://3DModel/ohiwa_rakka_area.tscn" id="21_bc84e"]
+[ext_resource type="PackedScene" uid="uid://fp6m1i0t4bm6" path="res://3DModel/ohiwa/ohiwa_rakka_area.tscn" id="21_bc84e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
 

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://fp6m1i0t4bm6"]
 
-[ext_resource type="Script" uid="uid://dbmnunfxk6tf5" path="res://3DModel/ohiwa_rakka_area.gd" id="1_smmuf"]
+[ext_resource type="Script" uid="uid://dbmnunfxk6tf5" path="res://3DModel/ohiwa/ohiwa_rakka_area.gd" id="1_smmuf"]
+[ext_resource type="Texture2D" uid="uid://cqohyt547dxvb" path="res://3DModel/ohiwa/ohiwa_texture.png" id="2_smmuf"]
+[ext_resource type="Texture2D" uid="uid://tvr8qxb1ju0o" path="res://3DModel/ohiwa/NormalMap.jpg" id="3_hpxiy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_26xuy"]
 size = Vector3(30, 17, 1)
@@ -15,11 +17,16 @@ albedo_color = Color(0, 0, 0, 1)
 material = SubResource("StandardMaterial3D_f4txb")
 top_radius = 10.0
 bottom_radius = 10.0
-height = 0.01
+height = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mixd"]
 albedo_color = Color(0.13333334, 0.1882353, 0.22352941, 1)
-roughness = 0.3
+albedo_texture = ExtResource("2_smmuf")
+roughness = 0.5
+normal_enabled = true
+normal_scale = 1.5
+normal_texture = ExtResource("3_hpxiy")
+uv1_offset = Vector3(-0.7127877, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_smmuf"]
 material = SubResource("StandardMaterial3D_1mixd")
@@ -53,16 +60,45 @@ tracks/0/path = NodePath("Ohiwa:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 20, -24), Vector3(0, 20, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShadowMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 20, -24)]
+"values": [Vector3(0, -9, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hpxiy"]
+resource_name = "Rolling"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ohiwa:mesh:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_smmuf"]
 _data = {
 &"Ohiwa Go": SubResource("Animation_1mixd"),
-&"RESET": SubResource("Animation_smmuf")
+&"RESET": SubResource("Animation_smmuf"),
+&"Rolling": SubResource("Animation_hpxiy")
 }
 
 [node name="OhiwaRakkaArea" type="Area3D" unique_id=580053582]
@@ -78,24 +114,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
 mesh = SubResource("CylinderMesh_1mixd")
 
 [node name="Ohiwa" type="MeshInstance3D" parent="." unique_id=1102934494]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -24)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 20, -24)
 mesh = SubResource("SphereMesh_smmuf")
 
 [node name="RayCast3D" type="RayCast3D" parent="Ohiwa" unique_id=1833063223]
-target_position = Vector3(0, -10, 10)
+target_position = Vector3(10, 0, 10)
 collision_mask = 8
 
 [node name="Area3D" type="Area3D" parent="Ohiwa" unique_id=869105646]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 13
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ohiwa/Area3D" unique_id=672688445]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 9)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7, 3.0597977e-07, 9)
 shape = SubResource("BoxShape3D_2mqvd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1768582670]
 libraries/ = SubResource("AnimationLibrary_smmuf")
 
+[node name="OhiwaStopArea" type="Area3D" parent="." unique_id=1755093616]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OhiwaStopArea" unique_id=2018196536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 86)
+shape = SubResource("BoxShape3D_26xuy")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Ohiwa/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="OhiwaStopArea" to="." method="_on_ohiwa_stop_area_area_entered"]
