@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://0glxfccrs267"]
+
+[ext_resource type="Shader" uid="uid://bnh3widyjan5t" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/parallax.gdshader" id="1_oy23b"]
+
+[sub_resource type="Gradient" id="Gradient_e22u1"]
+offsets = PackedFloat32Array(0, 0.31203008, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.018595729, 0.018595729, 0.018595729, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e22u1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e22u1"]
+noise = SubResource("FastNoiseLite_e22u1")
+color_ramp = SubResource("Gradient_e22u1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ki4lo"]
+render_priority = 0
+shader = ExtResource("1_oy23b")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_e22u1")
+shader_parameter/layers = 32
+shader_parameter/depth_amount = 4.0
+shader_parameter/fade_amount = 7.999999821184
+
+[sub_resource type="LabelSettings" id="LabelSettings_1023x"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[node name="LoadingScene" type="Control" unique_id=775302497]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2069990757]
+material = SubResource("ShaderMaterial_ki4lo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1934538622]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = " ロード中だよ"
+label_settings = SubResource("LabelSettings_1023x")

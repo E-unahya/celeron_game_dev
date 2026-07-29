@@ -21,4 +21,5 @@ func _on_body_exited(body: Node3D) -> void:
 	stage_name_label.hide()
 
 func _on_goto_stage_body_entered(body: Node3D) -> void:
-	Global.go_to_stage(to_stage)
+	if body is Player:
+		Global.go_to_stage(to_stage)

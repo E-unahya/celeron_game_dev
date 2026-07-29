@@ -71,7 +71,6 @@ collision_mask = 8
 
 [node name="BackGroundMap" type="GridMap" parent="." unique_id=1885706434]
 mesh_library = ExtResource("6_6k7nw")
-cell_size = Vector3(2, 4, 2)
 collision_layer = 8
 collision_mask = 8
 data = {
@@ -156,6 +155,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9, 
 
 [node name="Dog" parent="Enemies" unique_id=1796972863 instance=ExtResource("17_aqe5d")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 41)
+
+[node name="Dog13" parent="Enemies" unique_id=1127773677 instance=ExtResource("17_aqe5d")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, 39)
+
+[node name="Dog12" parent="Enemies" unique_id=1027605806 instance=ExtResource("17_aqe5d")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, 29)
 
 [node name="Dog2" parent="Enemies" unique_id=29156310 instance=ExtResource("17_aqe5d")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3, 0, 51)

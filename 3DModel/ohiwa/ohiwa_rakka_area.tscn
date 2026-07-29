@@ -26,7 +26,7 @@ roughness = 0.5
 normal_enabled = true
 normal_scale = 1.5
 normal_texture = ExtResource("3_hpxiy")
-uv1_offset = Vector3(-0.7127877, 0, 0)
+uv1_offset = Vector3(-0.07161, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_smmuf"]
 material = SubResource("StandardMaterial3D_1mixd")
