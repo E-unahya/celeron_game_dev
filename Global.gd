@@ -7,6 +7,8 @@ func go_to_stage(to_stage:String):
 		t.kill()
 	load_scene_async(to_stage)
 
+#--- cfgファイルを管理するメソッドたち ---#
+
 # score等のセーブするデータはどこでもいじれると良いので、ここに一連の処理を作成する
 func stage_clear(save_data_name : String, stage_name : String, score:int):
 	"""
@@ -18,6 +20,17 @@ func stage_clear(save_data_name : String, stage_name : String, score:int):
 	config_file.set_value(save_data_name, stage_name+"_cleared", true)
 	config_file.save("user://stage_clear.cfg")
 
+func check_clear_stage(save_data_name : String, stage_name : String) -> bool:
+	var config_file = ConfigFile.new() 
+	var err = config_file.load("user://stage_clear.cfg")
+	if err != OK:
+		return false
+	var cleared = config_file.get_value(save_data_name, stage_name+"_cleared")
+	if !cleared:
+		return false
+	return cleared
+
+#--- ローディング関係のメソッドたち ---#
 
 var loading_path : String = ""
 

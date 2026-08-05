@@ -11,6 +11,10 @@ func _ready() -> void:
 	door.rotation = Vector3.ZERO
 	stage_name_label.text = stage_name
 	stage_name_label.hide()
+	if Global.check_clear_stage("1", stage_name):
+		$Star_Outline.show()
+	else:
+		$Star_Outline.hide()
 
 func _on_body_entered(body: Node3D) -> void:
 	animation_player.play("Door")

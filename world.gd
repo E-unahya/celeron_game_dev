@@ -97,7 +97,7 @@ func _on_tower_animation_finished(anim_name : String):
 		# プレイしてくれてありがとうのシーンを出す。
 		set_physics_process(false)
 		player.set_physics_process(false)
-		Global.stage_clear("1", stage_name, stage_ui.score)
+		Global.stage_clear("1", self.scene_file_path, stage_ui.score)
 		Global.go_to_stage(goal_stage)
 
 func _on_player_dead() -> void:

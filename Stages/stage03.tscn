@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://fp6m1i0t4bm6" path="res://3DModel/ohiwa/ohiwa_rakka_area.tscn" id="18_sensr"]
 [ext_resource type="Script" uid="uid://ff16i3btnl7x" path="res://Stages/transration_area.gd" id="19_pqvtd"]
 [ext_resource type="PackedScene" uid="uid://dxiwsfmdc2pvt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/tscn/star.tscn" id="20_hl3cg"]
+[ext_resource type="PackedScene" uid="uid://djurh3ocod5bq" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Arrow_Side.gltf" id="22_4jnnh"]
+[ext_resource type="PackedScene" uid="uid://dm2vkdm0fdnkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/Arrow.gltf" id="23_jxk4w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1023x"]
 size = Vector3(49, 9, 1)
@@ -294,6 +296,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 11, 140.03)
 
 [node name="CollisionShape3D" parent="OhiwaRakkaArea3/OhiwaStopArea" parent_id_path=PackedInt32Array(1085742430, 1755093616) index="0" unique_id=2018196536]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 133)
+
+[node name="Arrow_Side2" parent="." unique_id=791745162 instance=ExtResource("22_4jnnh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 2, -190)
+
+[node name="Arrow2" parent="." unique_id=1425116527 instance=ExtResource("23_jxk4w")]
+transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, -5, 2, -186)
+
+[node name="Arrow3" parent="." unique_id=1146449368 instance=ExtResource("23_jxk4w")]
+transform = Transform3D(-1.3113416e-07, 0, -3, 0, 3, 0, 3, 0, -1.3113416e-07, 3, 2, -186)
 
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="dead" from="Player" to="OhiwaRakkaArea" method="_on_player_dead"]
