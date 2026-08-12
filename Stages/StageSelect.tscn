@@ -55,7 +55,7 @@ stage_name = "思ったよりしんどこのガラクタロード"
 
 [node name="Door3" parent="." unique_id=140928673 instance=ExtResource("3_ss72r")]
 transform = Transform3D(-0.86036444, 0, -1.228728, 0, 1.5, 0, 1.228728, 0, -0.86036444, 10, 2, 9)
-to_stage = "uid://bd1wyqcgbc0hi"
+to_stage = "uid://db11pnlir0dpl"
 stage_name = "カニが通る道"
 
 [node name="Door4" parent="." unique_id=442064339 instance=ExtResource("3_ss72r")]

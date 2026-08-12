@@ -15,6 +15,7 @@ func stage_clear(save_data_name : String, stage_name : String, score:int):
 	ステージをクリアーしたら呼ぶメソッド、とりあえずこれにステージのデータを書き込む
 	"""
 	var config_file = ConfigFile.new() 
+	config_file.load("user://stage_clear.cfg")
 	config_file.set_value(save_data_name, "stage_name", stage_name)
 	config_file.set_value(save_data_name, stage_name+"_score", score)
 	config_file.set_value(save_data_name, stage_name+"_cleared", true)
@@ -25,10 +26,8 @@ func check_clear_stage(save_data_name : String, stage_name : String) -> bool:
 	var err = config_file.load("user://stage_clear.cfg")
 	if err != OK:
 		return false
-	var cleared = config_file.get_value(save_data_name, stage_name+"_cleared")
-	if !cleared:
-		return false
-	return cleared
+	# true or false
+	return config_file.get_value(save_data_name, stage_name+"_cleared", false)
 
 #--- ローディング関係のメソッドたち ---#
 

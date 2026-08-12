@@ -77,9 +77,11 @@ size = Vector3(3, 3, 1)
 [node name="Door" unique_id=235684395 instance=ExtResource("1_fnjqu")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 collision_layer = 0
+monitorable = false
 script = ExtResource("2_fjbbh")
+to_stage = "<null>"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Door_Frame" parent_id_path=PackedInt32Array(642396303) index="0" unique_id=559291092]
+[node name="StaticBody3D" type="StaticBody3D" parent="Door_Frame" parent_id_path=PackedInt32Array(223404382) index="0" unique_id=559291092]
 collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door_Frame/StaticBody3D" index="0" unique_id=1145412384]
@@ -98,6 +100,7 @@ mesh = SubResource("QuadMesh_8go1a")
 
 [node name="GotoStage" type="Area3D" parent="hole" index="0" unique_id=398296611]
 collision_layer = 0
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hole/GotoStage" index="0" unique_id=787253229]
 shape = SubResource("BoxShape3D_e22u1")
@@ -125,8 +128,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Star_Outline" parent="." index="6" unique_id=1247160605 instance=ExtResource("5_8go1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6666667, 3.3333335, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 5.3333335, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_entered" from="hole/GotoStage" to="." method="_on_goto_stage_body_entered"]
+
+[editable path="Star_Outline"]

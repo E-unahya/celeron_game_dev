@@ -7,13 +7,19 @@ extends Area3D
 @export_file("*.tscn") var to_stage
 @export var stage_name : String = "Stage Name."
 
+var cleared : bool
+
 func _ready() -> void:
 	door.rotation = Vector3.ZERO
-	stage_name_label.text = stage_name
+	var id = ResourceUID.text_to_id(to_stage)
+	var true_path = ResourceUID.get_id_path(id)
+	cleared = Global.check_clear_stage("1", true_path)
 	stage_name_label.hide()
-	if Global.check_clear_stage("1", stage_name):
+	if cleared:
+		stage_name_label.text = stage_name + "(CLEARED)"
 		$Star_Outline.show()
 	else:
+		stage_name_label.text = stage_name
 		$Star_Outline.hide()
 
 func _on_body_entered(body: Node3D) -> void:

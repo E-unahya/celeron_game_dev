@@ -2,25 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://bnuaeambpxf7v" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/glTF/Gem_Pink.gltf" id="1_ixsoe"]
 [ext_resource type="Script" uid="uid://ctscnwwmwo4h0" path="res://3DModel/check_point.gd" id="1_jvwjo"]
+[ext_resource type="Texture2D" uid="uid://becy3xyggxo8k" path="res://3DModel/CheckPoint.png" id="3_jvwjo"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xg0q2"]
-size = Vector3(1.5, 2, 1.5)
-
-[sub_resource type="TextMesh" id="TextMesh_ixsoe"]
-text = "Check Point"
-font_size = 64
+[sub_resource type="SphereShape3D" id="SphereShape3D_5jm2e"]
+radius = 1.0
 
 [node name="CheckPoint" type="Area3D" unique_id=81097620]
 collision_layer = 0
+monitorable = false
 script = ExtResource("1_jvwjo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=622247994]
-shape = SubResource("BoxShape3D_xg0q2")
+shape = SubResource("SphereShape3D_5jm2e")
 
 [node name="Gem_Pink2" parent="." unique_id=675485679 instance=ExtResource("1_ixsoe")]
 
-[node name="CheckPointMesh" type="MeshInstance3D" parent="." unique_id=1753460785]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-mesh = SubResource("TextMesh_ixsoe")
+[node name="CheckPointMesh" type="Sprite3D" parent="." unique_id=1055875893]
+cast_shadow = 0
+texture = ExtResource("3_jvwjo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
