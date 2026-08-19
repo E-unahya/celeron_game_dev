@@ -19,6 +19,9 @@ fog_enabled = true
 fog_light_energy = 2.0
 fog_density = 0.07
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fi0fh"]
+size = Vector3(50, 30, 1)
+
 [node name="StageSelect" type="Node3D" unique_id=669168678]
 script = ExtResource("1_7lafh")
 
@@ -79,3 +82,22 @@ mesh_library = ExtResource("5_ss72r")
 cell_size = Vector3(2, 4, 2)
 collision_layer = 8
 collision_mask = 8
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=137392972]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=172487540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18)
+shape = SubResource("BoxShape3D_fi0fh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=920361064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.557377)
+shape = SubResource("BoxShape3D_fi0fh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1110201911]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19, 0, -2.4426231)
+shape = SubResource("BoxShape3D_fi0fh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=523031793]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15, 0, -2.4426231)
+shape = SubResource("BoxShape3D_fi0fh")

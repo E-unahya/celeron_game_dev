@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="2_tn7ui"]
 [ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="3_f82au"]
 [ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="4_pyj3r"]
+[ext_resource type="MeshLibrary" uid="uid://ceiyyd6ifp4u5" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/level_and_mechanics.meshlib" id="5_63cp5"]
 [ext_resource type="MeshLibrary" uid="uid://c3avuxfewjumu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/Natures.tres" id="5_lib2n"]
 [ext_resource type="PackedScene" uid="uid://bbqtg4iqgdvm6" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/tower_2.tscn" id="6_m6qn0"]
 [ext_resource type="PackedScene" uid="uid://f6vvw0l6b2u5" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/dossun.tscn" id="7_wqwi8"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://di64wvba5yx7o" path="res://3DModel/Ultimate Monsters/Blob/scene/yeti.tscn" id="14_xvhc0"]
 [ext_resource type="PackedScene" uid="uid://c8ny1qfpbf5q2" path="res://3DModel/Ultimate Monsters/Blob/scene/greenblob.tscn" id="16_updp3"]
 [ext_resource type="PackedScene" uid="uid://ds8mjvdhtlgkt" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Enemies/glTF/crab.tscn" id="17_1gq5r"]
+[ext_resource type="PackedScene" uid="uid://bjtl1wcipjawp" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/bouncer.tscn" id="21_rk1wq"]
 [ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="27_7bh2q"]
 [ext_resource type="PackedScene" uid="uid://ifg7atxqe2v5" path="res://3DModel/MoveTo.tscn" id="28_jm6f2"]
 [ext_resource type="PackedScene" uid="uid://q7hr1ypu0dmv" path="res://3DModel/CheckPoint.tscn" id="30_e83wf"]
@@ -37,7 +39,7 @@ fog_light_energy = 1.5
 fog_density = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
-size = Vector3(54, 1, 89)
+size = Vector3(100, 1, 100)
 
 [sub_resource type="Animation" id="Animation_frcrj"]
 resource_name = "MoveTo"
@@ -88,26 +90,33 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569862025]
 environment = SubResource("Environment_tlwt5")
 
-[node name="Player" parent="." unique_id=298166857 node_paths=PackedStringArray("trap_map") instance=ExtResource("2_tn7ui")]
+[node name="Player" parent="." unique_id=298166857 instance=ExtResource("2_tn7ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 11.3, 16)
 collision_mask = 9
 platform_floor_layers = 4278190088
-trap_map = NodePath("../TrapMap")
 
 [node name="StageMap" type="GridMap" parent="." unique_id=1477278548]
 mesh_library = ExtResource("3_f82au")
 collision_layer = 8
 collision_mask = 0
 data = {
-"cells": PackedInt32Array(131071, 0, 20, 131071, 1, 20, 65536, 0, 20, 65536, 1, 20, 65537, 65535, 655374, 65537, 2, 14, 131070, 2, 11, 131070, 65535, 1441813, 131071, 2, 14, 65536, 2, 14, 65537, 1, 8, 65537, 0, 8, 65536, 65535, 655374, 131071, 65535, 655374, 131070, 1, 1441814, 131070, 0, 1441814, 131074, 65531, 1048594, 196606, 65531, 18, 196607, 65531, 19, 131072, 65531, 19, 131073, 65531, 19, 131072, 65529, 655375, 131072, 65527, 655375, 131072, 65525, 655375, 131072, 65523, 655375, 131072, 65521, 655375, 131074, 65530, 655378, 196606, 65530, 1441810, 131073, 65530, 655379, 131072, 65530, 655379, 196607, 65530, 655379, 65538, 1, 1048598, 65538, 0, 1048598, 65538, 2, 1048587, 65538, 65535, 655371, 131072, 65519, 15, 262142, 65517, 14, 262143, 65517, 14, 196608, 65517, 14, 196609, 65517, 14, 196610, 65517, 14, 196611, 65517, 1048587, 131075, 65517, 13, 131074, 65517, 13, 131073, 65517, 13, 131072, 65517, 13, 196607, 65517, 13, 196606, 65517, 13, 196605, 65517, 13, 262141, 65517, 11, 262141, 65515, 14, 196611, 65515, 14, 262142, 65515, 14, 262143, 65515, 14, 196608, 65515, 14, 196609, 65515, 14, 196610, 65515, 14, 196612, 65515, 14, 196613, 65515, 14, 196614, 65515, 14, 196615, 65515, 14, 196616, 65515, 14, 196617, 65515, 14, 196618, 65515, 14, 196619, 65515, 14, 196620, 65515, 14, 196621, 65515, 14, 196622, 65515, 14, 131076, 65515, 13, 131077, 65515, 13, 131078, 65515, 13, 131079, 65515, 13, 131080, 65515, 13, 131081, 65515, 13, 131082, 65515, 13, 131083, 65515, 13, 131084, 65515, 13, 131085, 65515, 13, 131086, 65515, 13, 131074, 65515, 13, 131075, 65515, 13, 65538, 65515, 13, 65539, 65515, 13, 65540, 65515, 13, 65541, 65515, 13, 65542, 65515, 13, 65543, 65515, 13, 65544, 65515, 13, 65545, 65515, 13, 65546, 65515, 13, 65547, 65515, 13, 65548, 65515, 13, 65549, 65515, 13, 65550, 65515, 13, 0, 65515, 13, 1, 65515, 13, 2, 65515, 13, 3, 65515, 13, 4, 65515, 13, 5, 65515, 13, 6, 65515, 13, 7, 65515, 13, 8, 65515, 13, 9, 65515, 13, 10, 65515, 13, 11, 65515, 13, 12, 65515, 13, 13, 65515, 13, 14, 65515, 13, 131069, 65517, 13, 131070, 65517, 13, 131071, 65517, 13, 65536, 65517, 13, 65537, 65517, 13, 65538, 65517, 13, 65539, 65517, 13, 3, 65517, 13, 2, 65517, 13, 65533, 65517, 13, 65534, 65517, 13, 65535, 65517, 13, 0, 65517, 13, 1, 65517, 13, 131068, 65515, 13, 131069, 65515, 13, 131070, 65515, 13, 131071, 65515, 13, 65536, 65515, 13, 65537, 65515, 13, 196605, 65516, 655373, 196606, 65516, 655373, 196607, 65516, 655373, 131072, 65516, 655373, 131073, 65516, 655373)
+"cells": PackedInt32Array(131071, 0, 20, 131071, 1, 20, 65536, 0, 20, 65536, 1, 20, 65537, 65535, 655374, 65537, 2, 14, 131070, 2, 11, 131070, 65535, 1441813, 131071, 2, 14, 65536, 2, 14, 65537, 1, 8, 65537, 0, 8, 65536, 65535, 655374, 131071, 65535, 655374, 131070, 1, 1441814, 131070, 0, 1441814, 131074, 65531, 1048594, 196606, 65531, 18, 196607, 65531, 19, 131072, 65531, 19, 131073, 65531, 19, 131072, 65529, 655375, 131072, 65527, 655375, 131072, 65525, 655375, 131072, 65523, 655375, 131072, 65521, 655375, 131074, 65530, 655378, 196606, 65530, 1441810, 131073, 65530, 655379, 131072, 65530, 655379, 196607, 65530, 655379, 65538, 1, 1048598, 65538, 0, 1048598, 65538, 2, 1048587, 65538, 65535, 655371, 131072, 65519, 15, 262142, 65517, 14, 262143, 65517, 14, 196608, 65517, 14, 196609, 65517, 14, 196610, 65517, 14, 196611, 65517, 1048587, 131075, 65517, 13, 131074, 65517, 13, 131073, 65517, 13, 131072, 65517, 13, 196607, 65517, 13, 196606, 65517, 13, 196605, 65517, 13, 262141, 65517, 11, 262141, 65515, 14, 196611, 65515, 14, 262142, 65515, 14, 262143, 65515, 14, 196608, 65515, 14, 196609, 65515, 14, 196610, 65515, 14, 196612, 65515, 14, 196613, 65515, 14, 196614, 65515, 14, 196615, 65515, 14, 196616, 65515, 14, 196617, 65515, 14, 196618, 65515, 14, 196619, 65515, 14, 196620, 65515, 14, 196621, 65515, 14, 196622, 65515, 14, 131076, 65515, 13, 131077, 65515, 13, 131078, 65515, 13, 131079, 65515, 13, 131080, 65515, 13, 131081, 65515, 13, 131082, 65515, 13, 131083, 65515, 13, 131084, 65515, 13, 131085, 65515, 13, 131086, 65515, 13, 131074, 65515, 13, 131075, 65515, 13, 65538, 65515, 13, 65539, 65515, 13, 65540, 65515, 13, 65541, 65515, 13, 65542, 65515, 13, 65543, 65515, 13, 65544, 65515, 13, 65545, 65515, 13, 65546, 65515, 13, 65547, 65515, 13, 65548, 65515, 13, 65549, 65515, 13, 65550, 65515, 13, 0, 65515, 13, 1, 65515, 13, 2, 65515, 13, 3, 65515, 13, 4, 65515, 13, 5, 65515, 13, 6, 65515, 13, 7, 65515, 13, 8, 65515, 13, 9, 65515, 13, 10, 65515, 13, 11, 65515, 13, 12, 65515, 13, 13, 65515, 13, 14, 65515, 13, 131069, 65517, 13, 131070, 65517, 13, 131071, 65517, 13, 65536, 65517, 13, 65537, 65517, 13, 65538, 65517, 13, 65539, 65517, 13, 3, 65517, 13, 2, 65517, 13, 65533, 65517, 13, 65534, 65517, 13, 65535, 65517, 13, 0, 65517, 13, 1, 65517, 13, 131068, 65515, 13, 131069, 65515, 13, 131070, 65515, 13, 131071, 65515, 13, 65536, 65515, 13, 65537, 65515, 13, 196605, 65516, 655373, 196606, 65516, 655373, 196607, 65516, 655373, 131072, 65516, 655373, 131073, 65516, 655373, 262141, 65514, 20, 262142, 65514, 20, 262143, 65514, 20, 196608, 65514, 20, 196609, 65514, 20, 196610, 65514, 20, 196611, 65514, 20, 196612, 65514, 20, 196613, 65514, 20, 196614, 65514, 20, 196615, 65514, 20, 196616, 65514, 20, 196617, 65514, 20, 196618, 65514, 20, 196619, 65514, 20, 196620, 65514, 20, 196621, 65514, 20, 196622, 65514, 20, 196624, 65515, 16, 327698, 65515, 16, 327700, 65515, 11, 327701, 65515, 22, 327702, 65515, 22, 327703, 65515, 22, 327703, 65516, 1441814, 327703, 65517, 1441814, 327703, 65518, 1441814, 327703, 65519, 11, 327705, 65517, 15, 327707, 65517, 15, 327709, 65517, 15)
 }
-metadata/_editor_floor_ = Vector3(0, 2, 0)
+metadata/_editor_floor_ = Vector3(0, 5, 0)
 
 [node name="TrapMap" type="GridMap" parent="." unique_id=259463488]
 mesh_library = ExtResource("4_pyj3r")
 cell_size = Vector3(2, 4, 2)
 collision_layer = 8
 collision_mask = 8
+
+[node name="GridMap" type="GridMap" parent="." unique_id=2139712399]
+mesh_library = ExtResource("5_63cp5")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(327677, 65514, 1, 327679, 65514, 1, 262145, 65514, 1)
+}
+metadata/_editor_floor_ = Vector3(0, 4, 0)
 
 [node name="BackGroundMap" type="GridMap" parent="." unique_id=1885706434]
 mesh_library = ExtResource("5_lib2n")
@@ -205,6 +214,15 @@ delay = true
 ease = 0
 beside = true
 
+[node name="GreenBlob5" parent="Enemies" unique_id=1089760789 instance=ExtResource("16_updp3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 53.02274, 10, -37)
+delay = true
+ease = 0
+
+[node name="GreenBlob6" parent="Enemies" unique_id=665672578 instance=ExtResource("16_updp3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 57.02274, 10, -37)
+ease = 0
+
 [node name="Crab" parent="Enemies" unique_id=320351823 instance=ExtResource("17_1gq5r")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19, 8, -41)
 
@@ -224,11 +242,16 @@ libraries/ = SubResource("AnimationLibrary_gl2v2")
 
 [node name="Gimmick" type="Node" parent="." unique_id=564244054]
 
+[node name="Bouncer" parent="Gimmick" unique_id=961653228 instance=ExtResource("21_rk1wq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 8, -41)
+
 [node name="CheckPoint" parent="." unique_id=81097620 instance=ExtResource("30_e83wf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 8, -33)
 
 [node name="TransrationArea" type="Area3D" parent="." unique_id=1543918038]
 collision_layer = 0
+monitoring = false
+monitorable = false
 script = ExtResource("31_kq5f4")
 stage_path = "uid://d2ldvpmxfxrty"
 
