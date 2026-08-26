@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjo0psdtif1q7" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/scene/door.tscn" id="3_ss72r"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="4_k67v1"]
 [ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="5_ss72r"]
+[ext_resource type="PackedScene" uid="uid://c5akq0gnyf7y1" path="res://Stages/GoToBoss.tscn" id="7_ssjvn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fi0fh"]
 
@@ -101,3 +102,7 @@ shape = SubResource("BoxShape3D_fi0fh")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=523031793]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15, 0, -2.4426231)
 shape = SubResource("BoxShape3D_fi0fh")
+
+[node name="GoToBoss" parent="." unique_id=1404757981 node_paths=PackedStringArray("stages") instance=ExtResource("7_ssjvn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11, 7, 1)
+stages = [NodePath("../Door"), NodePath("../Door2"), NodePath("../Door3"), NodePath("../Door4")]

@@ -944,10 +944,10 @@ collision_layer = 2
 collision_mask = 33
 script = ExtResource("2_byvq3")
 
-[node name="Skeleton3D" parent="MonsterArmature" parent_id_path=PackedInt32Array(657511642) index="0" unique_id=480270001]
+[node name="Skeleton3D" parent="MonsterArmature" parent_id_path=PackedInt32Array(2019976016) index="0" unique_id=2131701448]
 bones/4/rotation = Quaternion(-4.4455963e-20, 3.5471498e-10, -0.0026400534, 0.9999966)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=617174491]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1482921180]
 libraries/ = SubResource("AnimationLibrary_1lvw6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=627662144]

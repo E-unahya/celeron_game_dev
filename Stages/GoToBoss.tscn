@@ -1,8 +1,24 @@
 [gd_scene format=3 uid="uid://c5akq0gnyf7y1"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_1023x"]
+[ext_resource type="Script" uid="uid://5yhdagomboj4" path="res://Stages/go_to_boss.gd" id="1_wv58x"]
+[ext_resource type="PackedScene" uid="uid://caucxmya8k6rr" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Powerups and Pickups/glTF/Thunder.gltf" id="2_o6vwh"]
 
-[node name="GoToBoss" type="Area3D" unique_id=1404757981]
+[sub_resource type="SphereShape3D" id="SphereShape3D_1023x"]
+radius = 3.0
+
+[node name="GoToBoss" type="Area3D" unique_id=1404757981 node_paths=PackedStringArray("stages")]
+collision_layer = 0
+script = ExtResource("1_wv58x")
+stages = [null]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1820279687]
 shape = SubResource("SphereShape3D_1023x")
+
+[node name="Thunder" parent="." unique_id=701886166 instance=ExtResource("2_o6vwh")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=739928872]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="Thunder"]

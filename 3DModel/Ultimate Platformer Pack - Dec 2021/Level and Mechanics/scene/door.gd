@@ -1,5 +1,7 @@
 extends Area3D
 
+class_name Door
+
 @onready var door: MeshInstance3D = $Door
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var stage_name_label: Label = $Control/StageNameLabel
@@ -7,7 +9,7 @@ extends Area3D
 @export_file("*.tscn") var to_stage
 @export var stage_name : String = "Stage Name."
 
-var cleared : bool
+@export var cleared : bool
 
 func _ready() -> void:
 	door.rotation = Vector3.ZERO

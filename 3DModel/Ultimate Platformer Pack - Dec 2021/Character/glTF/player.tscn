@@ -4744,14 +4744,14 @@ radius = 2.5
 font_color = Color(0, 0, 0, 1)
 
 [node name="Player" unique_id=1833450170 instance=ExtResource("1_77dde")]
-collision_layer = 73
-collision_mask = 81
+collision_layer = 65
+collision_mask = 89
 script = ExtResource("2_ity3g")
 
-[node name="CharacterArmature" parent="." index="0" unique_id=1127313406]
+[node name="CharacterArmature" parent="." index="0" unique_id=2125764985]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="Skeleton3D" parent="CharacterArmature" index="0" unique_id=1625465574]
+[node name="Skeleton3D" parent="CharacterArmature" index="0" unique_id=1190629253]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 bones/1/rotation = Quaternion(7.85402e-06, 0.70295197, 0.7112374, 7.762523e-06)
 bones/2/rotation = Quaternion(-3.5526934e-15, 1.1920933e-07, -8.470341e-22, 1)
@@ -4779,7 +4779,7 @@ bones/26/rotation = Quaternion(-3.5526934e-15, 1.1920937e-07, -8.470344e-22, 1)
 bones/27/rotation = Quaternion(-7.85402e-06, 0.70295197, 0.7112374, -7.762523e-06)
 bones/28/rotation = Quaternion(-3.552734e-15, -5.9604645e-07, 3.3881257e-21, 1)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1140295177]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1537286142]
 libraries/ = SubResource("AnimationLibrary_l0s1q")
 libraries/Attack = ExtResource("3_pkfoi")
 
