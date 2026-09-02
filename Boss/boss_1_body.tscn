@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://by4e37ct64xc1"]
+
+[ext_resource type="Script" uid="uid://d0d7iwh8iso56" path="res://Boss/boss_1.gd" id="1_qt1ww"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nsb78"]
+radius = 1.0
+height = 7.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1023x"]
+radius = 1.0
+height = 7.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fi0fh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qt1ww"]
+height = 0.56748044
+radius = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v4sg6"]
+height = 0.56748044
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_bumper"]
+size = Vector3(2.5, 4, 1)
+
+[sub_resource type="Animation" id="Animation_qt1ww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ojmyt"]
+resource_name = "Stun"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:quaternion")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.69851756, 0, 0.109878264, 0.70710677)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oivkl"]
+_data = {
+&"RESET": SubResource("Animation_qt1ww"),
+&"Stun": SubResource("Animation_ojmyt")
+}
+
+[node name="Boss1" type="CharacterBody3D" unique_id=2059909152]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 12
+collision_mask = 8
+script = ExtResource("1_qt1ww")
+recovery_duration = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=648700573]
+shape = SubResource("CapsuleShape3D_nsb78")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1975089342]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+rotation_edit_mode = 1
+mesh = SubResource("CapsuleMesh_1023x")
+
+[node name="Hana" type="MeshInstance3D" parent="." unique_id=120118585]
+transform = Transform3D(0.96592575, 0.258819, -1.131334e-08, 0, -4.3711385e-08, -1, -0.258819, 0.96592575, -4.222196e-08, 0, 0, -1)
+mesh = SubResource("CapsuleMesh_fi0fh")
+
+[node name="JumpArea" type="Area3D" parent="." unique_id=1275382377]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpArea" unique_id=743111919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+shape = SubResource("CylinderShape3D_qt1ww")
+
+[node name="WeakArea" type="Area3D" parent="." unique_id=753982838]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" unique_id=737352849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
+shape = SubResource("CylinderShape3D_v4sg6")
+
+[node name="WallDetector" type="Area3D" parent="." unique_id=987654321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallDetector" unique_id=987654322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.5)
+shape = SubResource("BoxShape3D_wall_bumper")
+
+[node name="BossLife" type="Control" parent="." unique_id=1319640715]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BossLifeContainer" type="HBoxContainer" parent="BossLife" unique_id=1709844408]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1528829360]
+libraries/ = SubResource("AnimationLibrary_oivkl")
+
+[connection signal="body_entered" from="JumpArea" to="." method="_on_jump_area_body_entered"]
+[connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]
+[connection signal="body_entered" from="WallDetector" to="." method="_on_wall_detector_body_entered"]

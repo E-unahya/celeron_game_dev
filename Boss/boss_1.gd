@@ -1,161 +1,263 @@
-extends CharacterBody3D
+## クラッシュ・バンディクー風の「壁にぶつけて頭を踏む」ボスの実装例です。
+extends "res://Boss/boss.gd"
 
+## 壁激突SE・よろけアニメーションをシーン側から接続できます。
+signal stun_started
 
-## 通常敵の speed = 5.0 より十分速い、突進時の移動速度。
+@export_category("Target")
+@export var player_path: NodePath = NodePath("../Player")
+
+@export_category("Boss 1 Charge AI")
+@export var idle_duration: float = 1.5
 @export var charge_speed: float = 15.0
-## 突進前にその場で狙いを定める時間。
-@export var charge_time: float = 1.0
-## 一度の突進を続ける時間。
+@export var charge_acceleration: float = 60.0
 @export var charge_duration: float = 0.8
-## 突進終了後に残る滑走の開始速度。
-@export var slide_speed: float = 7.5
-## 滑走を続ける最大時間。
-@export var slide_duration: float = 0.35
-## 滑走中の減速量。大きいほど早く止まる。
-@export var slide_deceleration: float = 20.0
-## 壁に当たったときに跳ね返る速度。
-@export var wall_bounce_speed: float = 8.0
-## 跳ね返り移動を続ける時間。
-@export var wall_bounce_duration: float = 0.2
-## 壁衝突後、次のチャージに入るまで動けない時間。
-@export var wall_stun_time: float = 3.0
+## CHARGE終了後に速度を落とす量。小さいほど長く滑ります。
+@export var slide_friction: float = 12.0
+@export var stun_duration: float = 3.0
+@export var recovery_duration: float = 0.5
+@export var turn_speed: float = 10.0
 
-@onready var player: Node3D = get_node_or_null("../Player") as Node3D
+@export_category("Stun Rebound")
+## 壁激突時によろけて壁から遠ざかる初速
+@export var stun_rebound_speed: float = 5.0
+## よろけ後退中の摩擦減速度
+@export var stun_friction: float = 10.0
 
 enum State {
-	CHARGING,
-	CHARGING_FORWARD,
-	SLIDING,
-	BOUNCING,
-	STUNNED,
+	IDLE,
+	CHARGE,
+	STUN,
+	DAMAGE,
+	RECOVERY,
 }
 
-var state: State = State.CHARGING
+var state: State = State.IDLE
 var state_time: float = 0.0
+var player: Node3D
+## IDLE終了時の位置を保存するため、突進中はプレイヤーを追尾しません。
+var target_position: Vector3 = Vector3.ZERO
 var charge_direction: Vector3 = Vector3.ZERO
-var current_slide_speed: float = 0.0
+
+@onready var boss_life: Control = get_node_or_null("BossLife") as Control
+@onready var boss_life_container: HBoxContainer = get_node_or_null("BossLife/BossLifeContainer") as HBoxContainer
+@onready var wall_detector: Node3D = get_node_or_null("WallDetector")
 
 
 func _ready() -> void:
+	super._ready()
+
+	# メッシュが未初期化の場合のフォールバック
+	var mesh_inst := get_node_or_null("MeshInstance3D") as MeshInstance3D
+	if mesh_inst != null and mesh_inst.mesh == null:
+		var cap := CapsuleMesh.new()
+		cap.radius = 1.0
+		cap.height = 7.0
+		mesh_inst.mesh = cap
+
+	var hana_inst := get_node_or_null("Hana") as MeshInstance3D
+	if hana_inst != null and hana_inst.mesh == null:
+		var cap := CapsuleMesh.new()
+		cap.radius = 0.5
+		cap.height = 2.0
+		hana_inst.mesh = cap
+
+	if boss_life_container != null:
+		for l in max_health:
+			var t = TextureRect.new()
+			t.texture = load("res://Boss/boss_life_kakkokari.tres")
+			boss_life_container.add_child(t)
+
+
+## Base の登場演出終了後に一度だけ呼ばれます。
+func _setup_ai() -> void:
+	player = get_node_or_null(player_path) as Node3D
 	if player == null:
-		push_error("Boss1 could not find Player at ../Player.")
-		set_physics_process(false)
+		push_warning("Boss1 could not find a player at %s." % player_path)
+	_change_state(State.IDLE)
 
 
-func _physics_process(delta: float) -> void:
-	_apply_gravity(delta)
-	var was_charging_forward := state == State.CHARGING_FORWARD or state == State.SLIDING
+## IDLE → CHARGE → (壁なら STUN) → DAMAGE → RECOVERY → IDLE の状態機械です。
+func _process_ai(delta: float) -> void:
+	if player == null or not is_instance_valid(player):
+		_apply_horizontal_friction(delta)
+		return
 
+	state_time += delta
 	match state:
-		State.CHARGING:
-			velocity.x = 0.0
-			velocity.z = 0.0
-			state_time += delta
-			if state_time >= charge_time:
+		State.IDLE:
+			_apply_horizontal_friction(delta)
+			_face_player(delta)
+			if state_time >= idle_duration:
 				_begin_charge()
-		State.CHARGING_FORWARD:
-			velocity.x = charge_direction.x * charge_speed
-			velocity.z = charge_direction.z * charge_speed
-			state_time += delta
-			if state_time >= charge_duration:
-				_begin_slide()
-		State.SLIDING:
-			velocity.x = charge_direction.x * current_slide_speed
-			velocity.z = charge_direction.z * current_slide_speed
-			current_slide_speed = move_toward(current_slide_speed, 0.0, slide_deceleration * delta)
-			state_time += delta
-			if state_time >= slide_duration or is_zero_approx(current_slide_speed):
-				_end_charge()
-		State.BOUNCING:
-			velocity.x = charge_direction.x * wall_bounce_speed
-			velocity.z = charge_direction.z * wall_bounce_speed
-			state_time += delta
-			if state_time >= wall_bounce_duration:
-				_begin_stun()
-		State.STUNNED:
-			velocity.x = 0.0
-			velocity.z = 0.0
-			state_time += delta
-			if state_time >= wall_stun_time:
-				_end_charge()
+		State.CHARGE:
+			_process_charge(delta)
+		State.STUN:
+			_apply_stun_movement(delta)
+			if state_time >= stun_duration:
+				_change_state(State.RECOVERY)
+		State.DAMAGE:
+			_stop_horizontal_movement()
+			# 被弾無敵が終わってから復帰させ、連続踏みつけを防ぎます。
+			if not is_invincible:
+				_change_state(State.RECOVERY)
+		State.RECOVERY:
+			_apply_horizontal_friction(delta)
+			if state_time >= recovery_duration:
+				_change_state(State.IDLE)
 
-	move_and_slide()
-	if was_charging_forward:
-		_bounce_if_hit_wall()
+
+func _process_charge(delta: float) -> void:
+	# WallDetector ノードによる壁接触検知で即座に STUN へ遷移
+	if _is_wall_detected():
+		_change_state(State.STUN)
+		return
+
+	velocity.x = move_toward(velocity.x, charge_direction.x * charge_speed, charge_acceleration * delta)
+	velocity.z = move_toward(velocity.z, charge_direction.z * charge_speed, charge_acceleration * delta)
+	_face_direction(charge_direction, delta)
+
+	# 到達点で急停止せず、RECOVERY中にslide_frictionで速度を落とします。
+	if state_time >= charge_duration:
+		_change_state(State.RECOVERY)
+
+
+## WallDetector（Area3D / RayCast3D / ShapeCast3D）による壁検知判定
+func _is_wall_detected() -> bool:
+	if wall_detector == null:
+		return false
+
+	# Area3D の場合
+	if wall_detector is Area3D:
+		var area := wall_detector as Area3D
+		for body: Node3D in area.get_overlapping_bodies():
+			if body != player and body != self:
+				return true
+
+	# RayCast3D の場合
+	elif wall_detector is RayCast3D:
+		var ray := wall_detector as RayCast3D
+		if ray.is_colliding():
+			var collider := ray.get_collider()
+			if collider != player and collider != self:
+				return true
+
+	# ShapeCast3D の場合
+	elif wall_detector is ShapeCast3D:
+		var shapecast := wall_detector as ShapeCast3D
+		if shapecast.is_colliding():
+			for i: int in shapecast.get_collision_count():
+				var collider := shapecast.get_collider(i)
+				if collider != player and collider != self:
+					return true
+
+	return false
+
+
+## STUN中の頭部踏みつけだけがダメージになる、ボス1固有の弱点条件です。
+func _can_receive_stomp_damage() -> bool:
+	return state == State.STUN
+
+
+func _on_successful_stomp(stomping_player: Node3D) -> void:
+	if stomping_player.has_method("bounce"):
+		stomping_player.bounce(1.5)
+
+
+## Base の take_damage() から呼ばれます。無敵時間中は再度呼ばれません。
+func _on_take_damage() -> void:
+	_change_state(State.DAMAGE)
+
+
+## 正面からの接触、またはSTUN以外での頭部接触はプレイヤー側の被弾として扱います。
+func _on_player_front_collision(colliding_player: Node3D) -> void:
+	if colliding_player.has_method("bounce"):
+		colliding_player.bounce()
+	super._on_player_front_collision(colliding_player)
+
 
 
 func _begin_charge() -> void:
-	# チャージ完了時の主人公の位置だけを使い、突進中は追尾しない。
-	charge_direction = player.global_position - global_position
+	target_position = player.global_position
+	charge_direction = target_position - global_position
 	charge_direction.y = 0.0
-
 	if charge_direction.is_zero_approx():
-		state_time = 0.0
 		return
 
 	charge_direction = charge_direction.normalized()
-	look_at(global_position + charge_direction, Vector3.UP)
-	state = State.CHARGING_FORWARD
+	_change_state(State.CHARGE)
+
+
+func _change_state(next_state: State) -> void:
+	state = next_state
 	state_time = 0.0
+	if state == State.STUN:
+		_apply_stun_rebound()
+	_play_animation()
 
 
-func _begin_slide() -> void:
-	current_slide_speed = slide_speed
-	state = State.SLIDING
-	state_time = 0.0
+func _apply_stun_rebound() -> void:
+	if not charge_direction.is_zero_approx():
+		var rebound_dir := -charge_direction.normalized()
+		velocity.x = rebound_dir.x * stun_rebound_speed
+		velocity.z = rebound_dir.z * stun_rebound_speed
 
 
-func _end_charge() -> void:
+func _apply_stun_movement(delta: float) -> void:
+	velocity.x = move_toward(velocity.x, 0.0, stun_friction * delta)
+	velocity.z = move_toward(velocity.z, 0.0, stun_friction * delta)
+
+
+func _play_animation() -> void:
+	var animation_player := get_node_or_null("AnimationPlayer") as AnimationPlayer
+	match state:
+		State.STUN:
+			if animation_player != null and animation_player.has_animation("Stun"):
+				animation_player.play("Stun")
+			stun_started.emit()
+		_:
+			if animation_player.has_animation("RESET"):
+				animation_player.play("RESET")
+
+
+func _play_wait_animation() -> void:
+	pass
+
+
+func _face_player(delta: float) -> void:
+	var direction := player.global_position - global_position
+	direction.y = 0.0
+	if not direction.is_zero_approx():
+		_face_direction(direction.normalized(), delta)
+
+
+func _face_direction(direction: Vector3, delta: float) -> void:
+	var target_yaw := atan2(-direction.x, -direction.z)
+	rotation.y = lerp_angle(rotation.y, target_yaw, minf(turn_speed * delta, 1.0))
+
+
+func _apply_horizontal_friction(delta: float) -> void:
+	velocity.x = move_toward(velocity.x, 0.0, slide_friction * delta)
+	velocity.z = move_toward(velocity.z, 0.0, slide_friction * delta)
+
+
+func _stop_horizontal_movement() -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
-	state = State.CHARGING
-	state_time = 0.0
 
 
-func _bounce_if_hit_wall() -> void:
-	for collision_index in get_slide_collision_count():
-		var collision := get_slide_collision(collision_index)
-		var normal := collision.get_normal()
-		var collider := collision.get_collider()
-		# 床・天井と主人公への接触は、壁衝突として扱わない。
-		if abs(normal.y) >= 0.5 or collider == player:
-			continue
-
-		charge_direction = charge_direction.bounce(normal)
-		charge_direction.y = 0.0
-		if charge_direction.is_zero_approx():
-			return
-
-		charge_direction = charge_direction.normalized()
-		look_at(global_position + charge_direction, Vector3.UP)
-		state = State.BOUNCING
-		state_time = 0.0
-		return
-
-
-func _begin_stun() -> void:
-	velocity.x = 0.0
-	velocity.z = 0.0
-	state = State.STUNNED
-	state_time = 0.0
-
-
-func _apply_gravity(delta: float) -> void:
-	if is_on_floor():
-		velocity.y = 0.0
-	else:
-		velocity += get_gravity() * delta
-
-
-func _on_jump_area_body_entered(body: Node3D) -> void:
-	# 前提としてプレイヤーしか侵入不可
-	if not body.is_on_floor() :
-		if Input.is_action_pressed("ui_accept"):
-			body.bounce(1.5)
-		else:
-			body.bounce()
-
-
+## Boss01.tscn の頭部WeakAreaから接続されます。
 func _on_weak_area_body_entered(body: Node3D) -> void:
-	print("ダメージをうけた。")
-	body.bounce()
+	handle_head_area_entered(body, $WeakArea.global_position)
+
+
+## Boss01.tscn の正面JumpAreaから接続されます。
+func _on_jump_area_body_entered(body: Node3D) -> void:
+	handle_front_area_entered(body)
+
+
+## Boss01.tscn / boss_1_body.tscn の WallDetector (Area3D) から接続されます。
+func _on_wall_detector_body_entered(body: Node3D) -> void:
+	print("Wall detected.")
+	if body is GridMap and body.get_collision_layer_value(4):
+		_change_state(State.STUN)

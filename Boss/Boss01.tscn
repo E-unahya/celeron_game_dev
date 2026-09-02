@@ -2,7 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="1_nsb78"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="2_v4sg6"]
-[ext_resource type="Script" uid="uid://d0d7iwh8iso56" path="res://Boss/boss_1.gd" id="3_v4sg6"]
+[ext_resource type="PackedScene" uid="uid://by4e37ct64xc1" path="res://Boss/boss_1_body.tscn" id="3_v4sg6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nsb78"]
 
@@ -14,20 +14,6 @@ background_mode = 2
 sky = SubResource("Sky_1023x")
 fog_light_color = Color(0.2549238, 0.27963123, 0.3180747, 1)
 fog_density = 0.07
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nsb78"]
-radius = 1.0
-height = 7.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1023x"]
-radius = 1.0
-height = 7.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_fi0fh"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_v4sg6"]
-height = 0.56748044
-radius = 1.0
 
 [node name="Boss01" type="Node3D" unique_id=42833338]
 
@@ -52,50 +38,7 @@ far = 35.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=326107806]
 environment = SubResource("Environment_v4sg6")
 
-[node name="Boss1" type="CharacterBody3D" parent="." unique_id=1600252348]
-transform = Transform3D(-0.987853, 0, -0.15539134, 0, 1, 0, 0.15539134, 0, -0.987853, 0, 6, -10)
-collision_layer = 4
+[node name="Boss1" parent="." unique_id=2059909152 instance=ExtResource("3_v4sg6")]
+transform = Transform3D(-0.987853, 0, -0.1553914, 0, 1, 0, 0.1553914, 0, -0.987853, 0, 6, -10)
 collision_mask = 9
-script = ExtResource("3_v4sg6")
-charge_time = 2.5
-wall_stun_time = 5.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss1" unique_id=2095229881]
-shape = SubResource("CapsuleShape3D_nsb78")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Boss1" unique_id=2078841259]
-mesh = SubResource("CapsuleMesh_1023x")
-
-[node name="Hana" type="MeshInstance3D" parent="Boss1" unique_id=97582432]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -1)
-mesh = SubResource("CapsuleMesh_fi0fh")
-
-[node name="JumpArea" type="Area3D" parent="Boss1" unique_id=1672768901]
-collision_layer = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss1/JumpArea" unique_id=1998716938]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31625986, 2.000002)
-shape = SubResource("CylinderShape3D_v4sg6")
-
-[node name="WeakArea" type="Area3D" parent="Boss1" unique_id=276180695]
-collision_layer = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boss1/WeakArea" unique_id=211242698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
-shape = SubResource("CylinderShape3D_v4sg6")
-
-[node name="BossLife" type="Control" parent="Boss1" unique_id=1443531944]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BossLifeContainer" type="HBoxContainer" parent="Boss1/BossLife" unique_id=830261447]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[connection signal="body_entered" from="Boss1/JumpArea" to="Boss1" method="_on_jump_area_body_entered"]
-[connection signal="body_entered" from="Boss1/WeakArea" to="Boss1" method="_on_weak_area_body_entered"]
+slide_friction = 2.0
