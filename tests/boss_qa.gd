@@ -53,9 +53,11 @@ func _run() -> void:
 
 	# A descending stomp in STUN must damage exactly once and enable invincibility.
 	boss._change_state(boss.State.STUN)
+	player.velocity.y = -1.0
 	boss._on_weak_area_body_entered(player)
 	_expect(boss.current_health == boss.max_health - 1, "STUN head stomp did not reduce HP by one.")
 	_expect(boss.is_invincible, "Damage did not start invincibility.")
+	_expect(player.velocity.y >= 10.0, "Player vertical velocity was not set to a positive rebound velocity.")
 	boss._on_weak_area_body_entered(player)
 	_expect(boss.current_health == boss.max_health - 1, "Invincibility did not block repeated stomp damage.")
 

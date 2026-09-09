@@ -39,10 +39,18 @@ var player: Node3D
 var target_position: Vector3 = Vector3.ZERO
 var charge_direction: Vector3 = Vector3.ZERO
 
+## 外部参照や被弾ガード（current_state）との互換性を保つためのエイリアス
+var current_state: State:
+	get:
+		return state
+	set(value):
+		_change_state(value)
+
 @onready var boss_life: Control = get_node_or_null("BossLife") as Control
 @onready var boss_life_container: HBoxContainer = get_node_or_null("BossLife/BossLifeContainer") as HBoxContainer
 @onready var wall_detector: Node3D = get_node_or_null("WallDetector")
-
+@onready var weak_area: Area3D = get_node_or_null("WeakArea") as Area3D
+@onready var weak_collision: CollisionShape3D = get_node_or_null("WeakArea/CollisionShape3D") as CollisionShape3D
 
 func _ready() -> void:
 	super._ready()
@@ -67,6 +75,15 @@ func _ready() -> void:
 			var t = TextureRect.new()
 			t.texture = load("res://Boss/boss_life_kakkokari.tres")
 			boss_life_container.add_child(t)
+	_set_weak_point_active(false)
+
+
+## 弱点判定のモニタリングとCollisionShape3Dを一括で切り替えます。
+func _set_weak_point_active(active: bool) -> void:
+	if weak_collision != null:
+		weak_collision.set_deferred("disabled", not active)
+	if weak_area != null:
+		weak_area.set_deferred("monitoring", active)
 
 
 ## Base の登場演出終了後に一度だけ呼ばれます。
@@ -103,7 +120,7 @@ func _process_ai(delta: float) -> void:
 				_change_state(State.RECOVERY)
 		State.RECOVERY:
 			_apply_horizontal_friction(delta)
-			if state_time >= recovery_duration:
+			if state_time >= recovery_duration and not is_invincible:
 				_change_state(State.IDLE)
 
 
@@ -156,17 +173,27 @@ func _is_wall_detected() -> bool:
 
 ## STUN中の頭部踏みつけだけがダメージになる、ボス1固有の弱点条件です。
 func _can_receive_stomp_damage() -> bool:
-	return state == State.STUN
+	return not is_dead and not is_invincible and current_state == State.STUN
 
 
 func _on_successful_stomp(stomping_player: Node3D) -> void:
-	if stomping_player.has_method("bounce"):
-		stomping_player.bounce(1.5)
+	if stomping_player is CharacterBody3D:
+		var cb := stomping_player as CharacterBody3D
+		var bounce_power: float = 1.2
+		if Input.is_action_pressed("ui_accept"):
+			bounce_power = 1.5
+		if cb.has_method("bounce"):
+			cb.bounce(bounce_power)
+		var base_jump: float = 12.0
+		if "JUMP_VELOCITY" in cb:
+			base_jump = float(cb.JUMP_VELOCITY)
+		cb.velocity.y = maxf(cb.velocity.y, base_jump * bounce_power)
 
 
 ## Base の take_damage() から呼ばれます。無敵時間中は再度呼ばれません。
 func _on_take_damage() -> void:
-	_change_state(State.DAMAGE)
+	_set_weak_point_active(false)
+	_change_state(State.RECOVERY)
 
 
 ## 正面からの接触、またはSTUN以外での頭部接触はプレイヤー側の被弾として扱います。
@@ -192,6 +219,7 @@ func _change_state(next_state: State) -> void:
 	state = next_state
 	state_time = 0.0
 	if state == State.STUN:
+		_set_weak_point_active(true)
 		_apply_stun_rebound()
 	_play_animation()
 
@@ -204,6 +232,7 @@ func _apply_stun_rebound() -> void:
 
 
 func _apply_stun_movement(delta: float) -> void:
+
 	velocity.x = move_toward(velocity.x, 0.0, stun_friction * delta)
 	velocity.z = move_toward(velocity.z, 0.0, stun_friction * delta)
 
@@ -216,7 +245,7 @@ func _play_animation() -> void:
 				animation_player.play("Stun")
 			stun_started.emit()
 		_:
-			if animation_player.has_animation("RESET"):
+			if animation_player != null and animation_player.has_animation("RESET"):
 				animation_player.play("RESET")
 
 
@@ -248,16 +277,52 @@ func _stop_horizontal_movement() -> void:
 
 ## Boss01.tscn の頭部WeakAreaから接続されます。
 func _on_weak_area_body_entered(body: Node3D) -> void:
-	handle_head_area_entered(body, $WeakArea.global_position)
+	# ガード節: 無敵時間中および STUN 以外のステートでは絶対にダメージを受け付けない
+	if is_dead or current_state != State.STUN:
+		print("is_dead is " % is_dead)
+		print("current state is " % current_state)
+		return
+
+	# 連続多段ヒット防止のため、即座に弱点判定を無効化
+	_set_weak_point_active(false)
+
+	var weak_pos: Vector3 = weak_area.global_position if weak_area != null else global_position
+	handle_head_area_entered(body, weak_pos)
 
 
 ## Boss01.tscn の正面JumpAreaから接続されます。
 func _on_jump_area_body_entered(body: Node3D) -> void:
-	handle_front_area_entered(body)
+	if body is CharacterBody3D and current_state == State.STUN:
+		var cb := body as CharacterBody3D
+		if cb.has_method("bounce"):
+			cb.bounce(1.5)
+		else:
+			cb.velocity.y = 15.0
 
 
 ## Boss01.tscn / boss_1_body.tscn の WallDetector (Area3D) から接続されます。
 func _on_wall_detector_body_entered(body: Node3D) -> void:
-	print("Wall detected.")
 	if body is GridMap and body.get_collision_layer_value(4):
 		_change_state(State.STUN)
+	elif body is Player and not velocity.is_zero_approx(): # and 突進中:
+		# プレイヤーだった場合、普通にダメージを与えたいがその時は突進してる最中が良い
+		# ダメージ受けて即死とか笑えない。
+		print("Player has damaged.")
+
+
+## Boss01.tscn / boss_1_body.tscn の health_changed シグナルから接続されます。
+func _on_health_changed(new_health: int) -> void:
+	if boss_life_container != null:
+		var children := boss_life_container.get_children()
+		for i in range(children.size()):
+			if children[i] is CanvasItem:
+				(children[i] as CanvasItem).visible = (i < new_health)
+
+
+func _on_stun_started() -> void:
+	# 残りどれくらいのライフポイントでランダムに岩を落とすか
+	if current_health <= 1:
+		for i in range(3):
+			var rakka_butu : Node3D = preload("res://3DModel/ohiwa/Ohiwa.tscn").instantiate()
+			rakka_butu.global_position = self.global_position + Vector3(randf_range(1,3), randf_range(1,3), randf_range(1,3))
+			owner.add_child(rakka_butu)

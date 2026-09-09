@@ -4,21 +4,21 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nsb78"]
 radius = 1.0
-height = 7.0
+height = 6.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1023x"]
 radius = 1.0
-height = 7.0
+height = 6.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fi0fh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qt1ww"]
-height = 0.56748044
-radius = 2.0
+height = 1.6418701
+radius = 2.6000001
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v4sg6"]
 height = 0.56748044
-radius = 1.0
+radius = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_bumper"]
 size = Vector3(2.5, 4, 1)
@@ -64,13 +64,28 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 collision_layer = 12
 collision_mask = 8
 script = ExtResource("1_qt1ww")
+player_path = null
+idle_duration = null
+charge_speed = null
+charge_acceleration = null
+charge_duration = null
+slide_friction = null
+stun_duration = null
 recovery_duration = 5.0
+turn_speed = null
+stun_rebound_speed = null
+stun_friction = null
+max_health = null
+invincibility_time = null
+stomp_height_tolerance = null
+stomp_max_vertical_velocity = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=648700573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("CapsuleShape3D_nsb78")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1975089342]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.25, 0)
 rotation_edit_mode = 1
 mesh = SubResource("CapsuleMesh_1023x")
 
@@ -82,7 +97,7 @@ mesh = SubResource("CapsuleMesh_fi0fh")
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpArea" unique_id=743111919]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.742276e-08, -0.53719485, 2)
 shape = SubResource("CylinderShape3D_qt1ww")
 
 [node name="WeakArea" type="Area3D" parent="." unique_id=753982838]
@@ -95,7 +110,7 @@ shape = SubResource("CylinderShape3D_v4sg6")
 [node name="WallDetector" type="Area3D" parent="." unique_id=987654321]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
 collision_layer = 0
-collision_mask = 8
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallDetector" unique_id=987654322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.5)
@@ -119,6 +134,8 @@ offset_bottom = 80.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1528829360]
 libraries/ = SubResource("AnimationLibrary_oivkl")
 
+[connection signal="health_changed" from="." to="." method="_on_health_changed"]
+[connection signal="stun_started" from="." to="." method="_on_stun_started"]
 [connection signal="body_entered" from="JumpArea" to="." method="_on_jump_area_body_entered"]
 [connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]
 [connection signal="body_entered" from="WallDetector" to="." method="_on_wall_detector_body_entered"]

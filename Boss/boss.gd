@@ -4,7 +4,7 @@
 class_name Boss
 extends CharacterBody3D
 
-signal health_changed(current_health: int)
+signal health_changed(change_health: int)
 signal invincibility_started
 signal invincibility_ended
 signal died
@@ -76,6 +76,7 @@ func take_damage(amount: int = 1) -> void:
 	if is_dead or is_invincible or amount <= 0:
 		return
 
+	_begin_invincibility()
 	current_health = max(current_health - amount, 0)
 	health_changed.emit(current_health)
 	_on_take_damage()
@@ -83,8 +84,6 @@ func take_damage(amount: int = 1) -> void:
 	if current_health == 0:
 		die()
 		return
-
-	_begin_invincibility()
 
 
 ## 死亡演出やドロップは派生クラスの _on_died() で追加できます。

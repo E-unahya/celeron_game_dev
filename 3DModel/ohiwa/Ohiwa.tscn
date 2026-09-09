@@ -2,60 +2,32 @@
 
 [ext_resource type="Script" uid="uid://kib1aqpxmpl1" path="res://3DModel/ohiwa/ohiwa.gd" id="1_f4txb"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_vfp3j"]
-radius = 10.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2k8vb"]
 albedo_color = Color(0.13333334, 0.1882353, 0.22352941, 1)
 roughness = 0.3
 
 [sub_resource type="SphereMesh" id="SphereMesh_alivf"]
 material = SubResource("StandardMaterial3D_2k8vb")
-radius = 10.0
-height = 20.0
+radius = 2.0
+height = 4.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f4txb"]
-radius = 12.0
+radius = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4txb"]
-blend_mode = 2
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_f4txb"]
-material = SubResource("StandardMaterial3D_f4txb")
-top_radius = 10.0
-bottom_radius = 10.0
-height = 0.01
-
-[node name="Ohiwa" type="RigidBody3D" unique_id=247701017]
-collision_layer = 0
-collision_mask = 8
-mass = 500.0
-sleeping = true
-freeze = true
-linear_damp = 5.0
+[node name="Ohiwa" type="Node3D" unique_id=727621934]
 script = ExtResource("1_f4txb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=941521665]
-shape = SubResource("SphereShape3D_vfp3j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1061195864]
 mesh = SubResource("SphereMesh_alivf")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1260120382]
-collision_layer = 4
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=894339555]
 shape = SubResource("SphereShape3D_f4txb")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=464544324]
-target_position = Vector3(0, -10, 10)
+target_position = Vector3(0, -3, 0)
 collision_mask = 8
-
-[node name="ShadowMesh" type="MeshInstance3D" parent="." unique_id=1873367236]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
-mesh = SubResource("CylinderMesh_f4txb")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

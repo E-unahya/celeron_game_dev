@@ -172,8 +172,9 @@ func _on_rakka_area_body_entered(body: Node3D) -> void:
 		die()
 
 
-func bounce(bounce_num : float = 1.0):
+func bounce(bounce_num: float = 1.0) -> void:
 	velocity.y = JUMP_VELOCITY * bounce_num
+	coyote_time_counter = 0.0
 
 
 func die() -> void:
