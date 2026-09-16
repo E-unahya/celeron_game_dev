@@ -159,10 +159,13 @@ func _on_player_front_collision(player: Node3D) -> void:
 func _is_player_stomping(body: Node3D, head_position: Vector3) -> bool:
 	if not body is CharacterBody3D:
 		return false
+	else:
+		return true
 
+	"""
 	return body.velocity.y <= stomp_max_vertical_velocity \
 		and body.global_position.y >= head_position.y - stomp_height_tolerance
-
+	"""
 
 func _start_battle() -> void:
 	if _animation_player != null and _animation_player.has_animation(ENTRANCE_ANIMATION):

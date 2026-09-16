@@ -30,6 +30,7 @@ enum State {
 	STUN,
 	DAMAGE,
 	RECOVERY,
+	KNOCKOUT,
 }
 
 var state: State = State.IDLE
@@ -38,6 +39,9 @@ var player: Node3D
 ## IDLE終了時の位置を保存するため、突進中はプレイヤーを追尾しません。
 var target_position: Vector3 = Vector3.ZERO
 var charge_direction: Vector3 = Vector3.ZERO
+
+## ライフが少なくなるとこいつが落下する
+var rakka_butu : PackedScene = preload("res://3DModel/ohiwa/Ohiwa.tscn")
 
 ## 外部参照や被弾ガード（current_state）との互換性を保つためのエイリアス
 var current_state: State:
@@ -122,6 +126,8 @@ func _process_ai(delta: float) -> void:
 			_apply_horizontal_friction(delta)
 			if state_time >= recovery_duration and not is_invincible:
 				_change_state(State.IDLE)
+		State.KNOCKOUT:
+			pass 
 
 
 func _process_charge(delta: float) -> void:
@@ -278,9 +284,7 @@ func _stop_horizontal_movement() -> void:
 ## Boss01.tscn の頭部WeakAreaから接続されます。
 func _on_weak_area_body_entered(body: Node3D) -> void:
 	# ガード節: 無敵時間中および STUN 以外のステートでは絶対にダメージを受け付けない
-	if is_dead or current_state != State.STUN:
-		print("is_dead is " % is_dead)
-		print("current state is " % current_state)
+	if is_dead:
 		return
 
 	# 連続多段ヒット防止のため、即座に弱点判定を無効化
@@ -292,7 +296,7 @@ func _on_weak_area_body_entered(body: Node3D) -> void:
 
 ## Boss01.tscn の正面JumpAreaから接続されます。
 func _on_jump_area_body_entered(body: Node3D) -> void:
-	if body is CharacterBody3D and current_state == State.STUN:
+	if body is Player and !body.is_on_floor() and current_state == State.STUN or current_state == State.CHARGE:
 		var cb := body as CharacterBody3D
 		if cb.has_method("bounce"):
 			cb.bounce(1.5)
@@ -323,6 +327,6 @@ func _on_stun_started() -> void:
 	# 残りどれくらいのライフポイントでランダムに岩を落とすか
 	if current_health <= 1:
 		for i in range(3):
-			var rakka_butu : Node3D = preload("res://3DModel/ohiwa/Ohiwa.tscn").instantiate()
-			rakka_butu.global_position = self.global_position + Vector3(randf_range(1,3), randf_range(1,3), randf_range(1,3))
-			owner.add_child(rakka_butu)
+			var rakka_butu_instantiate : Node3D = rakka_butu.instantiate()
+			rakka_butu_instantiate.global_position = self.global_position + Vector3(randf_range(-12,12), 30.0, randf_range(-12,12))
+			owner.add_child(rakka_butu_instantiate)

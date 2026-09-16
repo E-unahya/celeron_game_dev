@@ -17,11 +17,26 @@ height = 1.6418701
 radius = 2.6000001
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v4sg6"]
-height = 0.56748044
-radius = 2.0
+height = 0.28374022
+radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_bumper"]
 size = Vector3(2.5, 4, 1)
+
+[sub_resource type="Animation" id="Animation_oivkl"]
+resource_name = "KnockOut]"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:quaternion")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.69851756, 0, 0.109878264, 0.70710677)]
+}
 
 [sub_resource type="Animation" id="Animation_qt1ww"]
 length = 0.001
@@ -55,6 +70,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oivkl"]
 _data = {
+&"KnockOut": SubResource("Animation_oivkl"),
 &"RESET": SubResource("Animation_qt1ww"),
 &"Stun": SubResource("Animation_ojmyt")
 }
@@ -64,21 +80,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 collision_layer = 12
 collision_mask = 8
 script = ExtResource("1_qt1ww")
-player_path = null
-idle_duration = null
-charge_speed = null
-charge_acceleration = null
-charge_duration = null
-slide_friction = null
-stun_duration = null
 recovery_duration = 5.0
-turn_speed = null
-stun_rebound_speed = null
-stun_friction = null
-max_health = null
-invincibility_time = null
-stomp_height_tolerance = null
-stomp_max_vertical_velocity = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=648700573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -104,7 +106,7 @@ shape = SubResource("CylinderShape3D_qt1ww")
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WeakArea" unique_id=737352849]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75813, 0)
 shape = SubResource("CylinderShape3D_v4sg6")
 
 [node name="WallDetector" type="Area3D" parent="." unique_id=987654321]
