@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b32sjm6pcukig"]
+
+[ext_resource type="PackedScene" uid="uid://by4e37ct64xc1" path="res://Boss/boss_1_body.tscn" id="1_body"]
+[ext_resource type="Script" uid="uid://cds8xt5snlono" path="res://Boss/boss_2.gd" id="2_script"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wvd3"]
+albedo_color = Color(1, 0.34076378, 0.3268259, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7jpjr"]
+material = SubResource("StandardMaterial3D_2wvd3")
+radius = 1.0
+height = 6.5
+
+[node name="Boss2" unique_id=1023194369 instance=ExtResource("1_body")]
+script = ExtResource("2_script")
+spawn_points = Array[NodePath]([])
+spawn_radius = 7.0
+minion_spawn_interval = 1.0
+max_health_minion_count = 5
+two_health_minion_count = 10
+one_health_minion_count = 20
+appear_duration = 0.4
+attack_duration = 10.0
+shot_interval = 1.5
+bullet_speed = 16.0
+bullet_lifetime = 4.0
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=1975089342]
+mesh = SubResource("CapsuleMesh_7jpjr")

@@ -38,6 +38,11 @@ func _ready() -> void:
 			animation_player.play("Weapon")
 		EnemyType.FOLLOWING:
 			animation_player.play("Idle")
+	if collision_shape_3d == null:
+		for c in get_children():
+			if c is CollisionShape3D:
+				collision_shape_3d = c
+				break
 
 
 func _on_body_entered(body: Node3D) -> void:

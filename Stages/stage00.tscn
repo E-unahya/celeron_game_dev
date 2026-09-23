@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pdmrhny8rl5m" path="res://world.gd" id="1_0de64"]
 [ext_resource type="PackedScene" uid="uid://c16u1ytqqmdib" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Character/glTF/player.tscn" id="2_pry2t"]
+[ext_resource type="Environment" uid="uid://c6ybkbijbow8k" path="res://Stages/worldEnv/morning.tres" id="2_uhd3y"]
 [ext_resource type="MeshLibrary" uid="uid://b1r7kx7j0xwjh" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Modular Platforms/modular_platforms.meshlib" id="3_sr36a"]
 [ext_resource type="MeshLibrary" uid="uid://rgo1nut0r4tw" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Level and Mechanics/glTF/hazard_mesh.tres" id="4_kpc56"]
 [ext_resource type="MeshLibrary" uid="uid://c3avuxfewjumu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Nature/Natures.tres" id="5_a7e00"]
@@ -20,18 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://k0ha42o53tst" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.tscn" id="26_kx7or"]
 [ext_resource type="PackedScene" uid="uid://b1s2ys3udjpdl" path="res://UI/StageUI.tscn" id="27_dvx2w"]
 [ext_resource type="Script" uid="uid://ff16i3btnl7x" path="res://Stages/transration_area.gd" id="31_weudq"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bc84e"]
-
-[sub_resource type="Sky" id="Sky_bc84e"]
-sky_material = SubResource("ProceduralSkyMaterial_bc84e")
-
-[sub_resource type="Environment" id="Environment_tlwt5"]
-background_mode = 2
-background_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
-sky = SubResource("Sky_bc84e")
-fog_enabled = true
-fog_light_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(168, 1, 300)
@@ -128,7 +117,7 @@ goal_stage = "uid://y5cnw44at7yj"
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 34.6932, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569862025]
-environment = SubResource("Environment_tlwt5")
+environment = ExtResource("2_uhd3y")
 
 [node name="Player" parent="." unique_id=298166857 instance=ExtResource("2_pry2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

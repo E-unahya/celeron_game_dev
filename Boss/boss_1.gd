@@ -3,6 +3,7 @@ extends "res://Boss/boss.gd"
 
 ## 壁激突SE・よろけアニメーションをシーン側から接続できます。
 signal stun_started
+signal knock_out
 
 @export_category("Target")
 @export var player_path: NodePath = NodePath("../Player")
@@ -39,6 +40,9 @@ var player: Node3D
 ## IDLE終了時の位置を保存するため、突進中はプレイヤーを追尾しません。
 var target_position: Vector3 = Vector3.ZERO
 var charge_direction: Vector3 = Vector3.ZERO
+## DAMAGE 中は Damage アニメーションの完走と無敵終了の両方を待ちます。
+var _damage_animation_started: bool = false
+var _damage_animation_finished: bool = false
 
 ## ライフが少なくなるとこいつが落下する
 var rakka_butu : PackedScene = preload("res://3DModel/ohiwa/Ohiwa.tscn")
@@ -119,16 +123,15 @@ func _process_ai(delta: float) -> void:
 				_change_state(State.RECOVERY)
 		State.DAMAGE:
 			_stop_horizontal_movement()
-			# 被弾無敵が終わってから復帰させ、連続踏みつけを防ぎます。
-			if not is_invincible:
+			# Damage の完走と無敵終了前には別ステートへ進ませません。
+			if _damage_animation_finished and not is_invincible:
 				_change_state(State.RECOVERY)
 		State.RECOVERY:
 			_apply_horizontal_friction(delta)
 			if state_time >= recovery_duration and not is_invincible:
 				_change_state(State.IDLE)
 		State.KNOCKOUT:
-			pass 
-
+			pass
 
 func _process_charge(delta: float) -> void:
 	# WallDetector ノードによる壁接触検知で即座に STUN へ遷移
@@ -199,7 +202,10 @@ func _on_successful_stomp(stomping_player: Node3D) -> void:
 ## Base の take_damage() から呼ばれます。無敵時間中は再度呼ばれません。
 func _on_take_damage() -> void:
 	_set_weak_point_active(false)
-	_change_state(State.RECOVERY)
+	# 致死時は health_changed 側の KNOCKOUT 演出を優先します。
+	if current_health <= 0:
+		return
+	_change_state(State.DAMAGE)
 
 
 ## 正面からの接触、またはSTUN以外での頭部接触はプレイヤー側の被弾として扱います。
@@ -222,12 +228,49 @@ func _begin_charge() -> void:
 
 
 func _change_state(next_state: State) -> void:
+	# DAMAGE は再生完了まで他の AI 遷移や重複シグナルで中断させない。
+	if state == State.DAMAGE:
+		if next_state == State.DAMAGE or not _damage_animation_finished:
+			return
+
 	state = next_state
 	state_time = 0.0
-	if state == State.STUN:
-		_set_weak_point_active(true)
-		_apply_stun_rebound()
-	_play_animation()
+	match state:
+		State.STUN:
+			# Recovery 後、次の弱点公開機会で初めて判定を戻す。
+			_set_weak_point_active(true)
+			_apply_stun_rebound()
+			_play_animation()
+		State.DAMAGE:
+			_set_weak_point_active(false)
+			_damage_animation_started = false
+			_damage_animation_finished = false
+			_play_damage_animation_once()
+		_:
+			_play_animation()
+
+
+## DAMAGE ステートへの一回の進入につき、Damage の play() も一度だけです。
+func _play_damage_animation_once() -> void:
+	if _damage_animation_started:
+		return
+	_damage_animation_started = true
+
+	var animation_player := get_node_or_null("AnimationPlayer") as AnimationPlayer
+	if animation_player == null or not animation_player.has_animation("Damage"):
+		_damage_animation_finished = true
+		return
+
+	animation_player.play("Damage", 2.0)
+	_wait_for_damage_animation(animation_player)
+
+
+func _wait_for_damage_animation(animation_player: AnimationPlayer) -> void:
+	while is_instance_valid(animation_player):
+		var finished_animation: StringName = await animation_player.animation_finished
+		if finished_animation == &"Damage":
+			_damage_animation_finished = true
+			return
 
 
 func _apply_stun_rebound() -> void:
@@ -250,6 +293,14 @@ func _play_animation() -> void:
 			if animation_player != null and animation_player.has_animation("Stun"):
 				animation_player.play("Stun")
 			stun_started.emit()
+		State.RECOVERY:
+			if animation_player != null and animation_player.has_animation("Stun"):
+				animation_player.play("Stun")
+		State.KNOCKOUT:
+			if animation_player != null and animation_player.has_animation("KnockOut"):
+				animation_player.play("KnockOut")
+				await animation_player.animation_finished
+				knock_out.emit()
 		_:
 			if animation_player != null and animation_player.has_animation("RESET"):
 				animation_player.play("RESET")
@@ -283,20 +334,31 @@ func _stop_horizontal_movement() -> void:
 
 ## Boss01.tscn の頭部WeakAreaから接続されます。
 func _on_weak_area_body_entered(body: Node3D) -> void:
-	# ガード節: 無敵時間中および STUN 以外のステートでは絶対にダメージを受け付けない
-	if is_dead:
+	# ガード節: Damage/Recovery・無敵中・弱点非公開中の通知は完全に無視する。
+	if is_dead \
+		or is_invincible \
+		or state == State.DAMAGE \
+		or state == State.RECOVERY \
+		or state != State.STUN:
 		return
 
-	# 連続多段ヒット防止のため、即座に弱点判定を無効化
-	_set_weak_point_active(false)
-
 	var weak_pos: Vector3 = weak_area.global_position if weak_area != null else global_position
-	handle_head_area_entered(body, weak_pos)
+	if not _is_player_stomping(body, weak_pos):
+		handle_head_area_entered(body, weak_pos)
+		return
+
+	# take_damage() が無敵を開始する前に Shape を止めるので、同一物理フレーム
+	# の重複 body_entered / area_entered でも二発目を受け付けない。
+	_set_weak_point_active(false)
+	_on_successful_stomp(body)
+	take_damage()
 
 
 ## Boss01.tscn の正面JumpAreaから接続されます。
 func _on_jump_area_body_entered(body: Node3D) -> void:
-	if body is Player and !body.is_on_floor() and current_state == State.STUN or current_state == State.CHARGE:
+	print("current_state is {current_state}".format({"current_state":current_state}))
+	# ジャンプ中に飛ぶのが理想的だけど入った瞬間しか判定されないので妥協して入った瞬間にジャンプする処理に変更
+	if body is Player and (current_state == State.STUN or current_state == State.CHARGE or current_state == State.RECOVERY):
 		var cb := body as CharacterBody3D
 		if cb.has_method("bounce"):
 			cb.bounce(1.5)
@@ -316,6 +378,9 @@ func _on_wall_detector_body_entered(body: Node3D) -> void:
 
 ## Boss01.tscn / boss_1_body.tscn の health_changed シグナルから接続されます。
 func _on_health_changed(new_health: int) -> void:
+	if new_health == 0:
+		# ここにライフがゼロになったときのアニメーションを再生したい。
+		current_state = State.KNOCKOUT
 	if boss_life_container != null:
 		var children := boss_life_container.get_children()
 		for i in range(children.size()):
@@ -330,3 +395,8 @@ func _on_stun_started() -> void:
 			var rakka_butu_instantiate : Node3D = rakka_butu.instantiate()
 			rakka_butu_instantiate.global_position = self.global_position + Vector3(randf_range(-12,12), 30.0, randf_range(-12,12))
 			owner.add_child(rakka_butu_instantiate)
+
+
+func _on_knock_out() -> void:
+	print("KNOCKOUT!!!")
+	Global.load_scene_async("res://Stages/StageSelect.tscn")

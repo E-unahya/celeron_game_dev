@@ -37,6 +37,7 @@ func _ready() -> void:
 		set_process(false)
 		set_physics_process(false)
 
+
 func _process(delta: float) -> void:
 	if enemy_type == EnemyType.FOLLOWING or target != null:
 		var dist_sq = (global_position.distance_squared_to(target.global_position))

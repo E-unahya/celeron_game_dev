@@ -4747,14 +4747,6 @@ font_color = Color(0, 0, 0, 1)
 collision_layer = 65
 collision_mask = 89
 script = ExtResource("2_ity3g")
-SPEED = null
-JUMP_VELOCITY = null
-accel = null
-friction = null
-fall_gravity_mult = null
-low_jump_mult = null
-attack_now = null
-fruits_counter = null
 check_point = null
 zanki = null
 

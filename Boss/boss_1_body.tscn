@@ -23,8 +23,10 @@ radius = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_bumper"]
 size = Vector3(2.5, 4, 1)
 
-[sub_resource type="Animation" id="Animation_oivkl"]
-resource_name = "KnockOut]"
+[sub_resource type="Animation" id="Animation_ejylw"]
+resource_name = "Damage"
+length = 3.0000000000000004
+step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,10 +34,38 @@ tracks/0/path = NodePath("MeshInstance3D:quaternion")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(3.3455255e-08, 0, 0.38268346, 0.92387956), Quaternion(0.27059805, 0.6532815, 0.27059796, 0.6532815), Quaternion(0.3826834, 0.92387956, -6.343133e-08, -4.3001737e-08), Quaternion(-0.27059796, -0.6532815, 0.27059805, 0.6532815), Quaternion(8.6241045e-08, -1.2065782e-08, 0.3826834, 0.92387956), Quaternion(0.27059805, 0.6532815, 0.27059796, 0.6532815), Quaternion(0.3826834, 0.92387956, -6.343133e-08, -4.3001737e-08), Quaternion(-0.27059796, -0.6532815, 0.27059805, 0.6532815), Quaternion(0.27059805, 0.6532815, 0.27059796, 0.6532815), Quaternion(0.3826834, 0.92387956, -6.343133e-08, -4.3001737e-08), Quaternion(-0.27059796, -0.6532815, 0.27059805, 0.6532815), Quaternion(8.6241045e-08, -1.2065782e-08, 0.3826834, 0.92387956)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.69851756, 0, 0.109878264, 0.70710677)]
+"values": [Vector3(1, 0.99999994, 1), Vector3(1, 1, 1), Vector3(0.1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oivkl"]
+resource_name = "KnockOut]"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:quaternion")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.99, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(2.262668e-08, -2.9884074e-15, 0.25881904, 0.9659258), Quaternion(-0.033817768, -0.1260691, 0.2568718, 0.95759064), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.69851756, 0, 0.109878264, 0.70710677)]
 }
 
 [sub_resource type="Animation" id="Animation_qt1ww"]
@@ -51,6 +81,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Quaternion(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.99999994, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ojmyt"]
@@ -70,6 +112,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oivkl"]
 _data = {
+&"Damage": SubResource("Animation_ejylw"),
 &"KnockOut": SubResource("Animation_oivkl"),
 &"RESET": SubResource("Animation_qt1ww"),
 &"Stun": SubResource("Animation_ojmyt")
@@ -87,7 +130,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("CapsuleShape3D_nsb78")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1975089342]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 rotation_edit_mode = 1
 mesh = SubResource("CapsuleMesh_1023x")
 
@@ -99,7 +142,7 @@ mesh = SubResource("CapsuleMesh_fi0fh")
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpArea" unique_id=743111919]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.742276e-08, -0.53719485, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.742276e-08, -1.2371949, 2)
 shape = SubResource("CylinderShape3D_qt1ww")
 
 [node name="WeakArea" type="Area3D" parent="." unique_id=753982838]
@@ -137,6 +180,7 @@ offset_bottom = 80.0
 libraries/ = SubResource("AnimationLibrary_oivkl")
 
 [connection signal="health_changed" from="." to="." method="_on_health_changed"]
+[connection signal="knock_out" from="." to="." method="_on_knock_out"]
 [connection signal="stun_started" from="." to="." method="_on_stun_started"]
 [connection signal="body_entered" from="JumpArea" to="." method="_on_jump_area_body_entered"]
 [connection signal="body_entered" from="WeakArea" to="." method="_on_weak_area_body_entered"]
