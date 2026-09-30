@@ -8,6 +8,7 @@ enum State {
 	SPAWN_PHASE,
 	APPEAR_PHASE,
 	ATTACK_PHASE,
+	DAMAGE,
 	KNOCKOUT,
 }
 
@@ -39,12 +40,19 @@ var _minions_to_spawn: int = 0
 var _minions_spawned: int = 0
 var _next_minion_is_birb: bool = true
 var player: Node3D
+# 敵は配列で管理される。それ自体はいいかも、Node3Dの子ノードよりメモリに優しいから
 var active_minions: Array[Node3D] = []
 var active_bullets: Array[Bullet] = []
 
 @onready var weak_area: Area3D = get_node_or_null("WeakArea") as Area3D
 @onready var weak_collision: CollisionShape3D = get_node_or_null("WeakArea/CollisionShape3D") as CollisionShape3D
 
+# ボスのライフ関係
+@onready var boss_life: Control = get_node_or_null("BossLife") as Control
+@onready var boss_life_container: HBoxContainer = get_node_or_null("BossLife/BossLifeContainer") as HBoxContainer
+
+# アニメーション関係
+@onready var animation_player : AnimationPlayer = get_node("AnimationPlayer")
 
 ## 動的に作る簡易弾です。Area3D のため、MeshInstance3D だけより衝突処理を明確に保てます。
 class Bullet extends Area3D:
@@ -90,6 +98,17 @@ func _ready() -> void:
 	super._ready()
 	_set_boss_collision_active(false)
 	_set_weak_point_active(false)
+	player = get_node_or_null(player_path) as Node3D
+	if player is Player:
+		var spin_area := player.get_node_or_null("SpinArea") as Area3D
+		if spin_area != null and not spin_area.body_entered.is_connected(_on_spin_area_body_entered):
+			spin_area.body_entered.connect(_on_spin_area_body_entered)
+	# TODO　ボスのライフポイント関係の共通メソッド化
+	if boss_life_container != null:
+		for l in max_health:
+			var t = TextureRect.new()
+			t.texture = load("res://Boss/boss_life_kakkokari.tres")
+			boss_life_container.add_child(t)
 
 
 func _setup_ai() -> void:
@@ -127,8 +146,10 @@ func _process_spawn_phase(delta: float) -> void:
 			_spawn_minion()
 		return
 
-	# 生成済みの全員が tree_exited した後にのみ姿を現す。
-	if active_minions.is_empty():
+	# 生成済みの全員が tree_exiis_empty()ted した後にのみ姿を現す。
+	# 何故か空中に敵が2匹飛んでることがあるので2匹飛ばす。
+	# TOOD どうやって残りの敵を引きずり下ろすか
+	if len(active_minions) <= 0:
 		_change_state(State.APPEAR_PHASE)
 
 
@@ -166,10 +187,12 @@ func _change_state(next_state: State) -> void:
 		State.ATTACK_PHASE:
 			_set_weak_point_active(true)
 			_shot_elapsed = shot_interval # 登場直後の一発目は即時発射。
+		State.DAMAGE:
+			animation_player.play("Damage")
 		State.KNOCKOUT:
-			hide()
 			_set_boss_collision_active(false)
 			_set_weak_point_active(false)
+			animation_player.play("KnockOut")
 
 
 func _get_minion_count_for_health() -> int:
@@ -195,7 +218,7 @@ func _spawn_minion() -> void:
 	parent_node.add_child(minion)
 	minion.global_position = _get_next_spawn_position()
 	active_minions.append(minion)
-	minion.tree_exited.connect(_on_minion_tree_exited.bind(minion), CONNECT_ONE_SHOT)
+	minion.visibility_changed.connect(_on_minion_tree_exited.bind(minion), CONNECT_ONE_SHOT)
 	_minions_spawned += 1
 
 
@@ -206,16 +229,19 @@ func _get_next_spawn_position() -> Vector3:
 		if point != null:
 			return point.global_position
 	var angle: float = TAU * float(_minions_spawned) / float(maxi(_minions_to_spawn, 1))
-	return global_position + Vector3(cos(angle), 0.5, sin(angle)) * spawn_radius
+	return global_position + Vector3(cos(angle), -0.5, sin(angle)) * spawn_radius
 
 
 func _on_minion_tree_exited(minion: Node3D) -> void:
-	active_minions.erase(minion)
+	if minion.visible:
+		return
+	else:
+		active_minions.erase(minion)
 
 
 func _prune_minions() -> void:
 	for index: int in range(active_minions.size() - 1, -1, -1):
-		if not is_instance_valid(active_minions[index]):
+		if not active_minions[index].visible:
 			active_minions.remove_at(index)
 
 
@@ -233,7 +259,7 @@ func _fire_bullet_at_player() -> void:
 	bullet.direction = direction.normalized()
 	bullet.speed = bullet_speed
 	bullet.lifetime = bullet_lifetime
-	bullet.global_position = global_position + Vector3.UP * 1.5 + bullet.direction * 1.2
+	bullet.global_position = global_position + Vector3.UP * randf_range(-0.5, 1.5) + bullet.direction * 1.2
 	var parent_node: Node = get_tree().current_scene if get_tree().current_scene != null else get_parent()
 	if parent_node == null:
 		bullet.queue_free()
@@ -285,8 +311,6 @@ func _on_weak_area_body_entered(body: Node3D) -> void:
 func _on_take_damage() -> void:
 	_set_weak_point_active(false)
 	_clear_bullets()
-	if current_health > 0:
-		_change_state(State.SPAWN_PHASE)
 
 
 func _on_died() -> void:
@@ -300,13 +324,37 @@ func _on_jump_area_body_entered(body: Node3D) -> void:
 		handle_front_area_entered(body)
 
 
+## Player の SpinArea (Area3D) が本体 CharacterBody3D に入った時だけ被弾する。
+func _on_spin_area_body_entered(body: Node3D) -> void:
+	if body != self or not visible:
+		return
+	_change_state(State.DAMAGE)
+	take_damage()
+
+
 func _on_wall_detector_body_entered(_body: Node3D) -> void:
 	pass
 
 
-func _on_health_changed(_new_health: int) -> void:
-	pass
+## Boss01.tscn / boss_1_body.tscn の health_changed シグナルから接続されます。
+func _on_health_changed(new_health: int) -> void:
+	if new_health == 0:
+		# ここにライフがゼロになったときのアニメーションを再生したい。
+		_change_state(State.KNOCKOUT)
+	if boss_life_container != null:
+		var children := boss_life_container.get_children()
+		for i in range(children.size()):
+			if children[i] is CanvasItem:
+				(children[i] as CanvasItem).visible = (i < new_health)
 
 
 func _on_stun_started() -> void:
 	pass
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"Damage":
+			if current_health > 0:
+				_change_state(State.SPAWN_PHASE)
+			animation_player.play("RESET")

@@ -31,6 +31,7 @@ var state_machine : AnimationNodeStateMachinePlayback
 @onready var shadow_mesh: MeshInstance3D = $ShadowMesh
 
 @onready var spin_area: Area3D = $SpinArea
+@onready var spin_collision: CollisionShape3D = $SpinArea/SpinCollision
 @onready var debug_label: Label = $DebugLabel
 
 @export var check_point : Vector3
@@ -52,6 +53,7 @@ var coyote_time : float = 0.15
 var coyote_time_counter : float = 0.0
 
 var is_dead : bool = false
+var _spin_attack_active: bool = false
 
 # ダメージを受けたときの管理、ハザード編
 enum Hazard {
@@ -66,6 +68,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	state_machine = animation_tree.get("parameters/playback")
 	state_machine.travel("IdleAndRun")
+	_set_spin_attack_active(false, true)
 
 func _physics_process(delta: float) -> void:
 	var current_gravity = get_gravity() * 2.5
@@ -156,14 +159,23 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("spin_attack"):
 		state_machine.travel("SpinAttack")
 
-	if state_machine.get_current_node() == "SpinAttack":
-		attack_now = true
-	else:
-		attack_now = false
+	attack_now = state_machine.get_current_node() == "SpinAttack"
+	_set_spin_attack_active(attack_now)
 
 	# 死んだときのプロセス
 	if is_dead:
 		die()
+
+
+## SpinArea の表示状態は物理当たり判定を有効化しないため、両方をスピン状態に同期する。
+func _set_spin_attack_active(active: bool, force: bool = false) -> void:
+	if not force and _spin_attack_active == active:
+		return
+
+	_spin_attack_active = active
+	spin_area.visible = active
+	spin_area.monitoring = active
+	spin_collision.set_deferred("disabled", not active)
 
 
 func _on_rakka_area_body_entered(body: Node3D) -> void:

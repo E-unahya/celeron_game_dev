@@ -50,7 +50,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is not Player:
 		return
 	if body.attack_now == false:
-		animation_player.play("Bite_Front")
+		if animation_player.has_animation("Bite_Front"):
+			animation_player.play("Bite_Front")
 		body.is_dead = true
 
 

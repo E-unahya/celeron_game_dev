@@ -4,7 +4,7 @@ class_name Big
 @onready var ball: MeshInstance3D = $ball
 @onready var ball_collision: CollisionShape3D = $ball/Area3D/BallCollision
 
-## 投げるボールがTOUTATU SURU JIKAN
+## 投げるボールが到達する時間
 @export var ball_arrival : float = 3.0
 
 ## 敵とプレイヤーの距離がここまで来たら動き出す。
@@ -61,6 +61,9 @@ func _process(delta: float) -> void:
 		else:
 			animation_player.play("Idle")
 			$CharacterArmature.rotation = Vector3.ZERO
+	# 何故か消えないバグが出てきたため、当たり判定がなくなった　→　やられた判定としてhideすることにする。
+	if collision_shape_3d.disabled:
+		hide()
 
 
 func throw_ballet() -> void:

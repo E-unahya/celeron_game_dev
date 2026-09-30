@@ -4806,8 +4806,9 @@ parameters/IdleAndRun/IdleAndRun/blend_amount = 0.0
 
 [node name="SpinArea" type="Area3D" parent="." index="6" unique_id=847049594]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 12
 monitoring = false
+monitorable = true
 
 [node name="SpinCollision" type="CollisionShape3D" parent="SpinArea" index="0" unique_id=351217437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
