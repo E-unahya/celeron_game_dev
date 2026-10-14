@@ -59,6 +59,7 @@ class Bullet extends Area3D:
 	var direction: Vector3 = Vector3.FORWARD
 	var speed: float = 16.0
 	var lifetime: float = 4.0
+	var mesh_size : Vector3 = Vector3(0.5, 0.5, 0.5)
 
 	func _ready() -> void:
 		collision_layer = 0
@@ -69,13 +70,13 @@ class Bullet extends Area3D:
 
 		var mesh_instance := MeshInstance3D.new()
 		var box_mesh := BoxMesh.new()
-		box_mesh.size = Vector3(0.35, 0.35, 0.35)
+		box_mesh.size = mesh_size
 		mesh_instance.mesh = box_mesh
 		add_child(mesh_instance)
 
 		var collision := CollisionShape3D.new()
 		var box_shape := BoxShape3D.new()
-		box_shape.size = Vector3(0.35, 0.35, 0.35)
+		box_shape.size = mesh_size
 		collision.shape = box_shape
 		add_child(collision)
 
@@ -146,9 +147,6 @@ func _process_spawn_phase(delta: float) -> void:
 			_spawn_minion()
 		return
 
-	# 生成済みの全員が tree_exiis_empty()ted した後にのみ姿を現す。
-	# 何故か空中に敵が2匹飛んでることがあるので2匹飛ばす。
-	# TOOD どうやって残りの敵を引きずり下ろすか
 	if len(active_minions) <= 0:
 		_change_state(State.APPEAR_PHASE)
 
@@ -215,6 +213,8 @@ func _spawn_minion() -> void:
 	if parent_node == null:
 		return
 	minion.target = parent_node.get_node("Player")
+	if _next_minion_is_birb == false:
+		minion.rotate_y(randf_range(0.0, PI*2))
 	parent_node.add_child(minion)
 	minion.global_position = _get_next_spawn_position()
 	active_minions.append(minion)

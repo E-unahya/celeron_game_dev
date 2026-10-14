@@ -51,11 +51,7 @@ func _process(delta: float) -> void:
 			# 方向が上下に荒ぶらないため
 			direction.y = 0
 			if global_position.distance_squared_to(target.global_position) > 1.1:
-				global_translate(direction * speed * delta)
-				var look_pos = target.global_position
-				look_pos.y = global_position.y
-				$CharacterArmature.look_at(look_pos, Vector3.UP)
-				$CharacterArmature.rotate_y(PI)
+				target_look(direction, delta)
 			else:
 				state = State.ATTACK
 		else:
@@ -64,6 +60,14 @@ func _process(delta: float) -> void:
 	# 何故か消えないバグが出てきたため、当たり判定がなくなった　→　やられた判定としてhideすることにする。
 	if collision_shape_3d.disabled:
 		hide()
+
+
+func target_look(direction:Vector3, delta:float) -> void:
+	global_translate(direction * speed * delta)
+	var look_pos = target.global_position
+	look_pos.y = global_position.y
+	$CharacterArmature.look_at(look_pos, Vector3.UP)
+	$CharacterArmature.rotate_y(PI)
 
 
 func throw_ballet() -> void:
