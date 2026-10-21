@@ -4,20 +4,17 @@
 [ext_resource type="Script" uid="uid://b4aa4thjo4wpu" path="res://3DModel/Ultimate Platformer Pack - Dec 2021/Cubes/tscn/cube_crate.gd" id="2_54ohs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_54ohs"]
-size = Vector3(1.5, 2, 1.5)
+size = Vector3(1.5, 2.4, 1.5)
 
 [node name="Cube_Crate" unique_id=335966316 instance=ExtResource("1_m51oh")]
 script = ExtResource("2_54ohs")
-
-[node name="@StaticBody3D@20877" parent="Cube_Crate" parent_id_path=PackedInt32Array(2029798963) index="0" unique_id=1091701969]
-collision_layer = 0
 
 [node name="Area3D" type="Area3D" parent="." index="1" unique_id=1770497451]
 collision_layer = 0
 collision_mask = 96
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1371245806]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049999952, 0)
 shape = SubResource("BoxShape3D_54ohs")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
