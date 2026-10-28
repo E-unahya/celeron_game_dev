@@ -191,6 +191,8 @@ func bounce(bounce_num: float = 1.0) -> void:
 
 func die() -> void:
 	state_machine.travel("Death")
+	velocity = Vector3.ZERO
+	move_and_slide()
 	if zanki == 0:
 		await get_tree().create_timer(1.0).timeout
 		dead.emit()

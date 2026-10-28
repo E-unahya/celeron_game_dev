@@ -23,6 +23,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	current_player.set_process(false)
 	current_player.set_physics_process(false)
 	current_player.reparent(self, true)
+	current_player.move_and_slide()
 	move_floor_animation.play("MoveTo")
 
 
@@ -40,10 +41,12 @@ func _on_move_floor_animation_finished(anim_name: StringName) -> void:
 	current_player.check_point = global_position
 	current_player.reparent(current_player_parent, true)
 	current_player.velocity = Vector3.ZERO
+	current_player.move_and_slide()
 	current_player.set_process(true)
 	current_player.set_physics_process(true)
 	current_player = null
 	current_player_parent = null
+
 
 func reverse():
 	area_3d.get_node("CollisionShape3D").disabled = false

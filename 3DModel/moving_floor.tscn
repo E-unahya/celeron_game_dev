@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cobcnu73rcac8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1023x"]
+size = Vector3(5, 1.5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1023x"]
+size = Vector3(5, 1.5, 5)
+
+[node name="MovingFloor" type="AnimatableBody3D" unique_id=53511356]
+collision_layer = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=565879857]
+mesh = SubResource("BoxMesh_1023x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=76527218]
+shape = SubResource("BoxShape3D_1023x")
+debug_color = Color(0.7584718, 0, 0.21078646, 1)
